@@ -1,0 +1,16 @@
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csprojAssemblyReference.cache
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CoreCompileInputs.cache
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\CMS.Infra.Data.dll
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\CMS.Infra.Data.pdb
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\CMS.Domain.dll
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\EntityFramework.dll
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\EntityFramework.SqlServer.dll
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\CMS.Domain.pdb
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\CMS.Domain.dll.config
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\EntityFramework.xml
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\EntityFramework.SqlServer.xml
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CopyComplete
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.dll
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.pdb
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.init.resources
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.GenerateResource.cache

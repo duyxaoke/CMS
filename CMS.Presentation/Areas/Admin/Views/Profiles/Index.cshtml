@@ -1,0 +1,85 @@
+﻿@model CMS.Presentation.Models.ProfileViewModel
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+}
+
+<div class="col-md-12" ng-controller="IndexController" ng-cloak>
+    <div class="box box-primary">
+        <div class="box-header with-border">
+            <h3 class="box-title">@ViewBag.Title</h3>
+        </div>
+        <div class="box-body">
+            <form id="frmUpdate" name="frmUpdate" class="needs-validation" novalidate="">
+                <div class="form-group col-md-6">
+                    <label>Họ tên:</label>
+                    <div class="form-label-group">
+                        <input type="text" name="Name" class="form-control" ng-model="ObjUser.Name" required />
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Email:</label>
+                    <div class="form-label-group">
+                        <input type="text" class="form-control" ng-model="ObjUser.Email" readonly />
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Điện thoại:</label>
+                    <div class="form-label-group">
+                        <input type="text" name="Phone" class="form-control" ng-model="ObjUser.Phone" />
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Giới tính:</label>
+                    <div class="form-label-group">
+                        <label class="radio-inline">
+                            <input type="radio" name="Gender" value="Nam" ng-model="ObjUser.Gender" checked>Nam
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="Gender" value="Nữ" ng-model="ObjUser.Gender">Nữ
+                        </label>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="form-group col-md-12">
+                    <button type="submit" class="btn btn-primary" ng-click="Save()">Cập nhật</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        var IndexController = ($scope, $rootScope, $timeout, $filter, $compile, ApiHelper, CommonHelper, UtilFactory, DataFactory, $q) => {
+
+            //#region declare variable
+            $scope.ObjUser = @Html.Raw(Json.Encode(Model));
+
+            //#endregion
+
+            //#region Save
+            $scope.Save = function () {
+                let defer = $q.defer();
+               
+                    $rootScope.MasterPage.IsLoading = true;
+                    let strApiEndPoint = CommonHelper.UserUrl + "Update-Profile";
+
+                    ApiHelper.PutMethod(strApiEndPoint, $scope.ObjUser).then(function (response) {
+                        $rootScope.MasterPage.IsLoading = false;
+                        sys.Alert(true, 'Cập nhật thành công');
+                        defer.resolve(response);
+                    }).catch(function (response) {
+                        sys.Alert(false, response.Message);
+                        defer.reject(response);
+                        $rootScope.MasterPage.IsLoading = false;
+                    });
+            };
+            //#endregion
+        }
+        IndexController.$inject = ["$scope", "$rootScope", "$timeout", "$filter", "$compile", "ApiHelper", "CommonHelper", "UtilFactory", "DataFactory", "$q"];
+        addController("IndexController", IndexController);
+    </script>
+}

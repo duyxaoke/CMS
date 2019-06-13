@@ -1,0 +1,37 @@
+﻿@model CMS.Presentation.Models.ExternalLoginListViewModel
+@using Microsoft.Owin.Security
+
+
+
+
+@{
+    var loginProviders = Context.GetOwinContext().Authentication.GetExternalAuthenticationTypes();
+    if (loginProviders.Count() > 0)
+    {
+        using (Html.BeginForm("ExternalLogin", "Account", new { ReturnUrl = Model.ReturnUrl }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="social-auth-links text-center">
+                <p>- HOẶC -</p>
+                @foreach (AuthenticationDescription p in loginProviders)
+                {
+                    if (p.AuthenticationType == "Facebook")
+                    {
+                        <button type="submit" class="btn btn-block btn-social btn-facebook btn-flat" id="@p.AuthenticationType"
+                                name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                            <i class="fa fa-facebook"></i> Đăng nhập bằng @p.AuthenticationType
+                        </button>
+                    }
+                    if (p.AuthenticationType == "Google")
+                    {
+                        <button type="submit" class="btn btn-block btn-social btn-google btn-flat" id="@p.AuthenticationType"
+                                name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">
+                            <i class="fa fa-google-plus"></i> Đăng nhập bằng @p.AuthenticationType
+                        </button>
+                    }
+
+                }
+            </div>
+        }
+    }
+}

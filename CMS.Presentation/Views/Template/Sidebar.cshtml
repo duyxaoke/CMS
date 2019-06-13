@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CMS.Application.ViewModels.MenuViewModel>
+
+
+<div class="layout-sidebar">
+    <div class="layout-sidebar-backdrop"></div>
+    <div class="layout-sidebar-body">
+        <div class="custom-scrollbar">
+            <nav id="sidenav" class="sidenav-collapse collapse">
+                <ul class="sidenav level-1">
+                    <li class="sidenav-search">
+                        <form class="sidenav-form" action="/">
+                            <div class="form-group form-group-sm">
+                                <div class="input-with-icon">
+                                    <input class="form-control" type="text" placeholder="Search…">
+                                    <span class="icon icon-search input-icon"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </li>
+                    <li class="sidenav-heading">Navigation</li>
+                    @foreach (var item in Model)
+                    {
+                        <!-- co item con -->
+                        if (item.Childrens.Count() > 0)
+                        {
+                            <li class="sidenav-item has-subnav">
+                                <a href="#multi-level-menu" aria-haspopup="true">
+                                    <span class="sidenav-icon @item.Icon"></span>
+                                    <span class="sidenav-label">@item.Name</span>
+                                </a>
+                                <ul class="sidenav level-2 collapse">
+                                    <li class="sidenav-heading">@item.Name</li>
+                                    @foreach (var itemChild in item.Childrens)
+                                    {
+                                        <li class="sidenav-item">
+                                            <a href="@itemChild.Url">
+                                                <span class="@itemChild.Icon"></span> @itemChild.Name
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="sidenav-item">
+                                <a href="@item.Url">
+                                    <span class="sidenav-icon @item.Icon"></span>
+                                    <span class="sidenav-label">@item.Name</span>
+                                </a>
+                            </li>
+                        }
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

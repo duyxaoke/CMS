@@ -1,0 +1,109 @@
+﻿@model CMS.Presentation.Models.RegisterViewModel
+@using CMS.Presentation.Helpers
+
+@{
+    ViewBag.Title = "Register";
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>@ViewBag.Title.</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.7 -->
+    <link rel="stylesheet" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="~/Content/bower_components/Ionicons/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/dist/css/AdminLTE.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/plugins/iCheck/square/blue.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        .login-page, .register-page {
+            background-repeat: no-repeat;
+            background-image: url('../../Content/template/images/bg-login.jpg');
+            background-size: cover;
+            background-position: center center;
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+    </style>
+
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="@Url.Action("Index","Home")">
+                <img src="data:image/png;base64,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" />
+            </a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Đăng ký để tiếp tục</p>
+            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group has-feedback">
+                    <input type="text" name="Name" class="form-control" placeholder="Họ tên" required>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="text" name="Username" class="form-control" placeholder="Tên đăng nhập" required>
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="email" name="Email" class="form-control" placeholder="Email" required>
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="Password" class="form-control" placeholder="Mật khẩu" required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="ConfirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                <div class="form-group">
+                    @Html.GoogleCaptcha()
+                    @Html.InvalidGoogleCaptchaLabel("Captcha is not valid !")
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-xs-4">
+                        <button type="submit" class="btn btn-primary btn-block btn-flat">Đăng ký</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+
+            }
+            <a href="@Url.Action("Login","Account")" class="text-center">Đã có tài khoản? Đăng nhập ngay</a>
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery 3 -->
+    <script src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
