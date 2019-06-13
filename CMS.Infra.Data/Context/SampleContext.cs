@@ -13,7 +13,7 @@ namespace CMS.Infra.Data.Context
         public DbSet<Category> Category { get; set; }
         public SampleContext() : base("name=DefaultConnection")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<SampleContext, DatabaseInitializer>());//initial database use test data            
+            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<SampleContext, DatabaseInitializer>());//initial database use test data            
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

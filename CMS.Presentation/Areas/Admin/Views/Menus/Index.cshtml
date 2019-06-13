@@ -14,100 +14,78 @@
         <div class="card-body">
             <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> Thêm mới</button>
             <div class="clearfix"></div>
-            <table id="tblData" class="table table-bordered table-striped table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
-            <!-- Large modal -->
-            <div class="modal fade" id="PnModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">{{ UpdateMode ? "Cập nhật" : "Thêm mới" }}</h4>
-                        </div>
-                        <!-- form .needs-validation -->
-                        <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
-                            <!-- /form .needs-validation -->
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>
-                                        Menu cha
-                                    </label>
-                                    <select class="form-control" ng-options="c.Id as c.Name for c in Data" ng-model="Menu.ParentId">
-                                        <option value="" selected="selected">---Select parent---</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        Tên menu
-                                    </label>
-                                    <input type="text" class="form-control" ng-model="Menu.Name" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        Url
-                                    </label>
-                                    <input type="text" class="form-control" ng-model="Menu.Url" required="">
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        Icon
-                                    </label>
-                                    <input type="text" class="form-control" ng-model="Menu.Icon">
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        Sắp xếp
-                                    </label>
-                                    <input type="text" class="form-control" ng-model="Menu.Order">
-                                </div>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" id="SystemEnable" ng-model="Menu.IsActive">
-                                        Hoạt động
-                                    </label>
-                                </div>
-                            </div>
-                            <!-- /.modal-body -->
-                            <!-- .modal-footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                                <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
-                            </div>
-                        </form>
-                        <!-- /.modal-footer -->
-                    </div>
-                    <!-- /.modal-content -->
+            <table id="tblData" class="table table-bordered table-striped table-hover table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
+        </div>
+    </div>
+    <!-- Large modal -->
+    <div class="modal fade" id="PnModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{{ UpdateMode ? "Cập nhật" : "Thêm mới" }}</h4>
                 </div>
-                <!-- /.modal-dialog -->
+                <!-- form .needs-validation -->
+                <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
+                    <!-- /form .needs-validation -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>
+                                Menu cha
+                            </label>
+                            <select class="select2 form-control" ng-options="c.Id as c.Name for c in Data" ng-model="Menu.ParentId">
+                                <option value="" selected="selected">Chọn menu cha</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Tên menu
+                            </label>
+                            <input type="text" class="form-control" ng-model="Menu.Name" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Url
+                            </label>
+                            <input type="text" class="form-control" ng-model="Menu.Url" required="">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Icon
+                            </label>
+                            <input type="text" class="form-control" ng-model="Menu.Icon">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                Sắp xếp
+                            </label>
+                            <input type="text" class="form-control" ng-model="Menu.Order">
+                        </div>
+                        <div class="form-group">
+                            <label class="custom-control custom-control-primary custom-checkbox">
+                                <input class="custom-control-input" type="checkbox" name="mode" ng-model="Menu.IsActive">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-label">Hoạt động</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- /.modal-body -->
+                    <!-- .modal-footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
+                    </div>
+                </form>
+                <!-- /.modal-footer -->
             </div>
-            <!-- /.modal -->
-
+            <!-- /.modal-content -->
         </div>
+        <!-- /.modal-dialog -->
     </div>
-</div>
-<button class="btn btn-outline-primary" data-toggle="modal" data-target="#infoModalColoredHeader" type="button">Launch demo modal</button>
+    <!-- /.modal -->
 
-<div id="infoModalColoredHeader" tabindex="-1" role="dialog" class="modal fade">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">×</span>
-                    <span class="sr-only">Close</span>
-                </button>
-                <h4 class="modal-title">Colored Header Modal</h4>
-            </div>
-            <div class="modal-body">
-                <p>Phasellus sapien felis, vulputate a nibh eu, tempor dictum turpis. Pellentesque non ex condimentum, dictum mauris non, ullamcorper nisi. Nunc sodales vel libero ac gravida. Maecenas malesuada viverra odio at molestie.</p>
-                <p>Donec ultrices vel nibh a iaculis. Morbi dapibus sollicitudin libero facilisis dapibus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-dismiss="modal" type="button">Continue</button>
-                <button class="btn btn-default" data-dismiss="modal" type="button">Cancel</button>
-            </div>
-        </div>
-    </div>
 </div>
 
 @section scripts{
@@ -116,7 +94,7 @@
 
             //#region declare variable
             $scope.UpdateMode = false;
-            $scope.Menu = {};
+            $scope.Menu = { IsActive: true };
             $scope.Data = [];
             //#endregion
 
@@ -173,6 +151,9 @@
                             "sWidth": "80px"
                         }
                     ],
+                    "drawCallback": function (settings) {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    },
                     createdRow: function (row, data, dataIndex) {
                         $compile(angular.element(row).contents())($scope);
                     }
@@ -204,7 +185,7 @@
             $scope.Create = function () {
                 $scope.UpdateMode = false;
                 $scope.Menu = {};
-                $('#PnModal').modal('show');
+                $('#PnModal').appendTo("body").modal('show');
             };
             //#endregion
 
@@ -212,7 +193,7 @@
             $scope.Update = function (Id) {
                 $scope.UpdateMode = true;
                 ReadById(Id);
-                $('#PnModal').modal('show');
+                $('#PnModal').appendTo("body").modal('show');
             }
             //#endregion
 
@@ -232,7 +213,7 @@
                             ApiHelper.DeleteMethod(strApiEndPoint)
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;
-                                    $('#myTable').DataTable().ajax.reload(null, false);
+                                    $('#tblData').DataTable().ajax.reload(null, false);
                                     sys.Alert(true, 'Xóa thành công!');
                                 })
                                 .catch(function (response) {
@@ -252,7 +233,7 @@
                     ApiHelper.PostMethod(strApiEndPoint, $scope.Menu)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
-                            $('#myTable').DataTable().ajax.reload(null, false);
+                            $('#tblData').DataTable().ajax.reload(null, false);
                             sys.Alert(true, 'Thêm thành công');
                         })
                         .catch(function (response) {
@@ -260,7 +241,7 @@
                             defer.reject(response);
                             $rootScope.MasterPage.IsLoading = false;
                         });
-                    $('#PnModal').modal('hide');
+                    $('#PnModal').appendTo("body").modal('hide');
                 }
                 else {
                     $rootScope.MasterPage.IsLoading = true;
@@ -268,7 +249,7 @@
                     ApiHelper.PutMethod(strApiEndPoint, $scope.Menu)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
-                            $('#myTable').DataTable().ajax.reload(null, false);
+                            $('#tblData').DataTable().ajax.reload(null, false);
                             sys.Alert(true, 'Cập nhật thành công');
                         })
                         .catch(function (response) {
@@ -276,7 +257,7 @@
                             defer.reject(response);
                             $rootScope.MasterPage.IsLoading = false;
                         });
-                    $('#PnModal').modal('hide');
+                    $('#PnModal').appendTo("body").modal('hide');
                 }
             };
             //#endregion

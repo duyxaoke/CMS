@@ -35,12 +35,12 @@ var sys = (function () {
 
     Alert = function (status, text) {
         toastr.options = {
-            "closeButton": false,
+            "closeButton": true,
             "debug": false,
             "newestOnTop": true,
             "progressBar": true,
             "positionClass": "toast-top-right",
-            "preventDuplicates": false,
+            "preventDuplicates": true,
             "onclick": null,
             "showDuration": "300",
             "hideDuration": "1000",
@@ -51,7 +51,7 @@ var sys = (function () {
             "showMethod": "fadeIn",
             "hideMethod": "fadeOut"
         };
-        toastr[status === true ? "success" : "error"](text);
+        toastr[status === true ? "info" : "error"](text);
     };
     Loading = function () {
         $("body").loading();

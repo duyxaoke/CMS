@@ -7,179 +7,177 @@
         list-style-type: none;
     }
 </style>
-
-<div class="col-md-12" ng-controller="IndexController" ng-cloak>
-    <div class="box box-primary">
-        <div class="box-header with-border">
-            <h3 class="box-title">@ViewBag.Title</h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-primary btn-sm" ng-click="Create()"><i class="glyphicon glyphicon-plus"></i> Thêm mới</button>
+<div class="col-xs-12" ng-controller="IndexController" ng-cloak>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-actions">
+                <button type="button" class="card-action card-toggler" title="Collapse"></button>
             </div>
+            <strong>Menu</strong>
         </div>
-        <div class="box-body">
-            <table id="myTable" class="table table-hover"></table>
-            <!-- Large modal -->
-            <div id="PnModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="PnModalLabel" aria-hidden="true">
-                <!-- .modal-dialog -->
-                <div class="modal-dialog" role="document">
-                    <!-- .modal-content -->
-                    <div class="modal-content">
-                        <!-- .modal-header -->
-                        <div class="modal-header bg-primary">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">{{ UpdateMode ? "Cập nhật" : "Thêm mới" }}</h4>
-                        </div>
-                        <!-- /.modal-header -->
-                        <!-- .modal-body -->
-                        <!-- form .needs-validation -->
-                        <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
-                            <!-- /form .needs-validation -->
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>
-                                        Tên phân quyền
-                                    </label>
-                                    <input type="text" class="form-control" ng-model="Role.Name" required="">
-                                </div>
-                            </div>
-                            <!-- /.modal-body -->
-                            <!-- .modal-footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                                <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
-                            </div>
-                        </form>
-                        <!-- /.modal-footer -->
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-            <!-- Menu in role modal -->
-            <div id="MenuInRoleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MenuInRoleLabel" aria-hidden="true">
-                <!-- .modal-dialog -->
-                <div class="modal-dialog" role="document">
-                    <!-- .modal-content -->
-                    <div class="modal-content">
-                        <!-- .modal-header -->
-                        <div class="modal-header bg-primary">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">Cập nhật menu thuộc role</h4>
-                        </div>
-                        <!-- /.modal-header -->
-                        <!-- .modal-body -->
-                        <!-- form .needs-validation -->
-                        <form id="frmMenuInRoleModal" name="frmMenuInRoleModal" class="needs-validation" novalidate="">
-                            <!-- /form .needs-validation -->
-                            <div class="modal-body">
-                                <ul>
-                                    <li ng-repeat="item in MenuInRole" ng-if="item.Childrens.length > 0">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" id="{{item.Id}}" ng-checked="{{item.Checked}}" value="{{item.Id}}" ng-model="item.Checked">
-                                                {{item.Name}}
-                                            </label>
-                                        </div>
-                                        <ul>
-                                            <li ng-repeat="itemChild in item.Childrens">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" class="form-check-input" id="{{itemChild.Id}}" ng-checked="{{itemChild.Checked}}" value="{{itemChild.Id}}" ng-model="itemChild.Checked">
-                                                        {{itemChild.Name}}
-                                                    </label>
-                                                </div>
-                                            </li>
-                                        </ul>
-
-                                    </li>
-                                    <li ng-repeat="item in MenuInRole" ng-if="item.Childrens.length == 0">
-                                        <div class="form-check">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" id="{{item.Id}}" ng-checked="{{item.Checked}}" value="{{item.Id}}" ng-model="item.Checked">
-                                                {{item.Name}}
-                                            </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- /.modal-body -->
-                            <!-- .modal-footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                                <button type="submit" class="btn btn-primary" ng-disabled="frmMeneInRoleModal.$invalid" ng-click="SaveMenuInRole(roleId)">Cập nhật</button>
-                            </div>
-                        </form>
-                        <!-- /.modal-footer -->
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
-            <!-- Edit claim modal -->
-            <div id="EditClaimModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="EditClaimLabel" aria-hidden="true">
-                <!-- .modal-dialog -->
-                <div class="modal-dialog" role="document">
-                    <!-- .modal-content -->
-                    <div class="modal-content">
-                        <!-- .modal-header -->
-                        <div class="modal-header bg-primary">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">Cập nhật role & claims</h4>
-                        </div>
-                        <!-- /.modal-header -->
-                        <!-- .modal-body -->
-                        <!-- form .needs-validation -->
-                        <form id="frmEditClaimModal" name="frmEditClaimModal" class="needs-validation" novalidate="">
-                            <!-- /form .needs-validation -->
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label>
-                                        Tên phân quyền
-                                    </label>
-                                    <input type="hidden" class="form-control" ng-model="Claim.RoleId" required="">
-                                    <input type="text" class="form-control" ng-model="Claim.RoleName" required="">
-                                </div>
-                                <div ng-repeat="item in Claim.ClaimGroups">
-                                    <!-- .form-group -->
-                                    <hr />
-                                    <label class="d-block font-weight-bold">{{item.GroupName}}</label>
-                                    <div class="form-inline">
-                                        <div class="form-check mr-3" ng-repeat="itemOne in item.GroupClaimsCheckboxes">
-                                            <label class="form-check-label">
-                                                <input type="checkbox" class="form-check-input" id="{{itemOne.Value}}" ng-checked="itemOne.Selected" ng-model="itemOne.Selected">
-                                                {{itemOne.Text}}
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <!-- /.form-group -->
-                                </div>
-                            </div>
-                            <!-- /.modal-body -->
-                            <!-- .modal-footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                                <button type="submit" class="btn btn-primary" ng-disabled="frmEditClaimModal.$invalid" ng-click="SaveEditClaim(roleId)">Cập nhật</button>
-                            </div>
-                        </form>
-                        <!-- /.modal-footer -->
-                    </div>
-                    <!-- /.modal-content -->
-                </div>
-                <!-- /.modal-dialog -->
-            </div>
-            <!-- /.modal -->
+        <div class="card-body">
+            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> Thêm mới</button>
+            <div class="clearfix"></div>
+            <table id="tblData" class="table table-bordered table-striped table-hover table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
         </div>
     </div>
-</div>
+    <!-- Large modal -->
+    <div id="PnModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="PnModalLabel" aria-hidden="true">
+        <!-- .modal-dialog -->
+        <div class="modal-dialog" role="document">
+            <!-- .modal-content -->
+            <div class="modal-content">
+                <!-- .modal-header -->
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{{ UpdateMode ? "Cập nhật" : "Thêm mới" }}</h4>
+                </div>
+                <!-- /.modal-header -->
+                <!-- .modal-body -->
+                <!-- form .needs-validation -->
+                <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
+                    <!-- /form .needs-validation -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>
+                                Tên phân quyền
+                            </label>
+                            <input type="text" class="form-control" ng-model="Role.Name" required="">
+                        </div>
+                    </div>
+                    <!-- /.modal-body -->
+                    <!-- .modal-footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
+                    </div>
+                </form>
+                <!-- /.modal-footer -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Menu in role modal -->
+    <div id="MenuInRoleModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="MenuInRoleLabel" aria-hidden="true">
+        <!-- .modal-dialog -->
+        <div class="modal-dialog" role="document">
+            <!-- .modal-content -->
+            <div class="modal-content">
+                <!-- .modal-header -->
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Cập nhật menu thuộc role</h4>
+                </div>
+                <!-- /.modal-header -->
+                <!-- .modal-body -->
+                <!-- form .needs-validation -->
+                <form id="frmMenuInRoleModal" name="frmMenuInRoleModal" class="needs-validation" novalidate="">
+                    <!-- /form .needs-validation -->
+                    <div class="modal-body">
+                        <ul>
+                            <li ng-repeat="item in MenuInRole" ng-if="item.Childrens.length > 0">
+                                <label class="custom-control custom-control-primary custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="{{item.Id}}" ng-checked="item.Checked" value="{{item.Id}}" ng-model="item.Checked">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label">{{item.Name}}</span>
+                                </label>
+                                <ul>
+                                    <li ng-repeat="itemChild in item.Childrens">
+                                        <label class="custom-control custom-control-primary custom-checkbox">
+                                            <input class="custom-control-input" type="checkbox" id="{{itemChild.Id}}" ng-checked="itemChild.Checked" value="{{itemChild.Id}}" ng-model="itemChild.Checked">
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-label">{{itemChild.Name}}</span>
+                                        </label>
+                                    </li>
+                                </ul>
 
+                            </li>
+                            <li ng-repeat="item in MenuInRole" ng-if="item.Childrens.length == 0">
+                                <label class="custom-control custom-control-primary custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" id="{{item.Id}}" ng-checked="item.Checked" value="{{item.Id}}" ng-model="item.Checked">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label">{{item.Name}}</span>
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.modal-body -->
+                    <!-- .modal-footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmMeneInRoleModal.$invalid" ng-click="SaveMenuInRole(roleId)">Cập nhật</button>
+                    </div>
+                </form>
+                <!-- /.modal-footer -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    <!-- Edit claim modal -->
+    <div id="EditClaimModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="EditClaimLabel" aria-hidden="true">
+        <!-- .modal-dialog -->
+        <div class="modal-dialog" role="document">
+            <!-- .modal-content -->
+            <div class="modal-content">
+                <!-- .modal-header -->
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Cập nhật role & claims</h4>
+                </div>
+                <!-- /.modal-header -->
+                <!-- .modal-body -->
+                <!-- form .needs-validation -->
+                <form id="frmEditClaimModal" name="frmEditClaimModal" class="needs-validation" novalidate="">
+                    <!-- /form .needs-validation -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>
+                                Tên phân quyền
+                            </label>
+                            <input type="hidden" class="form-control" ng-model="Claim.RoleId" required="">
+                            <input type="text" class="form-control" ng-model="Claim.RoleName" required="">
+                        </div>
+                        <div ng-repeat="item in Claim.ClaimGroups">
+                            <!-- .form-group -->
+                            <hr />
+                            <label class="d-block font-weight-bold">{{item.GroupName}}</label>
+                            <div class="form-inline">
+                                <div class="form-check mr-3" ng-repeat="itemOne in item.GroupClaimsCheckboxes">
+                                    <label class="custom-control custom-control-primary custom-checkbox">
+                                        <input class="custom-control-input" type="checkbox" id="{{itemOne.Value}}" ng-checked="itemOne.Selected" ng-model="itemOne.Selected">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-label">{{itemOne.Text}}</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- /.form-group -->
+                        </div>
+                    </div>
+                    <!-- /.modal-body -->
+                    <!-- .modal-footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmEditClaimModal.$invalid" ng-click="SaveEditClaim(roleId)">Cập nhật</button>
+                    </div>
+                </form>
+                <!-- /.modal-footer -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</div>
 
 
 @section scripts{
@@ -194,14 +192,14 @@
 
             //#region Datatable
             $(function () {
-                var peopleList = $('#myTable').DataTable({
+                var peopleList = $('#tblData').DataTable({
                     "bProcessing": true,
                     "bSort": true,
                     "bServerSide": true,
                     "language": {
                         paginate: {
-                            previous: '<i class="fa fa-lg fa-angle-left"></i>',
-                            next: '<i class="fa fa-lg fa-angle-right"></i>'
+                            previous: '<i class="icon icon-angle-double-left"></i>',
+                            next: '<i class="icon icon-angle-double-right"></i>'
                         }
                     },
                     "sAjaxSource": "/Roles/Data",
@@ -217,9 +215,15 @@
                             'mRender': function (data, type, row, meta) {
                                 return `
                                     <div class="text-center">
-                                        <button class="btn btn-default btn-sm" ng-click="ReadMenuInRole('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật menu"><i class="fa fa-list"></i></button>
-                                        <button class="btn btn-success btn-sm" ng-click="ReadEditClaim('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật role & claims"><i class="fa fa-edit"></i></button>
-                                        <button class="btn btn-danger btn-sm" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa role"><i class="fa fa-times"></i></button>
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="ReadMenuInRole('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật quyền menu">
+                                           <span class="icon icon-pencil-square-o icon-lg icon-fw"></span>
+                                         </button>
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="ReadEditClaim('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật">
+                                           <span class="icon icon-pencil icon-lg icon-fw"></span>
+                                         </button>
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                           <span class="icon icon-trash-o icon-lg icon-fw"></span>
+                                         </button>
                                     </div>`;
                             },
                             "sName": "Id",
@@ -229,8 +233,11 @@
                             "sWidth": "150px",
                         }
                     ],
+                    "drawCallback": function(settings) {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    },
                     createdRow: function (row, data, dataIndex) {
-                        $compile(angular.element(row).contents())($scope);
+                      $compile(angular.element(row).contents())($scope);
                     }
                 });
             });
@@ -300,7 +307,7 @@
             $scope.Create = function () {
                 $scope.UpdateMode = false;
                 $scope.Role = {};
-                $('#PnModal').modal('show');
+                $('#PnModal').appendTo("body").modal('show');
             };
             //#endregion
 
@@ -308,21 +315,21 @@
             $scope.Update = function (Id) {
                 $scope.UpdateMode = true;
                 ReadById(Id);
-                $('#PnModal').modal('show');
+                $('#PnModal').appendTo("body").modal('show');
             }
             //#endregion
 
             //#region MenuInRole
             $scope.ReadMenuInRole = function (Id) {
                 ReadMenuInRoleById(Id);
-                $('#MenuInRoleModal').modal('show');
+                $('#MenuInRoleModal').appendTo("body").modal('show');
             }
             //#endregion
 
             //#region ReadEditClaim
             $scope.ReadEditClaim = function (Id) {
                 ReadEditClaimById(Id);
-                $('#EditClaimModal').modal('show');
+                $('#EditClaimModal').appendTo("body").modal('show');
             }
             //#endregion
 
@@ -342,7 +349,7 @@
                             ApiHelper.DeleteMethod(strApiEndPoint)
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;
-                                    $('#myTable').DataTable().ajax.reload(null, false);
+                                    $('#tblData').DataTable().ajax.reload(null, false);
                                     sys.Alert(true, 'Xóa thành công!');
 
                                 })
@@ -364,7 +371,7 @@
                     ApiHelper.PostMethod(strApiEndPoint, $scope.Role)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
-                            $('#myTable').DataTable().ajax.reload(null, false);
+                            $('#tblData').DataTable().ajax.reload(null, false);
                             sys.Alert(true, 'Thêm thành công');
                             defer.resolve(response);
                         })
@@ -373,7 +380,7 @@
                             sys.Alert(false, response.Message);
                             defer.reject(response);
                         });
-                    $('#PnModal').modal('hide');
+                    $('#PnModal').appendTo("body").modal('hide');
                 }
                 else {
                     $rootScope.MasterPage.IsLoading = true;
@@ -381,7 +388,7 @@
                     ApiHelper.PutMethod(strApiEndPoint, $scope.Role)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
-                            $('#myTable').DataTable().ajax.reload(null, false);
+                            $('#tblData').DataTable().ajax.reload(null, false);
                             sys.Alert(true, 'Cập nhật thành công');
                             defer.resolve(response);
                         })
@@ -390,7 +397,7 @@
                             $rootScope.MasterPage.IsLoading = false;
                             defer.reject(response);
                         });
-                    $('#PnModal').modal('hide');
+                    $('#PnModal').appendTo("body").modal('hide');
                 }
             };
             //#endregion
@@ -420,7 +427,7 @@
                             sys.Alert(false, 'Có lỗi, vui lòng thử lại');
                             return;
                         }
-                        $('#myTable').DataTable().ajax.reload(null, false);
+                        $('#tblData').DataTable().ajax.reload(null, false);
                         sys.Alert(true, 'Cập nhật thành công');
                         defer.resolve(response);
                     })
@@ -429,7 +436,7 @@
                         $rootScope.MasterPage.IsLoading = false;
                         defer.reject(response);
                     });
-                $('#MenuInRoleModal').modal('hide');
+                $('#MenuInRoleModal').appendTo("body").modal('hide');
             };
             //#endregion
 
@@ -448,7 +455,7 @@
                 ApiHelper.PostMethod(strApiEndPoint, $scope.Claim)
                     .then(function (response) {
                         $rootScope.MasterPage.IsLoading = false;
-                        $('#myTable').DataTable().ajax.reload(null, false);
+                        $('#tblData').DataTable().ajax.reload(null, false);
                         sys.Alert(true, 'Cập nhật thành công');
                         defer.resolve(response);
                     })
@@ -457,7 +464,7 @@
                         $rootScope.MasterPage.IsLoading = false;
                         defer.reject(response);
                     });
-                $('#EditClaimModal').modal('hide');
+                $('#EditClaimModal').appendTo("body").modal('hide');
             };
             //#endregion
 

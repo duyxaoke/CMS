@@ -5,3 +5,10 @@ D:\Data\CMS\CMS.Domain\obj\Debug\CMS.Domain.csprojAssemblyReference.cache
 D:\Data\CMS\CMS.Domain\obj\Debug\CMS.Domain.csproj.CoreCompileInputs.cache
 D:\Data\CMS\CMS.Domain\obj\Debug\CMS.Domain.dll
 D:\Data\CMS\CMS.Domain\obj\Debug\CMS.Domain.pdb
+D:\PROJECT\CMS\CMS.Domain\bin\Debug\CMS.Domain.dll.config
+D:\PROJECT\CMS\CMS.Domain\bin\Debug\CMS.Domain.dll
+D:\PROJECT\CMS\CMS.Domain\bin\Debug\CMS.Domain.pdb
+D:\PROJECT\CMS\CMS.Domain\obj\Debug\CMS.Domain.csprojAssemblyReference.cache
+D:\PROJECT\CMS\CMS.Domain\obj\Debug\CMS.Domain.csproj.CoreCompileInputs.cache
+D:\PROJECT\CMS\CMS.Domain\obj\Debug\CMS.Domain.dll
+D:\PROJECT\CMS\CMS.Domain\obj\Debug\CMS.Domain.pdb

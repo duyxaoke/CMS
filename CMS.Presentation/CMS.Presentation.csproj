@@ -326,7 +326,7 @@
     <Content Include="Content\admin\css\vendor.min.css" />
     <Content Include="Content\admin\favicon-16x16.png" />
     <Content Include="Content\admin\favicon-32x32.png" />
-    <Content Include="Content\admin\fonts\fontawesome-webfont-v=4.6.3.svg" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\admin\fonts\icon-works-webfont.svg" />
     <Content Include="Content\admin\img\0100e8b81ad03f81a64a0a5f49c5be41.jpg" />
     <Content Include="Content\admin\img\0180441436.jpg" />
@@ -863,6 +863,7 @@
     <Content Include="Content\admin\js\demo.min.js" />
     <Content Include="Content\admin\js\application.min.js" />
     <Content Include="Content\admin\js\elephant.min.js" />
+    <Content Include="Content\admin\js\sweetalert\sweetalert.min.js" />
     <Content Include="Content\admin\js\vendor.min.js" />
     <Content Include="Content\admin\safari-pinned-tab.svg" />
     <Content Include="Content\admin\theme-1.html" />
@@ -7880,10 +7881,10 @@
     <None Include="bundleconfig.json" />
     <Content Include="Content\template\css\icon.woff2" />
     <Content Include="Content\admin\fonts\fontawesome-webfont-.eot" />
-    <Content Include="Content\admin\fonts\fontawesome-webfont-v=4.6.3.eot" />
-    <Content Include="Content\admin\fonts\fontawesome-webfont-v=4.6.3.ttf" />
-    <Content Include="Content\admin\fonts\fontawesome-webfont-v=4.6.3.woff" />
-    <Content Include="Content\admin\fonts\fontawesome-webfont-v=4.6.3.woff2" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\admin\fonts\fontawesome-webfont.woff2" />
     <Content Include="Content\admin\fonts\icon-works-webfont-.eot" />
     <Content Include="Content\admin\fonts\icon-works-webfont.eot" />
     <Content Include="Content\admin\fonts\icon-works-webfont.ttf" />
