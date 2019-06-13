@@ -47,16 +47,81 @@
         @Html.Action("Sidebar", "Template", new { Area = "" })
         <div class="layout-content">
             <div class="layout-content-body">
-                <div class="row gutter-xs" style="margin-top: 60px;">
+                <div class="row gutter-xs">
                     @RenderBody()
                 </div>
             </div>
+            @Html.Action("Footer", "Template", new { Area = "" })
         </div>
-        @Html.Action("Footer", "Template", new { Area = "" })
+    <div class="theme">
+        <div class="theme-panel theme-panel-collapsed">
+            <div class="theme-panel-controls">
+                <button class="theme-panel-toggler" title="Expand theme panel ( ] )" type="button">
+                    <span class="icon icon-cog icon-spin" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="theme-panel-body">
+                <div class="custom-scrollbar">
+                    <div class="custom-scrollbar-inner">
+                        <ul class="theme-settings">
+                            <li class="theme-settings-heading">
+                                <div class="divider">
+                                    <div class="divider-content">Tùy chỉnh giao diện</div>
+                                </div>
+                            </li>
+                            <li class="theme-settings-item">
+                                <div class="theme-settings-label">Header cố định</div>
+                                <div class="theme-settings-switch">
+                                    <label class="switch switch-primary">
+                                        <input class="switch-input" type="checkbox" name="layout-header-fixed" data-sync="true">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-thumb"></span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="theme-settings-item">
+                                <div class="theme-settings-label">Sidebar cố định</div>
+                                <div class="theme-settings-switch">
+                                    <label class="switch switch-primary">
+                                        <input class="switch-input" type="checkbox" name="layout-sidebar-fixed" data-sync="true">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-thumb"></span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="theme-settings-item">
+                                <div class="theme-settings-label">Sidebar thu gọn</div>
+                                <div class="theme-settings-switch">
+                                    <label class="switch switch-primary">
+                                        <input class="switch-input" type="checkbox" name="layout-sidebar-collapsed" data-sync="false">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-thumb"></span>
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="theme-settings-item">
+                                <div class="theme-settings-label">Footer cố định</div>
+                                <div class="theme-settings-switch">
+                                    <label class="switch switch-primary">
+                                        <input class="switch-input" type="checkbox" name="layout-footer-fixed" data-sync="true">
+                                        <span class="switch-track"></span>
+                                        <span class="switch-thumb"></span>
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                        <hr class="theme-divider">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-
     <script src="~/Content/admin/js/vendor.min.js"></script>
+    <script src="~/Content/admin/js/elephant.min.js"></script>
+    <script src="~/Content/admin/js/application.min.js"></script>
+    <script src="~/Content/admin/js/demo.min.js"></script>
+
 
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/0.10.0/lodash.min.js"></script>
     <script src="~/Content/assets/angular-1.6.3/angular.min.js"></script>
@@ -64,10 +129,6 @@
     <script src="~/Content/assets/app/app-bundle.js"></script>
     <script src="~/Content/dist/js/site.js"></script>
     <script src="~/Content/admin/js/sweetalert/sweetalert.min.js"></script>
-    <script src="~/Content/admin/js/elephant.min.js"></script>
-    <script src="~/Content/admin/js/application.min.js"></script>
-    <script src="~/Content/admin/js/demo.min.js"></script>
-
     <script>
         $(function () {
             //Initialize Select2 Elements
