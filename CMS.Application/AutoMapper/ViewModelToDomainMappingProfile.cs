@@ -13,6 +13,8 @@ namespace CMS.Application.AutoMapper
 
             // CMS
             CreateMap<CategoryViewModel, Category>();
+            CreateMap<ConfigViewModel, Config>();
+            CreateMap<PartnerViewModel, Partner>();
         }
     }
 }

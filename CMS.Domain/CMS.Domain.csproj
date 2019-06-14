@@ -43,10 +43,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Entities\Partner.cs" />
+    <Compile Include="Entities\Config.cs" />
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\MenuInRole.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Helpers\Command.cs" />
+    <Compile Include="Interfaces\Repositories\IPartnerRepository.cs" />
+    <Compile Include="Interfaces\Repositories\IConfigRepository.cs" />
     <Compile Include="Interfaces\Repositories\ICategoryRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMenuInRoleRepository.cs" />
     <Compile Include="Interfaces\Repositories\IMenuRepository.cs" />

@@ -70,10 +70,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\IApplication.cs" />
+    <Compile Include="Application\ICMS\IPartnerAppService.cs" />
+    <Compile Include="Application\ICMS\IConfigAppService.cs" />
     <Compile Include="Application\ICMS\ICategoryAppService.cs" />
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
+    <Compile Include="CMS\PartnerAppService.cs" />
+    <Compile Include="CMS\ConfigAppService.cs" />
     <Compile Include="CMS\CategoryAppService.cs" />
     <Compile Include="MenuInRoleAppService.cs" />
     <Compile Include="Application\IMenuInRoleAppService.cs" />
@@ -81,6 +85,8 @@
     <Compile Include="Application\IMenuAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\CMS\PartnerViewModel.cs" />
+    <Compile Include="ViewModels\CMS\ConfigViewModel.cs" />
     <Compile Include="ViewModels\CMS\CategoryViewModel.cs" />
     <Compile Include="ViewModels\SelectListViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />

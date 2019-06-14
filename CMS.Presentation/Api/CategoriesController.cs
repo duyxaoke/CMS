@@ -13,7 +13,7 @@ using WebApiThrottle;
 namespace CMS.Presentation.Controllers.Api
 {
     [ApiAuthorizeAttribute]
-    [RoutePrefix("api/categories")]
+    [RoutePrefix("api/Categories")]
     public class CategoriesController : ApiControllerBase
     {
         private readonly ICategoryAppService _service;

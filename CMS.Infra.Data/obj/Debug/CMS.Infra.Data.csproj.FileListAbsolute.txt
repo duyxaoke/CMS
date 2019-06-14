@@ -30,3 +30,5 @@ D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CoreCompileInputs.
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CopyComplete
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.dll
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.pdb
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addconfig.resources
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addpartner.resources

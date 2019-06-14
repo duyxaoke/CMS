@@ -62,7 +62,9 @@ namespace CMS.Presentation
 
             #region CMS
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<CategoryAppService>().As<ICategoryAppService>().InstancePerDependency();
+            builder.RegisterType<ConfigAppService>().As<IConfigAppService>().InstancePerDependency();
+            builder.RegisterType<PartnerRepository>().As<IPartnerRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<PartnerAppService>().As<IPartnerAppService>().InstancePerDependency();
             #endregion
 
             // Set the dependency resolver to be Autofac.
