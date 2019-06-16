@@ -156,6 +156,7 @@ D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Application.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Domain.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Infra.Data.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\Common.Logging.dll
+D:\PROJECT\CMS\CMS.Presentation\bin\Core.DTO.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\DataTablesDotNet.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\DevTrends.MvcDonutCaching.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\EntityFramework.dll

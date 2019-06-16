@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CMS.Presentation</RootNamespace>
     <AssemblyName>CMS.Presentation</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>44345</IISExpressSSLPort>
@@ -28,6 +28,7 @@
     </NuGetPackageImportStamp>
     <Use64BitIISExpress />
     <TypeScriptToolsVersion>2.8</TypeScriptToolsVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -61,6 +62,9 @@
     </Reference>
     <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Core.DTO">
+      <HintPath>..\packages\Core.DTO.dll</HintPath>
     </Reference>
     <Reference Include="DataTablesDotNet, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DataTablesDotNet.1.4.0\lib\45\DataTablesDotNet.dll</HintPath>
@@ -135,6 +139,7 @@
       <HintPath>..\packages\System.ComponentModel.Primitives.4.3.0\lib\net45\System.ComponentModel.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -155,8 +160,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
     </Reference>
@@ -170,9 +174,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -214,6 +216,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
     </Reference>
@@ -284,6 +287,7 @@
     <Compile Include="Api\MenusController.cs" />
     <Compile Include="Api\UsersController.cs" />
     <Compile Include="Api\RolesController.cs" />
+    <Compile Include="Controllers\UploadFilesController.cs" />
     <Compile Include="Controllers\OutputCacheController.cs" />
     <Compile Include="Controllers\TemplateController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -727,6 +731,7 @@
     <Content Include="Content\admin\css\application.min.css" />
     <Content Include="Content\admin\css\elephant.min.css" />
     <Content Include="Content\admin\css\demo.min.css" />
+    <Content Include="Content\admin\css\site.css" />
     <Content Include="Content\admin\css\vendor.min.css" />
     <Content Include="Content\admin\favicon-16x16.png" />
     <Content Include="Content\admin\favicon-32x32.png" />
@@ -1285,7 +1290,10 @@
     <Content Include="Content\assets\app\controller\Master\master-page-controller.min.js" />
     <Content Include="Content\assets\app\directive\compile.js" />
     <Content Include="Content\assets\app\directive\directive.js" />
-    <Content Include="Content\assets\app\directive\directive.min.js" />
+    <Content Include="Content\assets\app\directive\directive.min.js">
+      <DependentUpon>directive.js</DependentUpon>
+    </Content>
+    <Content Include="Content\assets\app\directive\fileUpload.js" />
     <Content Include="Content\assets\app\directive\formatmoney.js" />
     <Content Include="Content\assets\app\directive\getWidth.js" />
     <Content Include="Content\assets\app\directive\inputFormat.js" />
@@ -1306,6 +1314,7 @@
     <Content Include="Content\assets\app\filters\ifEmpty.js" />
     <Content Include="Content\assets\app\filters\toFixedDecimal.js" />
     <Content Include="Content\assets\app\filters\trustHtml.js" />
+    <Content Include="Content\assets\app\scripts\UtilJS.js" />
     <Content Include="Content\assets\images\black-logo.png" />
     <Content Include="Content\assets\images\coupletx.png" />
     <Content Include="Content\assets\images\cus1.png" />
@@ -8374,6 +8383,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Content\bower_components\bootstrap-datepicker\build\" />
+    <Folder Include="Content\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

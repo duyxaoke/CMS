@@ -14,6 +14,8 @@ D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.dll
 D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.pdb
 D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.init.resources
 D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.GenerateResource.cache
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addconfig.resources
+D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addpartner.resources
 D:\PROJECT\CMS\CMS.Infra.Data\bin\Debug\CMS.Infra.Data.dll
 D:\PROJECT\CMS\CMS.Infra.Data\bin\Debug\CMS.Infra.Data.pdb
 D:\PROJECT\CMS\CMS.Infra.Data\bin\Debug\CMS.Domain.dll
@@ -25,10 +27,10 @@ D:\PROJECT\CMS\CMS.Infra.Data\bin\Debug\EntityFramework.xml
 D:\PROJECT\CMS\CMS.Infra.Data\bin\Debug\EntityFramework.SqlServer.xml
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csprojAssemblyReference.cache
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.init.resources
+D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addconfig.resources
+D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addpartner.resources
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.GenerateResource.cache
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CoreCompileInputs.cache
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CopyComplete
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.dll
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.pdb
-D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addconfig.resources
-D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.addpartner.resources

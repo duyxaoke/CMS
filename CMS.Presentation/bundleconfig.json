@@ -14,7 +14,8 @@
       "Content/assets/app/directive/noInput.js",
       "Content/assets/app/directive/whenEnter.js",
       "Content/assets/app/directive/compile.js",
-      "Content/assets/app/directive/inputFormat.js"
+      "Content/assets/app/directive/inputFormat.js",
+      "Content/assets/app/directive/fileUpload.js"
     ]
   },
   {
@@ -38,6 +39,7 @@
   {
     "outputFileName": "Content/assets/app/app-bundle.js",
     "inputFiles": [
+      "Content/assets/app/scripts/UtilJS.js",
       "Content/assets/app/controller/Master/indexcontroller.js",
       "Content/assets/app/directive/directive.js",
       "Content/assets/app/factory/factory.js",

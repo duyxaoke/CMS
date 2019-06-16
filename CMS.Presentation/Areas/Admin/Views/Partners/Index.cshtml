@@ -2,29 +2,7 @@
 @{
     ViewData["Title"] = "Quản lý đối tác";
 }
-
-<style>
-    .btn-file {
-        position: relative;
-        overflow: hidden;
-    }
-
-        .btn-file input[type=file] {
-            position: absolute;
-            top: 0;
-            right: 0;
-            min-width: 100%;
-            min-height: 100%;
-            font-size: 100px;
-            text-align: right;
-            filter: alpha(opacity=0);
-            opacity: 0;
-            outline: none;
-            background: white;
-            cursor: inherit;
-            display: block;
-        }
-</style>
+<script src="~/Content/assets/app/directive/fileUpload.js"></script>
 
 <div class="col-xs-12" ng-controller="IndexController" ng-cloak>
     <div class="card">
@@ -32,14 +10,41 @@
             <div class="card-actions">
                 <button type="button" class="card-action card-toggler" title="Collapse"></button>
             </div>
-            <strong>Partner</strong>
+            <strong>Quản lý đối tác</strong>
         </div>
         <div class="card-body">
             <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> Thêm mới</button>
             <div class="clearfix"></div>
             <table id="tblData" class="table table-bordered table-striped table-hover table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
         </div>
+
     </div>
+
+
+
+    <div class="col-sm-6 col-md-6 col-lg-10">
+        <div class="smart-form display-inline" style="width:80%;">
+            <section>
+                <div class="input input-file" file-upload root="ProductsImport" is-loading="MasterPage.IsLoading">
+                    <span class="button">
+                        <input class="files" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">Browse
+                    </span>
+                    <input type="text" ng-model="ProductsImport.LstFile[0].FileName" placeholder="Đính kèm file excel" readonly="">
+                    <div class="progress" style="height: 2px;margin-bottom: 0;">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+                             style="width: {{ProductsImport.LstFile[0].Percent}}%;">
+                            <span class="sr-only">{{ProductsImport.LstFile[0].Percent}}% Complete</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <button type="button" class="btn cc-btn-style cc-btn-color-blue" ng-click="ProductsImport.btnImportExcel.OnClick()" style="position: relative;top: -15px;">Đồng ý</button>
+        <button type="button" class="btn cc-btn-style cc-btn-color-blue" ng-click="ProductsImport.btnChi.OnClick()" style="position: relative;top: -15px;"> <i class="fa fa-usd"></i> Chi tiền</button>
+    </div>
+
+
+
     <!-- Large modal -->
     <div class="modal fade" id="PnModal">
         <div class="modal-dialog">
@@ -56,27 +61,22 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>
-                                Tên Partner
+                                Tên đối tác
                             </label>
                             <input type="text" class="form-control" ng-model="Partner.Name" required="">
                         </div>
                         <div class="form-group">
-                            <label>
-                                Logo
-                            </label>
-                            <div class="input-group">
-                                <span class="input-group-btn">
-                                    <span class="btn btn-default btn-file">
-                                        Browse… <input type="file" id="imgInp">
-                                    </span>
-                                </span>
-                                <input type="text" class="form-control" readonly ng-model="Partner.Logo">
+                            <div class="file-drop-area input input-file" root="ProductsImport">
+                                <span class="btn btn-outline-primary">Chọn ảnh</span>
+                                <span class="file-msg js-set-number">hoặc kéo hình ảnh vào đây</span>
+                                <input class="file-input files" type="file" name="file" accept="image/*" ng-model="ProductsImport.LstFile[0].FileName">
                             </div>
                         </div>
                         <div class="form-group">
                             <label>
                                 Mô tả
                             </label>
+                            <input type="text" class="form-control" ng-model="Partner.Description">
                         </div>
                     </div>
                     <!-- /.modal-body -->
@@ -102,9 +102,54 @@
 
         CKEDITOR.replace("des");
 
+        // highlight drag area
+        var fileinput = document.querySelector('.file-input');
+        var filedroparea = document.querySelector('.file-drop-area');
+        var jssetnumber = document.querySelector('.js-set-number');
+        fileinput.addEventListener('dragenter', isactive);
+        fileinput.addEventListener('focus', isactive);
+        fileinput.addEventListener('click', isactive);
+
+        // back to normal state
+        fileinput.addEventListener('dragleave', isactive);
+        fileinput.addEventListener('blur', isactive);
+        fileinput.addEventListener('drop', isactive);
+
+        // add Class
+        function isactive() {
+            filedroparea.classList.add('is-active');
+        }
+
+        // change inner text
+        fileinput.addEventListener('change', function () {
+            var count = fileinput.files.length;
+            if (count === 1) {
+                // if single file then show file name
+                jssetnumber.innerText = fileinput.value.split('\\').pop();
+            } else {
+                // otherwise show number of files
+                jssetnumber.innerText = count + ' files selected';
+            }
+        });
+
     </script>
     <script>
         var IndexController = ($scope, $rootScope, $timeout, $filter, $compile, ApiHelper, CommonHelper, UtilFactory, DataFactory, $q) => {
+
+            //#region
+            $scope.ProductsImport = {
+                IsListenProgress: true,
+                IsMultipleFile: false,
+                ActionUpload: "/UploadFiles/UploadImage",
+                SaveTo: "PayFormSakuras",
+                btnImportExcel: {},
+                btnExportExcelTemp: {},
+                btnChi: {}
+            };
+
+            //#endregion
+
+
 
             //#region declare variable
             $scope.UpdateMode = false;
@@ -150,14 +195,14 @@
                         {
                             'mRender': function (data, type, row, meta) {
                                 return `
-                                            <div class="text-center">
-                                                <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật">
-                                                   <span class="icon icon-pencil icon-lg icon-fw"></span>
-                                                 </button>
-                                                <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa">
-                                                   <span class="icon icon-trash-o icon-lg icon-fw"></span>
-                                                 </button>
-                                            </div>`;
+                                    <div class="text-center">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật">
+                                           <span class="icon icon-pencil icon-lg icon-fw"></span>
+                                         </button>
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                           <span class="icon icon-trash-o icon-lg icon-fw"></span>
+                                         </button>
+                                    </div>`;
                             },
                             "sName": "Id",
                             "bSortable": false,

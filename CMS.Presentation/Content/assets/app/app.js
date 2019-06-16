@@ -54,6 +54,7 @@ addDirective("inputFormat", inputFormat);
 addDirective("lazyLoad", lazyLoad);
 addDirective("noInput", noInput);
 addDirective("whenEnter", whenEnter);
+addDirective("fileUpload", fileUpload);
 
 var addService = function (name, service) {
     try {
