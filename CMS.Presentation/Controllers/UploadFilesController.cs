@@ -27,7 +27,7 @@ namespace CMS.Presentation.Controllers
             postedFile.SaveAs(path + fileName);
 
             //Send OK Response to Client.
-            return Request.CreateResponse(HttpStatusCode.OK, "~/Content/Images/" + fileName);
+            return Request.CreateResponse(HttpStatusCode.OK, "/Content/Images/" + fileName);
         }
 
     }

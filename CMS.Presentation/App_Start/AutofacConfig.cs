@@ -59,7 +59,9 @@ namespace CMS.Presentation
             builder.RegisterType<MenuAppService>().As<IMenuAppService>().InstancePerDependency();
             builder.RegisterType<MenuInRoleRepository>().As<IMenuInRoleRepository>().InstancePerLifetimeScope();
             builder.RegisterType<MenuInRoleAppService>().As<IMenuInRoleAppService>().InstancePerDependency();
-
+            builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
+            builder.RegisterType<CategoryAppService>().As<ICategoryAppService>().InstancePerDependency();
+            
             #region CMS
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ConfigAppService>().As<IConfigAppService>().InstancePerDependency();

@@ -94,15 +94,22 @@
 
 
     //#region Partner
-    service.Partners_Get = function (roomId) {
+    service.Partners_Get = function () {
         let strApiEndPoint = CommonHelper.PartnerUrl;
         return ApiHelper.GetMethod(strApiEndPoint);
     };
     //#endregion
 
     //#region Bank
-    service.Banks_Get = function (roomId) {
+    service.Banks_Get = function () {
         let strApiEndPoint = CommonHelper.BankUrl;
+        return ApiHelper.GetMethod(strApiEndPoint);
+    };
+    //#endregion
+
+    //#region Categories
+    service.Categories_Get = function () {
+        let strApiEndPoint = CommonHelper.CategoryUrl;
         return ApiHelper.GetMethod(strApiEndPoint);
     };
     //#endregion

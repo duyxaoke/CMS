@@ -123,9 +123,10 @@
     <script src="~/Content/dist/js/site.js"></script>
     <script src="~/Content/admin/js/sweetalert/sweetalert.min.js"></script>
     <script>
-        $(function () {
+        $(document).ready(function () {
             //Initialize Select2 Elements
-            $('.select2').select2().trigger('change');
+            $('.select2').select2();
+            $('.select2').val($('.select2 option:eq(1)').val()).trigger('change');
             //Date picker
             $('#datepicker').datepicker({
                 autoclose: true

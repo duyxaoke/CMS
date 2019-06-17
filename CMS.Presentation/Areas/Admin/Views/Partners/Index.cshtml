@@ -39,10 +39,13 @@
                             <input type="text" class="form-control" ng-model="Partner.Name" required="">
                         </div>
                         <div class="form-group">
-                            <div class="file-drop-area input input-file" root="ProductsImport">
+                            <img id="imgPreview" style="height: 150px; width: 150px" />
+                        </div>
+                        <div class="form-group">
+                            <div class="file-drop-area input input-file">
                                 <span class="btn btn-outline-primary">Chọn ảnh</span>
                                 <span class="file-msg js-set-number">hoặc kéo hình ảnh vào đây</span>
-                                <input class="file-input files" type="file" name="file" id="file" accept="image/*" ng-model="Partner.Logo">
+                                <input class="file-input files" type="file" name="file" id="file" accept="image/*" ng-model="Partner.Logo" onchange="loadFile(event)">
                             </div>
                         </div>
                         <div class="form-group">
@@ -104,6 +107,10 @@
                 jssetnumber.innerText = count + ' files selected';
             }
         });
+        var imgPreview = document.getElementById('imgPreview');
+        var loadFile = function(event) {
+            imgPreview.src = URL.createObjectURL(event.target.files[0]);
+         };
 
     </script>
     <script>
@@ -112,6 +119,8 @@
             $scope.UpdateMode = false;
             $scope.Partner = { IsActive: true };
             $scope.Data = [];
+            $scope.DEFAULT_IMG = CommonHelper.DEFAULT_IMG;
+
             //#endregion
 
             //#region Datatable
@@ -186,6 +195,7 @@
                     .then(function (response) {
                         $rootScope.MasterPage.IsLoading = false;
                         $scope.Partner = response.Data;
+                        imgPreview.src = $scope.Partner.Logo == null ? $scope.DEFAULT_IMG : $scope.Partner.Logo;
                         defer.resolve(response);
                     })
                     .catch(function (response) {
@@ -203,6 +213,7 @@
                 $scope.Partner = {};
                 $("#file").val('');
                 $(".file-msg").html('hoặc kéo hình ảnh vào đây');
+                imgPreview.src = $scope.DEFAULT_IMG;
                 $('#PnModal').appendTo("body").modal('show');
             };
             //#endregion
@@ -213,6 +224,7 @@
                 ReadById(Id);
                 $("#file").val('');
                 $(".file-msg").html('hoặc kéo hình ảnh vào đây');
+                imgPreview.src = $scope.DEFAULT_IMG;
                 $('#PnModal').appendTo("body").modal('show');
             }
             //#endregion

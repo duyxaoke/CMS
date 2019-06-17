@@ -6,15 +6,15 @@ namespace CMS.Domain.Entities
     [Table("Category", Schema = "CMS")]
     public class Category : BaseEntity
     {
-        public int PartnerID { get; set; }
-
-        [StringLength(50)]
-        public string CategoryCode { get; set; }
-
+        public int ParentID { get; set; }
+        public int ModuleID { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string CategoryName { get; set; }
-        public decimal PercentCommission { get; set; }
+        [Column(TypeName = "nvarchar")]
+        [StringLength(4000)]
+        public string Description { get; set; }
         public bool IsActive { get; set; }
+
     }
 }

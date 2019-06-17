@@ -1266,6 +1266,7 @@
     <Content Include="Content\admin\img\flags\4x3\zm.svg" />
     <Content Include="Content\admin\img\flags\4x3\zw.svg" />
     <Content Include="Content\admin\img\logo-inverse.svg" />
+    <Content Include="Content\admin\img\NO_IMG.png" />
     <Content Include="Content\admin\js\demo.min.js" />
     <Content Include="Content\admin\js\application.min.js" />
     <Content Include="Content\admin\js\elephant.min.js" />
@@ -8285,10 +8286,10 @@
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Profiles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboards\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Partners\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Content\template\css\icon.woff2" />
     <Content Include="Content\admin\fonts\fontawesome-webfont-.eot" />

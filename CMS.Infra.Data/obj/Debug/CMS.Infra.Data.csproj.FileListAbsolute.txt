@@ -34,3 +34,6 @@ D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CoreCompileInputs.
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.CopyComplete
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.dll
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.pdb
+D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.updatecategory.resources
+D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.updatecategoryád.resources
+D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.updatecategorymm.resources

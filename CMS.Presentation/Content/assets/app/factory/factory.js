@@ -330,33 +330,16 @@ var ApiHelper = function ($rootScope, $localstorage, $timeout, $q, $http) {
 ApiHelper.$inject = ["$rootScope", "$localstorage", "$timeout", "$q", "$http"];
 var CommonHelper = function ($rootScope, $localstorage, $timeout, $q, $http) {
     let urlApi = "/api/";
-    let urlExternalApi = 'https://api.accesstrade.vn/v1/';
     let service = {};
 
     service.ConfigUrl = urlApi + "Configs/";
     service.MenuUrl = urlApi + "Menus/";
     service.RoleUrl = urlApi + "Roles/";
     service.UserUrl = urlApi + "Users/";
-    service.ServiceUrl = urlApi + "Services/";
     service.CategoryUrl = urlApi + "Categories/";
-    service.HistoryUrl = urlApi + "Histories/";
     service.PartnerUrl = urlApi + "Partners/";
-    service.PromotionUrl = urlApi + "Promotions/";
-    service.WithdrawUrl = urlApi + "Withdraws/";
-    service.BankUrl = urlApi + "Banks/";
-    service.WalletUrl = urlApi + "Wallets/";
 
-    // External Api
-    service.OffersUrl = urlExternalApi + "offers_informations?";
-
-    service.DepWithType = {};
-    service.DepWithType.Deposit = 0;
-    service.DepWithType.Withdraw = 1;
-
-    service.StatusTransaction = {};
-    service.StatusTransaction.Pending = 0;
-    service.StatusTransaction.Confirmed = 1;
-    service.StatusTransaction.Cancel = 2;
+    service.DEFAULT_IMG = "/Content/admin/img/NO_IMG.png";
 
     return service;
 }
@@ -458,15 +441,22 @@ var DataFactory = function ($rootScope, $localstorage, $timeout, UtilFactory, $q
 
 
     //#region Partner
-    service.Partners_Get = function (roomId) {
+    service.Partners_Get = function () {
         let strApiEndPoint = CommonHelper.PartnerUrl;
         return ApiHelper.GetMethod(strApiEndPoint);
     };
     //#endregion
 
     //#region Bank
-    service.Banks_Get = function (roomId) {
+    service.Banks_Get = function () {
         let strApiEndPoint = CommonHelper.BankUrl;
+        return ApiHelper.GetMethod(strApiEndPoint);
+    };
+    //#endregion
+
+    //#region Categories
+    service.Categories_Get = function () {
+        let strApiEndPoint = CommonHelper.CategoryUrl;
         return ApiHelper.GetMethod(strApiEndPoint);
     };
     //#endregion
