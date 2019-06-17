@@ -2,7 +2,6 @@
 @{
     ViewData["Title"] = "Quản lý đối tác";
 }
-<script src="~/Content/assets/app/directive/fileUpload.js"></script>
 
 <div class="col-xs-12" ng-controller="IndexController" ng-cloak>
     <div class="card">
@@ -19,32 +18,6 @@
         </div>
 
     </div>
-
-
-
-    <div class="col-sm-6 col-md-6 col-lg-10">
-        <div class="smart-form display-inline" style="width:80%;">
-            <section>
-                <div class="input input-file" file-upload root="ProductsImport" is-loading="MasterPage.IsLoading">
-                    <span class="button">
-                        <input class="files" type="file" name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">Browse
-                    </span>
-                    <input type="text" ng-model="ProductsImport.LstFile[0].FileName" placeholder="Đính kèm file excel" readonly="">
-                    <div class="progress" style="height: 2px;margin-bottom: 0;">
-                        <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
-                             style="width: {{ProductsImport.LstFile[0].Percent}}%;">
-                            <span class="sr-only">{{ProductsImport.LstFile[0].Percent}}% Complete</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <button type="button" class="btn cc-btn-style cc-btn-color-blue" ng-click="ProductsImport.btnImportExcel.OnClick()" style="position: relative;top: -15px;">Đồng ý</button>
-        <button type="button" class="btn cc-btn-style cc-btn-color-blue" ng-click="ProductsImport.btnChi.OnClick()" style="position: relative;top: -15px;"> <i class="fa fa-usd"></i> Chi tiền</button>
-    </div>
-
-
-
     <!-- Large modal -->
     <div class="modal fade" id="PnModal">
         <div class="modal-dialog">
@@ -69,7 +42,7 @@
                             <div class="file-drop-area input input-file" root="ProductsImport">
                                 <span class="btn btn-outline-primary">Chọn ảnh</span>
                                 <span class="file-msg js-set-number">hoặc kéo hình ảnh vào đây</span>
-                                <input class="file-input files" type="file" name="file" accept="image/*" ng-model="ProductsImport.LstFile[0].FileName">
+                                <input class="file-input files" type="file" name="file" id="file" accept="image/*" ng-model="Partner.Logo">
                             </div>
                         </div>
                         <div class="form-group">
@@ -134,23 +107,7 @@
 
     </script>
     <script>
-        var IndexController = ($scope, $rootScope, $timeout, $filter, $compile, ApiHelper, CommonHelper, UtilFactory, DataFactory, $q) => {
-
-            //#region
-            $scope.ProductsImport = {
-                IsListenProgress: true,
-                IsMultipleFile: false,
-                ActionUpload: "/UploadFiles/UploadImage",
-                SaveTo: "PayFormSakuras",
-                btnImportExcel: {},
-                btnExportExcelTemp: {},
-                btnChi: {}
-            };
-
-            //#endregion
-
-
-
+        var IndexController = ($scope, $rootScope, $timeout, $filter, $compile, ApiHelper, CommonHelper, UtilFactory, DataFactory, $q, $http) => {
             //#region declare variable
             $scope.UpdateMode = false;
             $scope.Partner = { IsActive: true };
@@ -244,6 +201,8 @@
             $scope.Create = function () {
                 $scope.UpdateMode = false;
                 $scope.Partner = {};
+                $("#file").val('');
+                $(".file-msg").html('hoặc kéo hình ảnh vào đây');
                 $('#PnModal').appendTo("body").modal('show');
             };
             //#endregion
@@ -252,6 +211,8 @@
             $scope.Update = function (Id) {
                 $scope.UpdateMode = true;
                 ReadById(Id);
+                $("#file").val('');
+                $(".file-msg").html('hoặc kéo hình ảnh vào đây');
                 $('#PnModal').appendTo("body").modal('show');
             }
             //#endregion
@@ -286,38 +247,53 @@
 
             //#region Save
             $scope.Save = function () {
-                if (!$scope.UpdateMode) {
-                    $rootScope.MasterPage.IsLoading = true;
-                    let strApiEndPoint = CommonHelper.PartnerUrl;
-                    ApiHelper.PostMethod(strApiEndPoint, $scope.Partner)
+                if (document.getElementById("file").files.length > 0) {
+                    var formData = new FormData();
+                    formData.append(file, document.getElementById("file").files[0]);
+                    ApiHelper.PostMethod("/api/FileAPI/UploadFiles", formData, { 'Content-Type': undefined })
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
-                            $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Thêm thành công');
+                            $scope.Partner.Logo = response.Data;
                         })
                         .catch(function (response) {
                             sys.Alert(false, response.Message);
-                            defer.reject(response);
                             $rootScope.MasterPage.IsLoading = false;
                         });
-                    $('#PnModal').appendTo("body").modal('hide');
                 }
-                else {
-                    $rootScope.MasterPage.IsLoading = true;
-                    let strApiEndPoint = CommonHelper.PartnerUrl;
-                    ApiHelper.PutMethod(strApiEndPoint, $scope.Partner)
-                        .then(function (response) {
-                            $rootScope.MasterPage.IsLoading = false;
-                            $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Cập nhật thành công');
-                        })
-                        .catch(function (response) {
-                            sys.Alert(false, response.Message);
-                            defer.reject(response);
-                            $rootScope.MasterPage.IsLoading = false;
-                        });
-                    $('#PnModal').appendTo("body").modal('hide');
-                }
+                $timeout(function () {
+                    if (!$scope.UpdateMode) {
+                        $rootScope.MasterPage.IsLoading = true;
+                        let strApiEndPoint = CommonHelper.PartnerUrl;
+                        ApiHelper.PostMethod(strApiEndPoint, $scope.Partner)
+                            .then(function (response) {
+                                $rootScope.MasterPage.IsLoading = false;
+                                $('#tblData').DataTable().ajax.reload(null, false);
+                                sys.Alert(true, 'Thêm thành công');
+                            })
+                            .catch(function (response) {
+                                sys.Alert(false, response.Message);
+                                defer.reject(response);
+                                $rootScope.MasterPage.IsLoading = false;
+                            });
+                        $('#PnModal').appendTo("body").modal('hide');
+                    }
+                    else {
+                        $rootScope.MasterPage.IsLoading = true;
+                        let strApiEndPoint = CommonHelper.PartnerUrl;
+                        ApiHelper.PutMethod(strApiEndPoint, $scope.Partner)
+                            .then(function (response) {
+                                $rootScope.MasterPage.IsLoading = false;
+                                $('#tblData').DataTable().ajax.reload(null, false);
+                                sys.Alert(true, 'Cập nhật thành công');
+                            })
+                            .catch(function (response) {
+                                sys.Alert(false, response.Message);
+                                defer.reject(response);
+                                $rootScope.MasterPage.IsLoading = false;
+                            });
+                        $('#PnModal').appendTo("body").modal('hide');
+                    }
+                }, 500);
             };
             //#endregion
 
@@ -337,7 +313,7 @@
             $rootScope.MasterPage.IsLoading = false;
             //#endregion
         }
-        IndexController.$inject = ["$scope", "$rootScope", "$timeout", "$filter", "$compile", "ApiHelper", "CommonHelper", "UtilFactory", "DataFactory", "$q"];
+        IndexController.$inject = ["$scope", "$rootScope", "$timeout", "$filter", "$compile", "ApiHelper", "CommonHelper", "UtilFactory", "DataFactory", "$q", "$http"];
         addController("IndexController", IndexController);
     </script>
 }

@@ -63,9 +63,6 @@
     <Reference Include="Common.Logging, Version=2.1.2.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>..\packages\Common.Logging.2.1.2\lib\net40\Common.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Core.DTO">
-      <HintPath>..\packages\Core.DTO.dll</HintPath>
-    </Reference>
     <Reference Include="DataTablesDotNet, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DataTablesDotNet.1.4.0\lib\45\DataTablesDotNet.dll</HintPath>
     </Reference>

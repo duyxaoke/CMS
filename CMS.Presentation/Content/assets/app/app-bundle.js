@@ -671,6 +671,33 @@ var ApiHelper = function ($rootScope, $localstorage, $timeout, $q, $http) {
         return defer.promise;
     };
 
+    service.UploadMethod = function (url, data, header) {
+
+        let codeStep = jQuery.extend({}, ApiHelper.CodeStep);
+        let defer = $q.defer();
+
+        var req = {
+            method: 'POST',
+            url: url,
+            headers: header,
+            data: data
+        }
+        $http(req).then(function (jqXHR) {
+            if (jqXHR.status == 204) {
+                codeStep = service.SetErrorAPI(jqXHR, url, data);
+                defer.reject(codeStep);
+            } else {
+                codeStep.Status = service.JsonStatusCode.Success;
+                codeStep.Data = jqXHR.data;
+                defer.resolve(codeStep);
+            }
+        }, function (jqXHR) {
+            codeStep = service.SetErrorAPI(jqXHR, url, data);
+            defer.reject(codeStep);
+        });
+        return defer.promise;
+    };
+
     service.SetErrorAPI = function (jqXHR, ApiEndPoint) {
         var codeStep = jQuery.extend({}, service.CodeStep);
         if (jqXHR.status == 200 || jqXHR.status == 201) return;
