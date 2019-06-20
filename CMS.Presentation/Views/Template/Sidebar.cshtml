@@ -6,6 +6,16 @@
         <div class="custom-scrollbar">
             <nav id="sidenav" class="sidenav-collapse collapse">
                 <ul class="sidenav">
+                    <li class="sidenav-item">
+                        <a href="/Admin/Base/ChangeCulture?ddlCulture=vi&returnUrl=@Request.RawUrl">
+                            <span class="sidenav-label"><img class="img-flag" src="~/Content/admin/img/flags/4x3/vn.svg" />Tiếng Việt</span>
+                        </a>
+                    </li>
+                    <li class="sidenav-item">
+                        <a href="/Admin/Base/ChangeCulture?ddlCulture=en&returnUrl=@Request.RawUrl">
+                            <span class="sidenav-label"><img class="img-flag" src="~/Content/admin/img/flags/4x3/gb.svg" />English</span>
+                        </a>
+                    </li>
                     <li class="sidenav-heading">Navigation</li>
                     @foreach (var item in Model)
                     {<!-- co item con -->

@@ -155,6 +155,7 @@ D:\PROJECT\CMS\CMS.Presentation\bin\AutoMapper.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Application.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Domain.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Infra.Data.dll
+D:\PROJECT\CMS\CMS.Presentation\bin\CMS.StaticResources.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\Common.Logging.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\DataTablesDotNet.dll
 D:\PROJECT\CMS\CMS.Presentation\bin\DevTrends.MvcDonutCaching.dll
@@ -209,6 +210,7 @@ D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Application.pdb
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Domain.pdb
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Domain.dll.config
 D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Infra.Data.pdb
+D:\PROJECT\CMS\CMS.Presentation\bin\CMS.StaticResources.pdb
 D:\PROJECT\CMS\CMS.Presentation\bin\Autofac.xml
 D:\PROJECT\CMS\CMS.Presentation\bin\Autofac.Integration.Mvc.xml
 D:\PROJECT\CMS\CMS.Presentation\bin\Autofac.Integration.WebApi.pdb
@@ -259,6 +261,7 @@ D:\PROJECT\CMS\CMS.Presentation\bin\Microsoft.AspNet.Identity.Core.xml
 D:\PROJECT\CMS\CMS.Presentation\bin\Microsoft.AspNet.Identity.Owin.xml
 D:\PROJECT\CMS\CMS.Presentation\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 D:\PROJECT\CMS\CMS.Presentation\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\PROJECT\CMS\CMS.Presentation\bin\en\CMS.StaticResources.resources.dll
 D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.csprojAssemblyReference.cache
 D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.Models.init.resources
 D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.csproj.GenerateResource.cache

@@ -301,7 +301,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CustomIpAddressParser.cs" />
-    <Compile Include="Helpers\Constant.cs" />
+    <Compile Include="Helpers\CommonConstants.cs" />
     <Compile Include="Helpers\EnumExtensions.cs" />
     <Compile Include="Helpers\InvalidGoogleCaptchaHelper.cs" />
     <Compile Include="Helpers\GoogleCaptchaHelper.cs" />
@@ -8280,7 +8280,9 @@
     <Content Include="Content\dist\css\adminlte.min.css.map" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-be.json" />
     <Content Include="Content\plugins\input-mask\phone-codes\phone-codes.json" />
-    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\Admin\Views\Roles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Menus\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Users\Index.cshtml" />
@@ -8405,6 +8407,10 @@
     <ProjectReference Include="..\CMS.Infra.Data\CMS.Infra.Data.csproj">
       <Project>{470424B8-DB74-4522-9163-189A824FC64B}</Project>
       <Name>CashMe.Infra.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CMS.StaticResources\CMS.StaticResources.csproj">
+      <Project>{f4abe1bf-36b9-46ce-92d3-84e692ad71fd}</Project>
+      <Name>CMS.StaticResources</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
