@@ -346,7 +346,7 @@
                     .then((willDelete) => {
                         if (willDelete) {
                             $rootScope.MasterPage.IsLoading = true;
-                            let strApiEndPoint = CommonHelper.RoleUrl + "?id=" + Id;
+                            let strApiEndPoint = CommonHelper.RoleUrl + "delete?id=" + Id;
                             ApiHelper.DeleteMethod(strApiEndPoint)
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;

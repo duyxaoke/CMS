@@ -10,7 +10,7 @@ var sys = (function () {
             "dataType": 'json',
             "Content-Type": 'application/json; charset=utf-8',
             success: function (response) {
-                sys.Alert(true, 'Xóa thành công!');
+                sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS');
                 setTimeout(function () {
                     location.reload();
                 }, 1000);

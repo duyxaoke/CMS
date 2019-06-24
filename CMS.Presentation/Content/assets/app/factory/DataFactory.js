@@ -114,6 +114,13 @@
     };
     //#endregion
 
+    //#region Contents
+    service.Contents_Get = function () {
+        let strApiEndPoint = CommonHelper.ContentUrl;
+        return ApiHelper.GetMethod(strApiEndPoint);
+    };
+    //#endregion
+
     return service;
 };
 DataFactory.$inject = ["$rootScope", "$localstorage", "$timeout", "UtilFactory", "$q", "$http", "ApiHelper", "CommonHelper"];

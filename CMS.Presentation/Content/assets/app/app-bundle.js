@@ -558,9 +558,9 @@ var ApiHelper = function ($rootScope, $localstorage, $timeout, $q, $http) {
     service.Status = {
         CreateSuccess: "Tạo thành công!",
         CreateFail: "Tạo thất bại!",
-        UpdateSuccess: "Cập nhật thành công!",
+        UpdateSuccess: "@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS",
         UpdateFail: "Cập nhật thất bại!",
-        DeleteSuccess: "Xóa thành công!",
+        DeleteSuccess: "@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS",
         DeleteFail: "Xóa thất bại!"
     };
 
@@ -810,6 +810,7 @@ var CommonHelper = function ($rootScope, $localstorage, $timeout, $q, $http) {
     service.UserUrl = urlApi + "Users/";
     service.CategoryUrl = urlApi + "Categories/";
     service.PartnerUrl = urlApi + "Partners/";
+    service.ContentUrl = urlApi + "Contents/";
 
     service.DEFAULT_IMG = "/Content/admin/img/NO_IMG.png";
 
@@ -929,6 +930,13 @@ var DataFactory = function ($rootScope, $localstorage, $timeout, UtilFactory, $q
     //#region Categories
     service.Categories_Get = function () {
         let strApiEndPoint = CommonHelper.CategoryUrl;
+        return ApiHelper.GetMethod(strApiEndPoint);
+    };
+    //#endregion
+
+    //#region Contents
+    service.Contents_Get = function () {
+        let strApiEndPoint = CommonHelper.ContentUrl;
         return ApiHelper.GetMethod(strApiEndPoint);
     };
     //#endregion

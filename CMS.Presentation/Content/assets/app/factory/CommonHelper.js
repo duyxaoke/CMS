@@ -8,6 +8,7 @@
     service.UserUrl = urlApi + "Users/";
     service.CategoryUrl = urlApi + "Categories/";
     service.PartnerUrl = urlApi + "Partners/";
+    service.ContentUrl = urlApi + "Contents/";
 
     service.DEFAULT_IMG = "/Content/admin/img/NO_IMG.png";
 

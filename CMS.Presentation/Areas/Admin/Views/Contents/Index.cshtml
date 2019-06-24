@@ -1,0 +1,288 @@
+﻿@model CMS.Application.ViewModels.CMS.ContentModel
+
+@{
+    ViewData["Title"] = "Quản lý nội dung";
+}
+
+@{
+    List<CMS.Application.ViewModels.CMS.LanguageViewModel> languages = ViewBag.Languages;
+    var index = 0;
+    var x = Model;
+}
+
+<div class="col-xs-12" ng-controller="IndexController" ng-cloak>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-actions">
+                <button type="button" class="card-action card-toggler" title="Collapse"></button>
+            </div>
+            <strong>@CMS.StaticResources.Resources.TEXT_PARTNER</strong>
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> @CMS.StaticResources.Resources.TEXT_CREATE</button>
+            <div class="clearfix"></div>
+            <table id="tblData" class="table table-bordered table-striped table-hover table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
+        </div>
+
+    </div>
+    <!-- Large modal -->
+    <div class="modal fade" id="PnModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</h4>
+                </div>
+                <!-- form .needs-validation -->
+                <form id="frmModal" name="frmModal" class="needs-validation" action="/Admin/Contents/Create" method="post">
+                    <!-- /form .needs-validation -->
+                    <div class="modal-body">
+                        <div class="panel m-b-lg">
+                            <ul class="nav nav-tabs nav-justified">
+                                    @foreach (var language in Model.Languages)
+                                    {
+                                        <li><a href="#@language.Id" data-toggle="tab">@language.Name</a></li>
+                                    }
+                                </ul>
+                            <div class="tab-content">
+
+                                    @foreach (var item in Model.Locales)
+                                    {
+                                        <input name="Locales[@index].LanguageId" value="@item.LanguageId" type="hidden" />
+                                        <div class="tab-pane fade" id="@item.LanguageId">
+                                            <div class="form-group">
+                                                <label>
+                                                    Title
+                                                </label>
+                                                <input type="text" class="form-control" name="Locales[@index].Title" required="">
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label>
+                                                    SubTitle
+                                                </label>
+                                                <input type="text" class="form-control" name="Locales[@index].SubTitle" required="">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>
+                                                    Description
+                                                </label>
+                                                <input type="text" class="form-control" name="Locales[@index].Description" required="">
+                                            </div>
+
+                                        </div>
+
+                                        index++;
+                                    }
+                                </div>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-body -->
+                    <!-- .modal-footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">@CMS.StaticResources.Resources.TEXT_CLOSE</button>
+                        <button type="submit" class="btn btn-primary">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</button>
+                    </div>
+                </form>
+                <!-- /.modal-footer -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</div>
+
+@section scripts{
+    <script>
+        var IndexController = ($scope, $rootScope, $timeout, $filter, $compile, ApiHelper, CommonHelper, UtilFactory, DataFactory, $q, $http) => {
+            //#region declare variable
+            $scope.UpdateMode = false;
+            $scope.Content = { IsActive: true };
+            $scope.Data = [];
+
+            //#endregion
+
+            //#region Datatable
+            $(function () {
+                var peopleList = $('#tblData').DataTable({
+                    "bProcessing": true,
+                    "bSort": true,
+                    "bServerSide": true,
+                    "language": {
+                        paginate: {
+                            previous: '<i class="icon icon-angle-double-left"></i>',
+                            next: '<i class="icon icon-angle-double-right"></i>'
+                        }
+                    },
+                    "sAjaxSource": "/Contents/Data",
+                    "aoColumnDefs": [
+                        {
+                            "sName": "ContentName",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_PARTNER_NAME",
+                            "bSearchable": true,
+                            "bSortable": true,
+                            "aTargets": [0]
+                        },
+                        {
+                            "sName": "UniqueSeoCode",
+                            "sTitle": "UniqueSeoCode",
+                            "bSearchable": true,
+                            "bSortable": true,
+                            "aTargets": [1]
+                        },
+                        {
+                            'mRender': function (data, type, row, meta) {
+                                return `
+                                    <div class="text-center">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_UPDATE">
+                                           <span class="icon icon-pencil icon-lg icon-fw"></span>
+                                         </button>
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_DELETE">
+                                           <span class="icon icon-trash-o icon-lg icon-fw"></span>
+                                         </button>
+                                    </div>`;
+                            },
+                            "sName": "Id",
+                            "bSortable": false,
+                            "aTargets": [2],
+                            "sWidth": "80px"
+                        }
+                    ],
+                    "drawCallback": function (settings) {
+                        $('[data-toggle="tooltip"]').tooltip();
+                    },
+                    createdRow: function (row, data, dataIndex) {
+                        $compile(angular.element(row).contents())($scope);
+                    }
+                });
+            });
+            //#endregion
+
+            //#region ReadById
+            var ReadById = (Id) => {
+                let defer = $q.defer();
+                $rootScope.MasterPage.IsLoading = true;
+                let strApiEndPoint = CommonHelper.ContentUrl + Id;
+                ApiHelper.GetMethod(strApiEndPoint)
+                    .then(function (response) {
+                        $rootScope.MasterPage.IsLoading = false;
+                        $scope.Content = response.Data;
+                        defer.resolve(response);
+                    })
+                    .catch(function (response) {
+                        sys.Alert(false, response.Message);
+                        defer.reject(response);
+                        $rootScope.MasterPage.IsLoading = false;
+                    });
+                return defer.promise;
+            };
+            //#endregion
+
+            //#region Create
+            $scope.Create = function () {
+                $scope.UpdateMode = false;
+                $scope.Content = {};
+                $('#PnModal').appendTo("body").modal('show');
+            };
+            //#endregion
+
+            //#region Update
+            $scope.Update = function (Id) {
+                $scope.UpdateMode = true;
+                ReadById(Id);
+                $('#PnModal').appendTo("body").modal('show');
+            }
+            //#endregion
+
+            //#region Delete
+            $scope.Delete = function (Id) {
+                swal({
+                    title: "Xác nhận xóa?",
+                    text: "Một khi đã xóa, bạn không thể khôi phục lại",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $rootScope.MasterPage.IsLoading = true;
+                            let strApiEndPoint = CommonHelper.ContentUrl + Id;
+                            ApiHelper.DeleteMethod(strApiEndPoint)
+                                .then(function (response) {
+                                    $rootScope.MasterPage.IsLoading = false;
+                                    $('#tblData').DataTable().ajax.reload(null, false);
+                                    sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS');
+                                })
+                                .catch(function (response) {
+                                    sys.Alert(false, response.Message);
+                                    $rootScope.MasterPage.IsLoading = false;
+                                });
+                        }
+                    });
+            };
+            //#endregion
+
+            //#region Save
+            $scope.Save = function () {
+                $timeout(function () {
+                    if (!$scope.UpdateMode) {
+                        $rootScope.MasterPage.IsLoading = true;
+                        let strApiEndPoint = CommonHelper.ContentUrl;
+                        ApiHelper.PostMethod(strApiEndPoint, $scope.Content)
+                            .then(function (response) {
+                                $rootScope.MasterPage.IsLoading = false;
+                                $('#tblData').DataTable().ajax.reload(null, false);
+                                sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_CREATE_SUCCESS');
+                            })
+                            .catch(function (response) {
+                                sys.Alert(false, response.Message);
+                                defer.reject(response);
+                                $rootScope.MasterPage.IsLoading = false;
+                            });
+                        $('#PnModal').appendTo("body").modal('hide');
+                    }
+                    else {
+                        $rootScope.MasterPage.IsLoading = true;
+                        let strApiEndPoint = CommonHelper.ContentUrl;
+                        ApiHelper.PutMethod(strApiEndPoint, $scope.Content)
+                            .then(function (response) {
+                                $rootScope.MasterPage.IsLoading = false;
+                                $('#tblData').DataTable().ajax.reload(null, false);
+                                sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
+                            })
+                            .catch(function (response) {
+                                sys.Alert(false, response.Message);
+                                defer.reject(response);
+                                $rootScope.MasterPage.IsLoading = false;
+                            });
+                        $('#PnModal').appendTo("body").modal('hide');
+                    }
+                }, 500);
+            };
+            //#endregion
+
+            //#region GetAll
+            $rootScope.MasterPage.IsLoading = true;
+            UtilFactory.WaitingLoadDirective(
+                [
+                ]).then(() => {
+                    $q.all({
+                        Contents: DataFactory.Contents_Get(),
+                    }).then((MultipleRes) => {
+                        $scope.Data = MultipleRes.Contents.Data;
+                    });
+                }).catch((response) => {
+                    throw response;
+                });
+            $rootScope.MasterPage.IsLoading = false;
+            //#endregion
+        }
+        IndexController.$inject = ["$scope", "$rootScope", "$timeout", "$filter", "$compile", "ApiHelper", "CommonHelper", "UtilFactory", "DataFactory", "$q", "$http"];
+        addController("IndexController", IndexController);
+    </script>
+}

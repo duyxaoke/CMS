@@ -8,7 +8,7 @@
             <div class="card-actions">
                 <button type="button" class="card-action card-toggler" title="Collapse"></button>
             </div>
-            <strong>Người dùng</strong>
+            <strong>@CMS.StaticResources.Resources.TEXT_USER</strong>
         </div>
         <div class="card-body">
             <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> @CMS.StaticResources.Resources.TEXT_CREATE</button>
@@ -31,7 +31,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>
-                                Tên người dùng
+                                @CMS.StaticResources.Resources.TEXT_FULLNAME
                             </label>
                             <input type="text" class="form-control" ng-model="User.Name" required="">
                         </div>
@@ -43,13 +43,13 @@
                         </div>
                         <div class="form-group">
                             <label>
-                                Tên tài khoản
+                                @CMS.StaticResources.Resources.TEXT_USERNAME
                             </label>
                             <input type="text" class="form-control" ng-model="User.UserName" required="">
                         </div>
                         <div class="form-group">
                             <label>
-                                Mật khẩu
+                                @CMS.StaticResources.Resources.TEXT_PASSWORD
                             </label>
                             <input type="password" class="form-control" ng-model="User.Password">
                         </div>
@@ -57,8 +57,8 @@
                     <!-- /.modal-body -->
                     <!-- .modal-footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">@CMS.StaticResources.Resources.TEXT_CLOSE</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</button>
                     </div>
                 </form>
             </div>
@@ -78,7 +78,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Cập nhật phân quyền user</h4>
+                    <h4 class="modal-title">@CMS.StaticResources.Resources.TEXT_UPDATE_ROLE</h4>
                 </div>
                 <!-- /.modal-header -->
                 <!-- .modal-body -->
@@ -88,7 +88,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>
-                                Tên đăng nhập
+                                @CMS.StaticResources.Resources.TEXT_USERNAME
                             </label>
                             <input type="hidden" class="form-control" ng-model="UserInRole.UserId">
                             <input type="text" class="form-control" ng-model="UserInRole.Username" readonly required="">
@@ -104,8 +104,8 @@
                     <!-- /.modal-body -->
                     <!-- .modal-footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" ng-disabled="frmMeneInRoleModal.$invalid" ng-click="SaveUserInRole(roleId)">Cập nhật</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">@CMS.StaticResources.Resources.TEXT_CLOSE</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmMeneInRoleModal.$invalid" ng-click="SaveUserInRole(roleId)">@CMS.StaticResources.Resources.TEXT_UPDATE</button>
                     </div>
                 </form>
                 <!-- /.modal-footer -->
@@ -144,7 +144,7 @@
                     "aoColumnDefs": [
                         {
                             "sName": "UserName",
-                            "sTitle": "Tên đăng nhập",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_USERNAME",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [0]
@@ -158,26 +158,18 @@
                         },
                         {
                             "sName": "Name",
-                            "sTitle": "Họ tên",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_FULLNAME",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [2]
                         },
                         {
-                            "sName": "Balance",
-                            "sTitle": "Số dư",
-                            "className": "text-center",
-                            "bSearchable": true,
-                            "bSortable": true,
-                            "aTargets": [3]
-                        },
-                        {
                             "sName": "LockoutEnabled",
-                            "sTitle": "Hoạt động",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_ACTIVE",
                             "className": "text-center",
                             "bSearchable": true,
                             "bSortable": true,
-                            "aTargets": [4],
+                            "aTargets": [3],
                             'mRender': function (data, type, row, meta) {
                                 return data == 'False' ? '<i class="icon icon-check text-success"></i>' : '<i class="icon icon-close text-danger"></i>';
                             },
@@ -190,22 +182,22 @@
                                         <button class="btn btn-link link-muted btn-xs" type="button" ng-click="ChangeBlockout('` + data + `');" data-toggle="tooltip" data-placement="top" title="Block / Unblock">
                                            <span class="icon icon-lock icon-lg icon-fw"></span>
                                          </button>
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật user">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_UPDATE_USER">
                                            <span class="icon icon-pencil icon-lg icon-fw"></span>
                                          </button>
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="ReadUserInRole('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật phân quyền">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="ReadUserInRole('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_UPDATE_ROLE">
                                            <span class="icon icon-pencil-square-o icon-lg icon-fw"></span>
                                          </button>
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_DELETE">
                                            <span class="icon icon-trash-o icon-lg icon-fw"></span>
                                          </button>
                                     </div>`;
                             },
                             "sName": "Id",
-                            "sTitle": "Thao tác",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_ACTION",
                             "className": "text-center",
                             "bSortable": false,
-                            "aTargets": [5],
+                            "aTargets": [4],
                             "sWidth": "180px",
                         }
                     ],
@@ -297,7 +289,7 @@
                                     .then(function (response) {
                                         $rootScope.MasterPage.IsLoading = false;
                                         $('#tblData').DataTable().ajax.reload(null, false);
-                                        sys.Alert(true, 'Cập nhật thành công!');
+                                        sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
                                     })
                                     .catch(function (response) {
                                         sys.Alert(false, response.Message);
@@ -332,7 +324,7 @@
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;
                                     $('#tblData').DataTable().ajax.reload(null, false);
-                                    sys.Alert(true, 'Xóa thành công!');
+                                    sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS');
                                 })
                                 .catch(function (response) {
                                     sys.Alert(false, response.Message);
@@ -352,7 +344,7 @@
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
                             $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Thêm thành công');
+                            sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_CREATE_SUCCESS');
                         })
                         .catch(function (response) {
                             sys.Alert(false, response.Message);
@@ -367,7 +359,7 @@
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
                             $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Cập nhật thành công');
+                            sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
                         })
                         .catch(function (response) {
                             sys.Alert(false, response.Message);
@@ -391,7 +383,7 @@
                     .then(function (response) {
                         $rootScope.MasterPage.IsLoading = false;
                         $('#tblData').DataTable().ajax.reload(null, false);
-                        sys.Alert(true, 'Cập nhật thành công');
+                        sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
                     })
                     .catch(function (response) {
                         sys.Alert(false, response.Message);

@@ -12,7 +12,10 @@ namespace CMS.Infra.Data.Context
         public DbSet<MenuInRole> MenuInRole { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Config> Config { get; set; }
-        public DbSet<Partner> Partner { get; set; }
+        public DbSet<Language> Language { get; set; }
+        public DbSet<Content> Content { get; set; }
+        public DbSet<ContentMapping> ContentMapping { get; set; }
+
         public SampleContext() : base("name=DefaultConnection")
         {
             //Database.SetInitializer(new MigrateDatabaseToLatestVersion<SampleContext, DatabaseInitializer>());//initial database use test data            

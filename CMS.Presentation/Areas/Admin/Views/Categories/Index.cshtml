@@ -198,7 +198,7 @@
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;
                                     $('#tblData').DataTable().ajax.reload(null, false);
-                                    sys.Alert(true, 'Xóa thành công!');
+                                    sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS');
                                 })
                                 .catch(function (response) {
                                     sys.Alert(false, response.Message);

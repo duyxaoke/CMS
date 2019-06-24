@@ -124,6 +124,15 @@ namespace CMS.StaticResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hoạt động.
+        /// </summary>
+        public static string TEXT_ACTIVE {
+            get {
+                return ResourceManager.GetString("TEXT_ACTIVE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đóng.
         /// </summary>
         public static string TEXT_CLOSE {
@@ -147,6 +156,87 @@ namespace CMS.StaticResources {
         public static string TEXT_DELETE {
             get {
                 return ResourceManager.GetString("TEXT_DELETE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mô tả.
+        /// </summary>
+        public static string TEXT_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("TEXT_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Họ tên.
+        /// </summary>
+        public static string TEXT_FULLNAME {
+            get {
+                return ResourceManager.GetString("TEXT_FULLNAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên menu.
+        /// </summary>
+        public static string TEXT_MENU_NAME {
+            get {
+                return ResourceManager.GetString("TEXT_MENU_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sắp xếp.
+        /// </summary>
+        public static string TEXT_ORDER {
+            get {
+                return ResourceManager.GetString("TEXT_ORDER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu cha.
+        /// </summary>
+        public static string TEXT_PARENT_MENU {
+            get {
+                return ResourceManager.GetString("TEXT_PARENT_MENU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đối tác.
+        /// </summary>
+        public static string TEXT_PARTNER {
+            get {
+                return ResourceManager.GetString("TEXT_PARTNER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên đối tác.
+        /// </summary>
+        public static string TEXT_PARTNER_NAME {
+            get {
+                return ResourceManager.GetString("TEXT_PARTNER_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mật khẩu.
+        /// </summary>
+        public static string TEXT_PASSWORD {
+            get {
+                return ResourceManager.GetString("TEXT_PASSWORD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Xác nhận mật khẩu.
+        /// </summary>
+        public static string TEXT_PASSWORD_CONFIRM {
+            get {
+                return ResourceManager.GetString("TEXT_PASSWORD_CONFIRM", resourceCulture);
             }
         }
         
@@ -178,6 +268,15 @@ namespace CMS.StaticResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cập nhật phân quyền.
+        /// </summary>
+        public static string TEXT_UPDATE_ROLE {
+            get {
+                return ResourceManager.GetString("TEXT_UPDATE_ROLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cập nhật claims.
         /// </summary>
         public static string TEXT_UPDATE_ROLE_CLAIM {
@@ -192,6 +291,42 @@ namespace CMS.StaticResources {
         public static string TEXT_UPDATE_ROLE_MENU {
             get {
                 return ResourceManager.GetString("TEXT_UPDATE_ROLE_MENU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cập nhập người dùng.
+        /// </summary>
+        public static string TEXT_UPDATE_USER {
+            get {
+                return ResourceManager.GetString("TEXT_UPDATE_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Đường dẫn.
+        /// </summary>
+        public static string TEXT_URL {
+            get {
+                return ResourceManager.GetString("TEXT_URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Người dùng.
+        /// </summary>
+        public static string TEXT_USER {
+            get {
+                return ResourceManager.GetString("TEXT_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên đăng nhập.
+        /// </summary>
+        public static string TEXT_USERNAME {
+            get {
+                return ResourceManager.GetString("TEXT_USERNAME", resourceCulture);
             }
         }
     }

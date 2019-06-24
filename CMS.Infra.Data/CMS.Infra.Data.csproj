@@ -74,7 +74,22 @@
     <Compile Include="Migrations\201906171437312_update-categorymm.Designer.cs">
       <DependentUpon>201906171437312_update-categorymm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906241322500_add-language.cs" />
+    <Compile Include="Migrations\201906241322500_add-language.Designer.cs">
+      <DependentUpon>201906241322500_add-language.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906241329315_add-content.cs" />
+    <Compile Include="Migrations\201906241329315_add-content.Designer.cs">
+      <DependentUpon>201906241329315_add-content.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906241338181_add-contentMapping.cs" />
+    <Compile Include="Migrations\201906241338181_add-contentMapping.Designer.cs">
+      <DependentUpon>201906241338181_add-contentMapping.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContentMappingRepository.cs" />
+    <Compile Include="Repositories\ContentRepository.cs" />
+    <Compile Include="Repositories\LanguageRepository.cs" />
     <Compile Include="Repositories\PartnerRepository.cs" />
     <Compile Include="Repositories\ConfigRepository.cs" />
     <Compile Include="Repositories\CategoryRepository.cs" />
@@ -109,6 +124,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906171437312_update-categorymm.resx">
       <DependentUpon>201906171437312_update-categorymm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906241322500_add-language.resx">
+      <DependentUpon>201906241322500_add-language.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906241329315_add-content.resx">
+      <DependentUpon>201906241329315_add-content.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906241338181_add-contentMapping.resx">
+      <DependentUpon>201906241338181_add-contentMapping.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

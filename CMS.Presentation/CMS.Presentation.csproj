@@ -259,6 +259,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\ContentMappingsController.cs" />
+    <Compile Include="Api\ContentsController.cs" />
+    <Compile Include="Api\LanguagesController.cs" />
     <Compile Include="Api\PartnersController.cs" />
     <Compile Include="Api\ConfigsController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -272,6 +275,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContentsController.cs" />
     <Compile Include="Areas\Admin\Controllers\PartnersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProfilesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
@@ -8292,6 +8296,7 @@
     <Content Include="Areas\Admin\Views\Dashboards\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Partners\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Categories\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Contents\Index.cshtml" />
     <None Include="bundleconfig.json" />
     <Content Include="Content\template\css\icon.woff2" />
     <Content Include="Content\admin\fonts\fontawesome-webfont-.eot" />

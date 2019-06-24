@@ -12,7 +12,7 @@
             <strong>Menu</strong>
         </div>
         <div class="card-body">
-            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> Thêm mới</button>
+            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> @CMS.StaticResources.Resources.TEXT_CREATE</button>
             <div class="clearfix"></div>
             <table id="tblData" class="table table-bordered table-striped table-hover table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
         </div>
@@ -25,7 +25,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">{{ UpdateMode ? "Cập nhật" : "Thêm mới" }}</h4>
+                    <h4 class="modal-title">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</h4>
                 </div>
                 <!-- form .needs-validation -->
                 <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
@@ -33,21 +33,21 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>
-                                Menu cha
+                                @CMS.StaticResources.Resources.TEXT_PARENT_MENU
                             </label>
                             <select class="select2 form-control" ng-options="c.Id as c.Name for c in Data" ng-model="Menu.ParentId">
-                                <option value="" selected="selected">Chọn menu cha</option>
+                                <option value="" selected="selected">Select</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>
-                                Tên menu
+                                @CMS.StaticResources.Resources.TEXT_MENU_NAME
                             </label>
                             <input type="text" class="form-control" ng-model="Menu.Name" required="">
                         </div>
                         <div class="form-group">
                             <label>
-                                Url
+                                @CMS.StaticResources.Resources.TEXT_URL
                             </label>
                             <input type="text" class="form-control" ng-model="Menu.Url" required="">
                         </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="form-group">
                             <label>
-                                Sắp xếp
+                                @CMS.StaticResources.Resources.TEXT_ORDER
                             </label>
                             <input type="text" class="form-control" ng-model="Menu.Order">
                         </div>
@@ -67,15 +67,15 @@
                             <label class="custom-control custom-control-primary custom-checkbox">
                                 <input class="custom-control-input" type="checkbox" name="mode" ng-model="Menu.IsActive">
                                 <span class="custom-control-indicator"></span>
-                                <span class="custom-control-label">Hoạt động</span>
+                                <span class="custom-control-label">@CMS.StaticResources.Resources.TEXT_ACTIVE</span>
                             </label>
                         </div>
                     </div>
                     <!-- /.modal-body -->
                     <!-- .modal-footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">@CMS.StaticResources.Resources.TEXT_CLOSE</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</button>
                     </div>
                 </form>
                 <!-- /.modal-footer -->
@@ -114,21 +114,21 @@
                     "aoColumnDefs": [
                         {
                             "sName": "Name",
-                            "sTitle": "Tên menu",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_MENU_NAME",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [0]
                         },
                         {
                             "sName": "Url",
-                            "sTitle": "Url",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_URL",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [1]
                         },
                         {
                             "sName": "Order",
-                            "sTitle": "Sắp xếp",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_ORDER",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [2]
@@ -137,10 +137,10 @@
                             'mRender': function (data, type, row, meta) {
                                 return `
                                     <div class="text-center">
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_UPDATE">
                                            <span class="icon icon-pencil icon-lg icon-fw"></span>
                                          </button>
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_DELETE">
                                            <span class="icon icon-trash-o icon-lg icon-fw"></span>
                                          </button>
                                     </div>`;
@@ -214,7 +214,7 @@
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;
                                     $('#tblData').DataTable().ajax.reload(null, false);
-                                    sys.Alert(true, 'Xóa thành công!');
+                                    sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS');
                                 })
                                 .catch(function (response) {
                                     sys.Alert(false, response.Message);
@@ -234,7 +234,7 @@
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
                             $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Thêm thành công');
+                            sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_CREATE_SUCCESS');
                         })
                         .catch(function (response) {
                             sys.Alert(false, response.Message);
@@ -250,7 +250,7 @@
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
                             $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Cập nhật thành công');
+                            sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
                         })
                         .catch(function (response) {
                             sys.Alert(false, response.Message);

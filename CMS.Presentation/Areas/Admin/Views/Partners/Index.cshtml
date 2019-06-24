@@ -9,10 +9,10 @@
             <div class="card-actions">
                 <button type="button" class="card-action card-toggler" title="Collapse"></button>
             </div>
-            <strong>Quản lý đối tác</strong>
+            <strong>@CMS.StaticResources.Resources.TEXT_PARTNER</strong>
         </div>
         <div class="card-body">
-            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> Thêm mới</button>
+            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> @CMS.StaticResources.Resources.TEXT_CREATE</button>
             <div class="clearfix"></div>
             <table id="tblData" class="table table-bordered table-striped table-hover table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
         </div>
@@ -26,40 +26,59 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">{{ UpdateMode ? "Cập nhật" : "Thêm mới" }}</h4>
+                    <h4 class="modal-title">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</h4>
                 </div>
                 <!-- form .needs-validation -->
                 <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
                     <!-- /form .needs-validation -->
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label>
-                                Tên đối tác
-                            </label>
-                            <input type="text" class="form-control" ng-model="Partner.Name" required="">
-                        </div>
+
+
                         <div class="form-group">
                             <img id="imgPreview" style="height: 150px; width: 150px" />
                         </div>
                         <div class="form-group">
                             <div class="file-drop-area input input-file">
-                                <span class="btn btn-outline-primary">Chọn ảnh</span>
-                                <span class="file-msg js-set-number">hoặc kéo hình ảnh vào đây</span>
+                                <span class="btn btn-outline-primary">Browse</span>
+                                <span class="file-msg js-set-number">or drag it here</span>
                                 <input class="file-input files" type="file" name="file" id="file" accept="image/*" ng-model="Partner.Logo" onchange="loadFile(event)">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label>
-                                Mô tả
-                            </label>
-                            <input type="text" class="form-control" ng-model="Partner.Description">
+                        <div class="panel m-b-lg">
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="active"><a href="#home-11" data-toggle="tab">Tiếng Việt</a></li>
+                                <li><a href="#profile-11" data-toggle="tab">English</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="home-11">
+                                    <div class="form-group">
+                                        <label>
+                                            @CMS.StaticResources.Resources.TEXT_PARTNER_NAME
+                                        </label>
+                                        <input type="text" class="form-control" ng-model="Partner.Name" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            @CMS.StaticResources.Resources.TEXT_DESCRIPTION
+                                        </label>
+                                        <input type="text" class="form-control" ng-model="Partner.Description">
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="profile-11">
+                                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                                    <p>Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park</p>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
                     <!-- /.modal-body -->
                     <!-- .modal-footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">@CMS.StaticResources.Resources.TEXT_CLOSE</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</button>
                     </div>
                 </form>
                 <!-- /.modal-footer -->
@@ -71,12 +90,12 @@
     <!-- /.modal -->
 
 </div>
-<textarea id="des"></textarea>
+@*<textarea id="des"></textarea>*@
 
 @section scripts{
     <script>
 
-        CKEDITOR.replace("des");
+        //CKEDITOR.replace("des");
 
         // highlight drag area
         var fileinput = document.querySelector('.file-input');
@@ -139,7 +158,7 @@
                     "aoColumnDefs": [
                         {
                             "sName": "Name",
-                            "sTitle": "Tên Partner",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_PARTNER_NAME",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [0]
@@ -153,7 +172,7 @@
                         },
                         {
                             "sName": "Description",
-                            "sTitle": "Mô tả",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_DESCRIPTION",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [2]
@@ -162,10 +181,10 @@
                             'mRender': function (data, type, row, meta) {
                                 return `
                                     <div class="text-center">
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_UPDATE">
                                            <span class="icon icon-pencil icon-lg icon-fw"></span>
                                          </button>
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_DELETE">
                                            <span class="icon icon-trash-o icon-lg icon-fw"></span>
                                          </button>
                                     </div>`;
@@ -212,7 +231,7 @@
                 $scope.UpdateMode = false;
                 $scope.Partner = {};
                 $("#file").val('');
-                $(".file-msg").html('hoặc kéo hình ảnh vào đây');
+                $(".file-msg").html('or drag it here');
                 imgPreview.src = $scope.DEFAULT_IMG;
                 $('#PnModal').appendTo("body").modal('show');
             };
@@ -223,7 +242,7 @@
                 $scope.UpdateMode = true;
                 ReadById(Id);
                 $("#file").val('');
-                $(".file-msg").html('hoặc kéo hình ảnh vào đây');
+                $(".file-msg").html('or drag it here');
                 imgPreview.src = $scope.DEFAULT_IMG;
                 $('#PnModal').appendTo("body").modal('show');
             }
@@ -246,7 +265,7 @@
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;
                                     $('#tblData').DataTable().ajax.reload(null, false);
-                                    sys.Alert(true, 'Xóa thành công!');
+                                    sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS');
                                 })
                                 .catch(function (response) {
                                     sys.Alert(false, response.Message);
@@ -280,7 +299,7 @@
                             .then(function (response) {
                                 $rootScope.MasterPage.IsLoading = false;
                                 $('#tblData').DataTable().ajax.reload(null, false);
-                                sys.Alert(true, 'Thêm thành công');
+                                sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_CREATE_SUCCESS');
                             })
                             .catch(function (response) {
                                 sys.Alert(false, response.Message);
@@ -296,7 +315,7 @@
                             .then(function (response) {
                                 $rootScope.MasterPage.IsLoading = false;
                                 $('#tblData').DataTable().ajax.reload(null, false);
-                                sys.Alert(true, 'Cập nhật thành công');
+                                sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
                             })
                             .catch(function (response) {
                                 sys.Alert(false, response.Message);

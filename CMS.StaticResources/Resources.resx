@@ -138,6 +138,9 @@
   <data name="TEXT_ACTION" xml:space="preserve">
     <value>Thao tác</value>
   </data>
+  <data name="TEXT_ACTIVE" xml:space="preserve">
+    <value>Hoạt động</value>
+  </data>
   <data name="TEXT_CLOSE" xml:space="preserve">
     <value>Đóng</value>
   </data>
@@ -146,6 +149,33 @@
   </data>
   <data name="TEXT_DELETE" xml:space="preserve">
     <value>Xóa</value>
+  </data>
+  <data name="TEXT_DESCRIPTION" xml:space="preserve">
+    <value>Mô tả</value>
+  </data>
+  <data name="TEXT_FULLNAME" xml:space="preserve">
+    <value>Họ tên</value>
+  </data>
+  <data name="TEXT_MENU_NAME" xml:space="preserve">
+    <value>Tên menu</value>
+  </data>
+  <data name="TEXT_ORDER" xml:space="preserve">
+    <value>Sắp xếp</value>
+  </data>
+  <data name="TEXT_PARENT_MENU" xml:space="preserve">
+    <value>Menu cha</value>
+  </data>
+  <data name="TEXT_PARTNER" xml:space="preserve">
+    <value>Đối tác</value>
+  </data>
+  <data name="TEXT_PARTNER_NAME" xml:space="preserve">
+    <value>Tên đối tác</value>
+  </data>
+  <data name="TEXT_PASSWORD" xml:space="preserve">
+    <value>Mật khẩu</value>
+  </data>
+  <data name="TEXT_PASSWORD_CONFIRM" xml:space="preserve">
+    <value>Xác nhận mật khẩu</value>
   </data>
   <data name="TEXT_ROLE" xml:space="preserve">
     <value>Phân quyền</value>
@@ -156,10 +186,25 @@
   <data name="TEXT_UPDATE" xml:space="preserve">
     <value>Cập nhật</value>
   </data>
+  <data name="TEXT_UPDATE_ROLE" xml:space="preserve">
+    <value>Cập nhật phân quyền</value>
+  </data>
   <data name="TEXT_UPDATE_ROLE_CLAIM" xml:space="preserve">
     <value>Cập nhật claims</value>
   </data>
   <data name="TEXT_UPDATE_ROLE_MENU" xml:space="preserve">
     <value>Cập nhật phân quyền menu</value>
+  </data>
+  <data name="TEXT_UPDATE_USER" xml:space="preserve">
+    <value>Cập nhập người dùng</value>
+  </data>
+  <data name="TEXT_URL" xml:space="preserve">
+    <value>Đường dẫn</value>
+  </data>
+  <data name="TEXT_USER" xml:space="preserve">
+    <value>Người dùng</value>
+  </data>
+  <data name="TEXT_USERNAME" xml:space="preserve">
+    <value>Tên đăng nhập</value>
   </data>
 </root>

@@ -86,9 +86,9 @@ var ApiHelper = function ($rootScope, $localstorage, $timeout, $q, $http) {
     service.Status = {
         CreateSuccess: "Tạo thành công!",
         CreateFail: "Tạo thất bại!",
-        UpdateSuccess: "Cập nhật thành công!",
+        UpdateSuccess: "@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS",
         UpdateFail: "Cập nhật thất bại!",
-        DeleteSuccess: "Xóa thành công!",
+        DeleteSuccess: "@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS",
         DeleteFail: "Xóa thất bại!"
     };
 
