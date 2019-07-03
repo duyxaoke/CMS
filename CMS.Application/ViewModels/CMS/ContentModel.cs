@@ -1,7 +1,6 @@
 ﻿using CMS.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Application.ViewModels.CMS
 {
@@ -18,8 +17,8 @@ namespace CMS.Application.ViewModels.CMS
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? CreatedTime { get; set; }
-        public List<ContentMappingModel> Locales { get; set; }
-        public List<Language> Languages { get; set; }
+        public IList<ContentMappingModel> Locales { get; set; }
+        public IList<Language> Languages { get; set; }
     }
 
     public class ContentMappingModel : ILocalizedModelLocal

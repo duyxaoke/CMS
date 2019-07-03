@@ -40,43 +40,45 @@
                     <!-- /form .needs-validation -->
                     <div class="modal-body">
                         <div class="panel m-b-lg">
+                            <input name="ContentName" class="form-control" required/>
+
                             <ul class="nav nav-tabs nav-justified">
-                                    @foreach (var language in Model.Languages)
-                                    {
-                                        <li><a href="#@language.Id" data-toggle="tab">@language.Name</a></li>
-                                    }
-                                </ul>
+                                @foreach (var language in Model.Languages)
+                                {
+                                    <li><a href="#@language.Id" data-toggle="tab">@language.Name</a></li>
+                                }
+                            </ul>
                             <div class="tab-content">
 
-                                    @foreach (var item in Model.Locales)
-                                    {
-                                        <input name="Locales[@index].LanguageId" value="@item.LanguageId" type="hidden" />
-                                        <div class="tab-pane fade" id="@item.LanguageId">
-                                            <div class="form-group">
-                                                <label>
-                                                    Title
-                                                </label>
-                                                <input type="text" class="form-control" name="Locales[@index].Title" required="">
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label>
-                                                    SubTitle
-                                                </label>
-                                                <input type="text" class="form-control" name="Locales[@index].SubTitle" required="">
-                                            </div>
-                                            <div class="form-group">
-                                                <label>
-                                                    Description
-                                                </label>
-                                                <input type="text" class="form-control" name="Locales[@index].Description" required="">
-                                            </div>
-
+                                @foreach (var item in Model.Locales)
+                                {
+                                    <input name="Locales[@index].LanguageId" value="@item.LanguageId" type="hidden" />
+                                    <div class="tab-pane fade" id="@item.LanguageId">
+                                        <div class="form-group">
+                                            <label>
+                                                Title
+                                            </label>
+                                            <input type="text" class="form-control" name="Locales[@index].Title" required="">
                                         </div>
 
-                                        index++;
-                                    }
-                                </div>
+                                        <div class="form-group">
+                                            <label>
+                                                SubTitle
+                                            </label>
+                                            <input type="text" class="form-control" name="Locales[@index].SubTitle" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                Description
+                                            </label>
+                                            <input type="text" class="form-control" name="Locales[@index].Description" required="">
+                                        </div>
+
+                                    </div>
+
+                                    index++;
+                                }
+                            </div>
                         </div>
 
                     </div>

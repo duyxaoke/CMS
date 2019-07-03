@@ -24,6 +24,7 @@ using System.Web.Mvc;
 using CMS.Application.CMS;
 using CMS.Application.Application.ICMS;
 using CMS.Application.Application;
+using AutoMapper;
 
 namespace CMS.Presentation
 {
@@ -65,8 +66,6 @@ namespace CMS.Presentation
             builder.RegisterType<LanguageAppService>().As<ILanguageAppService>().InstancePerDependency();
             builder.RegisterType<ContentRepository>().As<IContentRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ContentAppService>().As<IContentAppService>().InstancePerDependency();
-            builder.RegisterType<ContentMappingRepository>().As<IContentMappingRepository>().InstancePerLifetimeScope();
-            builder.RegisterType<ContentMappingAppService>().As<IContentMappingAppService>().InstancePerDependency();
 
             #region CMS
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();

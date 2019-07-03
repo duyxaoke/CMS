@@ -18,7 +18,8 @@ namespace CMS.Application.AutoMapper
             CreateMap<LanguageViewModel, Language>();
             CreateMap<ContentViewModel, Content>();
             CreateMap<ContentModel, Content>();
-            CreateMap<ContentMappingViewModel, ContentMapping>();
+            CreateMap<ContentMappingModel, ContentMapping>();
+
         }
     }
 }

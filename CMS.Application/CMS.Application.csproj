@@ -71,7 +71,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Application\IApplication.cs" />
-    <Compile Include="Application\ICMS\IContentMappingAppService.cs" />
     <Compile Include="Application\ICMS\IContentAppService.cs" />
     <Compile Include="Application\ICMS\ILanguageAppService.cs" />
     <Compile Include="Application\ICMS\IPartnerAppService.cs" />
@@ -80,7 +79,6 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
-    <Compile Include="CMS\ContentMappingAppService.cs" />
     <Compile Include="CMS\ContentAppService.cs" />
     <Compile Include="CMS\LanguageAppService.cs" />
     <Compile Include="CMS\PartnerAppService.cs" />
@@ -92,7 +90,7 @@
     <Compile Include="Application\IMenuAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\CMS\ContentMappingViewModel.cs" />
+    <Compile Include="ViewModels\CMS\LanguageModel.cs" />
     <Compile Include="ViewModels\CMS\ContentModel.cs" />
     <Compile Include="ViewModels\CMS\ContentViewModel.cs" />
     <Compile Include="ViewModels\ILocalizedModel.cs" />

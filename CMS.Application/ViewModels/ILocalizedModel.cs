@@ -8,7 +8,7 @@ namespace CMS.Application.ViewModels
 
     public interface ILocalizedModel<T> : ILocalizedModel where T : ILocalizedModelLocal
     {
-        List<T> Locales { get; set; }
+        IList<T> Locales { get; set; }
     }
 
     public interface ILocalizedModelLocal

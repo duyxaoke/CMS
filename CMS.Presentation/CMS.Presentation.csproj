@@ -259,7 +259,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Api\ContentMappingsController.cs" />
     <Compile Include="Api\ContentsController.cs" />
     <Compile Include="Api\LanguagesController.cs" />
     <Compile Include="Api\PartnersController.cs" />

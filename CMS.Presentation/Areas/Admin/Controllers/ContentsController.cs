@@ -8,6 +8,7 @@ using CMS.Application.ViewModels.CMS;
 using System.Linq;
 using CMS.Domain.Interfaces.Repositories;
 using System;
+using AutoMapper;
 
 namespace CMS.Presentation.Areas.Admin.Controllers
 {
@@ -17,6 +18,7 @@ namespace CMS.Presentation.Areas.Admin.Controllers
         private readonly IContentAppService _contentServices;
         private readonly ILanguageAppService _languageServices;
         private readonly ILanguageRepository _languageRepository;
+
         public ContentsController(IContentAppService contentServices, ILanguageAppService languageServices
             , ILanguageRepository languageRepository)
         {
@@ -44,7 +46,6 @@ namespace CMS.Presentation.Areas.Admin.Controllers
                 try
                 {
                     _contentServices.Add(model);
-
                      TempData["Message"] = "The new content has been added successfully.";
                     return RedirectToAction("Index");
                 }
