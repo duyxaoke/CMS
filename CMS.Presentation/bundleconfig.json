@@ -8,6 +8,7 @@
   {
     "outputFileName": "Content/assets/app/directive/directive.js",
     "inputFiles": [
+      "Content/assets/app/directive/customselect2/customselect2.js",
       "Content/assets/app/directive/formatMoney.js",
       "Content/assets/app/directive/getWidth.js",
       "Content/assets/app/directive/lazyLoad.js",

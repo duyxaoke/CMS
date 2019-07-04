@@ -11,6 +11,7 @@ namespace CMS.Infra.Data.Context
         public DbSet<Menu> Menu { get; set; }
         public DbSet<MenuInRole> MenuInRole { get; set; }
         public DbSet<Category> Category { get; set; }
+        public DbSet<CategoryMapping> CategoryMapping { get; set; }
         public DbSet<Config> Config { get; set; }
         public DbSet<Language> Language { get; set; }
         public DbSet<Content> Content { get; set; }

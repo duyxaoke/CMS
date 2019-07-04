@@ -1,9 +1,11 @@
 ﻿using CMS.Application.Application.ICMS;
 using CMS.Application.ViewModels.CMS;
+using CMS.Domain.Interfaces.Repositories;
 using CMS.Presentation.Filters;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -17,14 +19,40 @@ namespace CMS.Presentation.Controllers.Api
     public class CategoriesController : ApiControllerBase
     {
         private readonly ICategoryAppService _service;
+        private readonly ILanguageAppService _languageServices;
+        private readonly ILanguageRepository _languageRepository;
 
-        public CategoriesController(ICategoryAppService service)
+        public CategoriesController(ICategoryAppService service, ILanguageAppService languageServices
+            , ILanguageRepository languageRepository)
         {
             _service = service;
+            _languageServices = languageServices;
+            _languageRepository = languageRepository;
         }
 
         [HttpGet]
-        [ResponseType(typeof(IEnumerable<CategoryViewModel>))]
+        [ResponseType(typeof(CategoryModel))]
+        [Route("Init")]
+        public IHttpActionResult Init()
+        {
+            try
+            {
+                var result = new CategoryModel();
+                result.Languages = _languageServices.GetAllPaging().ToList();
+
+                //get mapping proporties
+                AddLocales(_languageRepository, result.Locales);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
+
+        [HttpGet]
+        [ResponseType(typeof(IEnumerable<CategoryModel>))]
         public async Task<IHttpActionResult> GetAllAsync()
         {
             try
@@ -40,7 +68,7 @@ namespace CMS.Presentation.Controllers.Api
 
         [HttpGet]
         [Route("{id:int}")]
-        [ResponseType(typeof(CategoryViewModel))]
+        [ResponseType(typeof(CategoryModel))]
         public async Task<IHttpActionResult> GetByIdAsync(int id)
         {
             try
@@ -61,7 +89,7 @@ namespace CMS.Presentation.Controllers.Api
         [HttpPost]
         [ResponseType(typeof(void))]
         [EnableThrottling(PerSecond = 1)]
-        public IHttpActionResult Post([FromBody]CategoryViewModel model)
+        public IHttpActionResult Post([FromBody]CategoryModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -96,7 +124,7 @@ namespace CMS.Presentation.Controllers.Api
         [HttpPut]
         [ResponseType(typeof(void))]
         [EnableThrottling(PerSecond = 1)]
-        public IHttpActionResult Put([FromBody]CategoryViewModel model)
+        public IHttpActionResult Put([FromBody]CategoryModel model)
         {
             if (!ModelState.IsValid)
             {

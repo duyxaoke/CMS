@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Elephant Template &middot; The fastest way to build Modern Admin APPS for any platform, browser, or device.</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
@@ -124,9 +124,6 @@
     <script src="~/Content/admin/js/sweetalert/sweetalert.min.js"></script>
     <script>
         $(document).ready(function () {
-            //Initialize Select2 Elements
-            $('.select2').select2();
-            $('.select2').val($('.select2 option:eq(1)').val()).trigger('change');
             //Date picker
             $('#datepicker').datepicker({
                 autoclose: true

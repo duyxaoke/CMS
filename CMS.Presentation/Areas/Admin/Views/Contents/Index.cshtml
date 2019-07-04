@@ -7,7 +7,6 @@
 @{
     List<CMS.Application.ViewModels.CMS.LanguageViewModel> languages = ViewBag.Languages;
     var index = 0;
-    var x = Model;
 }
 
 <div class="col-xs-12" ng-controller="IndexController" ng-cloak>
@@ -40,9 +39,14 @@
                     <!-- /form .needs-validation -->
                     <div class="modal-body">
                         <div class="panel m-b-lg">
-                            <input name="ContentName" class="form-control" required/>
+                            <div class="form-group">
+                                <label>
+                                    Content Name
+                                </label>
+                                <input name="ContentName" class="form-control" required />
+                            </div>
 
-                            <ul class="nav nav-tabs nav-justified">
+                            <ul class="nav nav-tabs">
                                 @foreach (var language in Model.Languages)
                                 {
                                     <li><a href="#@language.Id" data-toggle="tab">@language.Name</a></li>

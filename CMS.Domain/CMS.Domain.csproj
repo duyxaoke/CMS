@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
+    <Compile Include="Entities\CategoryMapping.cs" />
     <Compile Include="Entities\ContentMapping.cs" />
     <Compile Include="Entities\Content.cs" />
     <Compile Include="Entities\Language.cs" />

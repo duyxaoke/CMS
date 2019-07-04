@@ -133,6 +133,33 @@ namespace CMS.StaticResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Danh mục.
+        /// </summary>
+        public static string TEXT_CATEGORY {
+            get {
+                return ResourceManager.GetString("TEXT_CATEGORY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tên danh mục.
+        /// </summary>
+        public static string TEXT_CATEGORY_NAME {
+            get {
+                return ResourceManager.GetString("TEXT_CATEGORY_NAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Danh mục cha.
+        /// </summary>
+        public static string TEXT_CATEGORY_PARENT {
+            get {
+                return ResourceManager.GetString("TEXT_CATEGORY_PARENT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Đóng.
         /// </summary>
         public static string TEXT_CLOSE {
@@ -165,6 +192,42 @@ namespace CMS.StaticResources {
         public static string TEXT_DESCRIPTION {
             get {
                 return ResourceManager.GetString("TEXT_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loại hiển thị.
+        /// </summary>
+        public static string TEXT_DISPLAY_TYPE {
+            get {
+                return ResourceManager.GetString("TEXT_DISPLAY_TYPE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hiển thị dạng bài viết.
+        /// </summary>
+        public static string TEXT_DISPLAY_TYPE_ARTICLE {
+            get {
+                return ResourceManager.GetString("TEXT_DISPLAY_TYPE_ARTICLE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Định nghĩa kiểu hiển thị bài viết thuộc danh mục này.
+        /// </summary>
+        public static string TEXT_DISPLAY_TYPE_DESCRIPTION {
+            get {
+                return ResourceManager.GetString("TEXT_DISPLAY_TYPE_DESCRIPTION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hiển thị dạng danh sách.
+        /// </summary>
+        public static string TEXT_DISPLAY_TYPE_LIST {
+            get {
+                return ResourceManager.GetString("TEXT_DISPLAY_TYPE_LIST", resourceCulture);
             }
         }
         
@@ -255,6 +318,15 @@ namespace CMS.StaticResources {
         public static string TEXT_ROLENAME {
             get {
                 return ResourceManager.GetString("TEXT_ROLENAME", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tiêu đề.
+        /// </summary>
+        public static string TEXT_TITLE {
+            get {
+                return ResourceManager.GetString("TEXT_TITLE", resourceCulture);
             }
         }
         

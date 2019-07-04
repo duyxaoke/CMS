@@ -20,6 +20,9 @@ namespace CMS.Application.AutoMapper
             CreateMap<ContentModel, Content>();
             CreateMap<ContentMappingModel, ContentMapping>();
 
+            CreateMap<CategoryModel, Category>();
+            CreateMap<CategoryMappingModel, CategoryMapping>();
+
         }
     }
 }

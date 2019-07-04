@@ -27,7 +27,7 @@ namespace CMS.Presentation
 
             config.MessageHandlers.Add(new ThrottlingHandler()
             {
-                Policy = new ThrottlePolicy(perSecond: 1)
+                Policy = new ThrottlePolicy(perSecond: 5)
                 {
                     IpThrottling = true, //Configure o throttling por id
                     EndpointThrottling = true,//habilitado a diferenca por endpoint

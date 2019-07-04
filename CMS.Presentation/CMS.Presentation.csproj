@@ -1290,6 +1290,8 @@
     <Content Include="Content\assets\app\controller\Master\master-page-controller.js" />
     <Content Include="Content\assets\app\controller\Master\master-page-controller.min.js" />
     <Content Include="Content\assets\app\directive\compile.js" />
+    <Content Include="Content\assets\app\directive\CustomSelect2\customSelect2.html" />
+    <Content Include="Content\assets\app\directive\CustomSelect2\customSelect2.js" />
     <Content Include="Content\assets\app\directive\directive.js" />
     <Content Include="Content\assets\app\directive\directive.min.js">
       <DependentUpon>directive.js</DependentUpon>

@@ -269,3 +269,6 @@ D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.csproj.CoreCompileInp
 D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.csproj.CopyComplete
 D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.dll
 D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.pdb
+D:\Data\CMS\CMS.Presentation\bin\CMS.StaticResources.dll
+D:\Data\CMS\CMS.Presentation\bin\CMS.StaticResources.pdb
+D:\Data\CMS\CMS.Presentation\bin\en\CMS.StaticResources.resources.dll

@@ -3,7 +3,7 @@ using CMS.Domain.Entities;
 
 namespace CMS.Application.Application.ICMS
 {
-    public interface ICategoryAppService : IApplication<CategoryViewModel, Category>
+    public interface ICategoryAppService : IApplication<CategoryModel, Category>
     {
     }
 }

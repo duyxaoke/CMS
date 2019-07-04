@@ -141,6 +141,15 @@
   <data name="TEXT_ACTIVE" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="TEXT_CATEGORY" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="TEXT_CATEGORY_NAME" xml:space="preserve">
+    <value>Category name</value>
+  </data>
+  <data name="TEXT_CATEGORY_PARENT" xml:space="preserve">
+    <value>Parent category</value>
+  </data>
   <data name="TEXT_CLOSE" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -152,6 +161,18 @@
   </data>
   <data name="TEXT_DESCRIPTION" xml:space="preserve">
     <value>Description</value>
+  </data>
+  <data name="TEXT_DISPLAY_TYPE" xml:space="preserve">
+    <value>Display type</value>
+  </data>
+  <data name="TEXT_DISPLAY_TYPE_ARTICLE" xml:space="preserve">
+    <value>Display as article</value>
+  </data>
+  <data name="TEXT_DISPLAY_TYPE_DESCRIPTION" xml:space="preserve">
+    <value>Define the type of article display in this category</value>
+  </data>
+  <data name="TEXT_DISPLAY_TYPE_LIST" xml:space="preserve">
+    <value>Display as list</value>
   </data>
   <data name="TEXT_FULLNAME" xml:space="preserve">
     <value>Full name</value>
@@ -182,6 +203,9 @@
   </data>
   <data name="TEXT_ROLENAME" xml:space="preserve">
     <value>Role name</value>
+  </data>
+  <data name="TEXT_TITLE" xml:space="preserve">
+    <value>Title</value>
   </data>
   <data name="TEXT_UPDATE" xml:space="preserve">
     <value>Update</value>

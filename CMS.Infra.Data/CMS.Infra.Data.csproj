@@ -50,49 +50,17 @@
   <ItemGroup>
     <Compile Include="Context\DatabaseInitializer.cs" />
     <Compile Include="Context\SampleContext.cs" />
-    <Compile Include="Migrations\201906130621121_init.cs" />
-    <Compile Include="Migrations\201906130621121_init.Designer.cs">
-      <DependentUpon>201906130621121_init.cs</DependentUpon>
+    <Compile Include="Migrations\201907040644398_update-category.cs" />
+    <Compile Include="Migrations\201907040644398_update-category.Designer.cs">
+      <DependentUpon>201907040644398_update-category.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906140357116_add-config.cs" />
-    <Compile Include="Migrations\201906140357116_add-config.Designer.cs">
-      <DependentUpon>201906140357116_add-config.cs</DependentUpon>
+    <Compile Include="Migrations\201907040647179_update-category23.cs" />
+    <Compile Include="Migrations\201907040647179_update-category23.Designer.cs">
+      <DependentUpon>201907040647179_update-category23.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201906140615149_add-partner.cs" />
-    <Compile Include="Migrations\201906140615149_add-partner.Designer.cs">
-      <DependentUpon>201906140615149_add-partner.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906171417334_update-category.cs" />
-    <Compile Include="Migrations\201906171417334_update-category.Designer.cs">
-      <DependentUpon>201906171417334_update-category.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906171424079_update-categoryád.cs" />
-    <Compile Include="Migrations\201906171424079_update-categoryád.Designer.cs">
-      <DependentUpon>201906171424079_update-categoryád.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906171437312_update-categorymm.cs" />
-    <Compile Include="Migrations\201906171437312_update-categorymm.Designer.cs">
-      <DependentUpon>201906171437312_update-categorymm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906241322500_add-language.cs" />
-    <Compile Include="Migrations\201906241322500_add-language.Designer.cs">
-      <DependentUpon>201906241322500_add-language.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906241329315_add-content.cs" />
-    <Compile Include="Migrations\201906241329315_add-content.Designer.cs">
-      <DependentUpon>201906241329315_add-content.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201906241338181_add-contentMapping.cs" />
-    <Compile Include="Migrations\201906241338181_add-contentMapping.Designer.cs">
-      <DependentUpon>201906241338181_add-contentMapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907031405141_updatekjsdf.cs" />
-    <Compile Include="Migrations\201907031405141_updatekjsdf.Designer.cs">
-      <DependentUpon>201907031405141_updatekjsdf.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907031443127_updatekjsdfgfd.cs" />
-    <Compile Include="Migrations\201907031443127_updatekjsdfgfd.Designer.cs">
-      <DependentUpon>201907031443127_updatekjsdfgfd.cs</DependentUpon>
+    <Compile Include="Migrations\201907040904336_update-category23s.cs" />
+    <Compile Include="Migrations\201907040904336_update-category23s.Designer.cs">
+      <DependentUpon>201907040904336_update-category23s.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ContentMappingRepository.cs" />
@@ -115,38 +83,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201906130621121_init.resx">
-      <DependentUpon>201906130621121_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907040644398_update-category.resx">
+      <DependentUpon>201907040644398_update-category.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906140357116_add-config.resx">
-      <DependentUpon>201906140357116_add-config.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907040647179_update-category23.resx">
+      <DependentUpon>201907040647179_update-category23.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906140615149_add-partner.resx">
-      <DependentUpon>201906140615149_add-partner.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906171417334_update-category.resx">
-      <DependentUpon>201906171417334_update-category.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906171424079_update-categoryád.resx">
-      <DependentUpon>201906171424079_update-categoryád.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906171437312_update-categorymm.resx">
-      <DependentUpon>201906171437312_update-categorymm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906241322500_add-language.resx">
-      <DependentUpon>201906241322500_add-language.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906241329315_add-content.resx">
-      <DependentUpon>201906241329315_add-content.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201906241338181_add-contentMapping.resx">
-      <DependentUpon>201906241338181_add-contentMapping.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907031405141_updatekjsdf.resx">
-      <DependentUpon>201907031405141_updatekjsdf.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907031443127_updatekjsdfgfd.resx">
-      <DependentUpon>201907031443127_updatekjsdfgfd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907040904336_update-category23s.resx">
+      <DependentUpon>201907040904336_update-category23s.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

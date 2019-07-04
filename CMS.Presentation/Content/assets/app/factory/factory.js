@@ -339,6 +339,7 @@ var CommonHelper = function ($rootScope, $localstorage, $timeout, $q, $http) {
     service.CategoryUrl = urlApi + "Categories/";
     service.PartnerUrl = urlApi + "Partners/";
     service.ContentUrl = urlApi + "Contents/";
+    service.LanguageUrl = urlApi + "Languages/";
 
     service.DEFAULT_IMG = "/Content/admin/img/NO_IMG.png";
 
@@ -465,6 +466,13 @@ var DataFactory = function ($rootScope, $localstorage, $timeout, UtilFactory, $q
     //#region Contents
     service.Contents_Get = function () {
         let strApiEndPoint = CommonHelper.ContentUrl;
+        return ApiHelper.GetMethod(strApiEndPoint);
+    };
+    //#endregion
+
+    //#region Languages
+    service.Languages_Get = function () {
+        let strApiEndPoint = CommonHelper.LanguageUrl;
         return ApiHelper.GetMethod(strApiEndPoint);
     };
     //#endregion

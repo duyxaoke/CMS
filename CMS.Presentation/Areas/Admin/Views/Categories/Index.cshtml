@@ -1,6 +1,8 @@
-﻿
+﻿@model CMS.Application.ViewModels.CMS.CategoryModel
+
 @{
     ViewData["Title"] = "Quản lý danh mục";
+    var index = 0;
 }
 
 <div class="col-xs-12" ng-controller="IndexController" ng-cloak>
@@ -9,10 +11,10 @@
             <div class="card-actions">
                 <button type="button" class="card-action card-toggler" title="Collapse"></button>
             </div>
-            <strong>Quản lý danh mục</strong>
+            <strong>@CMS.StaticResources.Resources.TEXT_CATEGORY</strong>
         </div>
         <div class="card-body">
-            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> Thêm mới</button>
+            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> @CMS.StaticResources.Resources.TEXT_CREATE</button>
             <div class="clearfix"></div>
             <table id="tblData" class="table table-bordered table-striped table-hover table-nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%"></table>
         </div>
@@ -25,54 +27,71 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">{{ UpdateMode ? "Cập nhật" : "Thêm mới" }}</h4>
+                    <h4 class="modal-title">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</h4>
                 </div>
-                <!-- form .needs-validation -->
                 <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
                     <!-- /form .needs-validation -->
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label>
-                                Danh mục cha
-                            </label>
-                            <select class="select2 form-control" ng-options="c.Id as c.CategoryName for c in Data" ng-model="Cate.ParentID">
-                                <option value="" selected="selected">Chọn danh mục cha</option>
-                            </select>
+                        <div class="panel m-b-lg">
+                            <div class="form-group">
+                                <label>
+                                    @CMS.StaticResources.Resources.TEXT_CATEGORY_NAME
+                                </label>
+                                <input type="text" name="CategoryName" class="form-control" ng-model="Data.CategoryName" required="">
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <strong>
+                                        {{ddlParent.Core.label}}
+                                    </strong>
+                                </label>
+                                <custom-select2 myroot="ddlParent" label="@CMS.StaticResources.Resources.TEXT_CATEGORY_PARENT"></custom-select2>
+                            </div>
+                            <div class="form-group">
+                                <label>
+                                    <strong>
+                                        {{ddlModule.Core.label}} <span class="icon icon-question-circle" data-toggle="tooltip" title="@CMS.StaticResources.Resources.TEXT_DISPLAY_TYPE_DESCRIPTION"></span>
+                                    </strong>
+                                </label>
+                                <custom-select2 myroot="ddlModule" label="@CMS.StaticResources.Resources.TEXT_DISPLAY_TYPE"></custom-select2>
+                            </div>
+                            <ul class="nav nav-tabs">
+                                <li ng-repeat="item in Data.Languages">
+                                    <a href="#{{item.Id}}" data-toggle="tab">{{item.Name}}</a>
+                                </li>
+                             </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade" id="{{item.LanguageId}}" ng-repeat="item in Data.Locales">
+                                    <input ng-model="item.LanguageId" type="hidden" />
+                                    <div class="form-group">
+                                        <label>
+                                            @CMS.StaticResources.Resources.TEXT_TITLE
+                                        </label>
+                                        <input type="text" class="form-control" ng-model="item.Title" required="">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>
+                                            @CMS.StaticResources.Resources.TEXT_DESCRIPTION
+                                        </label>
+                                        <input type="text" class="form-control" ng-model="item.Description" required="">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="custom-control custom-control-primary custom-checkbox">
+                                    <input class="custom-control-input" type="checkbox" name="mode" ng-checked="true" ng-model="Data.IsActive">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-label">@CMS.StaticResources.Resources.TEXT_ACTIVE</span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label>
-                                Loại hiển thị <span class="icon icon-question-circle" data-toggle="tooltip" title="Định nghĩa kiểu hiển thị bài viết thuộc danh mục này"></span>
-                            </label>
-                            <select class="select2 form-control" ng-model="Cate.ModuleID">
-                                <option value="" selected="selected">Hiển thị dạng bài viết</option>
-                                <option value="1">Hiển thị dạng danh sách</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Tên danh mục
-                            </label>
-                            <input type="text" class="form-control" ng-model="Cate.CategoryName" required="">
-                        </div>
-                        <div class="form-group">
-                            <label>
-                                Mô tả
-                            </label>
-                            <input type="text" class="form-control" ng-model="Cate.Description" />
-                        </div>
-                        <div class="form-group">
-                            <label class="custom-control custom-control-primary custom-checkbox">
-                                <input class="custom-control-input" type="checkbox" name="mode" ng-checked="true" ng-model="Cate.IsActive">
-                                <span class="custom-control-indicator"></span>
-                                <span class="custom-control-label">Hoạt động</span>
-                            </label>
-                        </div>
+
                     </div>
                     <!-- /.modal-body -->
                     <!-- .modal-footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "Cập nhật" : "Thêm" }}</button>
+                        <button type="button" class="btn btn-light" data-dismiss="modal">@CMS.StaticResources.Resources.TEXT_CLOSE</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</button>
                     </div>
                 </form>
                 <!-- /.modal-footer -->
@@ -90,10 +109,25 @@
         var IndexController = ($scope, $rootScope, $timeout, $filter, $compile, ApiHelper, CommonHelper, UtilFactory, DataFactory, $q) => {
 
             //#region declare variable
+            $scope.Index = 0;
             $scope.UpdateMode = false;
-            $scope.Cate = { IsActive: true };
-            $scope.Data = [];
+            $scope.Data = { IsActive: true };
+            $scope.Languages = {};
+            //#endregion
 
+            //#region Parent
+            $scope.ddlParent = { Core: {}, CallBack: {} };
+            $scope.ddlParent.Core.Text = 'CategoryName';
+            $scope.ddlParent.Core.IDValue = 'ID';
+
+            $scope.ddlModule = { Core: {}, CallBack: {} };
+            $scope.ddlModule.Core.Text = 'Name';
+            $scope.ddlModule.Core.IDValue = 'ID';
+            $scope.ddlModule.Value = '0';
+            $scope.ddlModule.Lst = [
+                {ID: 0, Name: "@Html.Raw(CMS.StaticResources.Resources.TEXT_DISPLAY_TYPE_ARTICLE)"},
+                {ID: 1, Name: "@Html.Raw(@CMS.StaticResources.Resources.TEXT_DISPLAY_TYPE_LIST)"}
+            ];
             //#endregion
 
             //#region Datatable
@@ -112,7 +146,7 @@
                     "aoColumnDefs": [
                         {
                             "sName": "CategoryName",
-                            "sTitle": "Tên danh mục",
+                            "sTitle": "@CMS.StaticResources.Resources.TEXT_CATEGORY_NAME",
                             "bSearchable": true,
                             "bSortable": true,
                             "aTargets": [0]
@@ -121,10 +155,10 @@
                             'mRender': function (data, type, row, meta) {
                                 return `
                                     <div class="text-center">
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="Cập nhật">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Update('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_UPDATE">
                                            <span class="icon icon-pencil icon-lg icon-fw"></span>
                                          </button>
-                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="Xóa">
+                                        <button class="btn btn-link link-muted btn-xs" type="button" ng-click="Delete('` + data + `');" data-toggle="tooltip" data-placement="top" title="@CMS.StaticResources.Resources.TEXT_DELETE">
                                            <span class="icon icon-trash-o icon-lg icon-fw"></span>
                                          </button>
                                     </div>`;
@@ -145,6 +179,29 @@
             });
             //#endregion
 
+            //#region Init
+            var Init = () => {
+                let defer = $q.defer();
+                $rootScope.MasterPage.IsLoading = true;
+                let strApiEndPoint = CommonHelper.CategoryUrl + "Init";
+                ApiHelper.GetMethod(strApiEndPoint)
+                    .then(function (response) {
+                        $rootScope.MasterPage.IsLoading = false;
+                        $scope.Data = response.Data;
+                        $timeout(function () {
+                            $('.nav-tabs a[href="#1"]').tab('show');
+                        }, 200);
+                        defer.resolve(response);
+                    })
+                    .catch(function (response) {
+                        sys.Alert(false, response.Message);
+                        defer.reject(response);
+                        $rootScope.MasterPage.IsLoading = false;
+                    });
+                return defer.promise;
+            };
+            //#endregion
+
             //#region ReadById
             var ReadById = (Id) => {
                 let defer = $q.defer();
@@ -153,7 +210,9 @@
                 ApiHelper.GetMethod(strApiEndPoint)
                     .then(function (response) {
                         $rootScope.MasterPage.IsLoading = false;
-                        $scope.Cate = response.Data;
+                        $scope.Data = response.Data;
+                        $scope.ddlParent.API.SetValue($scope.Data.ParentId);
+                        $scope.ddlModule.API.SetValue($scope.Data.ModuleId);
                         defer.resolve(response);
                     })
                     .catch(function (response) {
@@ -168,7 +227,7 @@
             //#region Create
             $scope.Create = function () {
                 $scope.UpdateMode = false;
-                $scope.Cate = {};
+                Init();
                 $('#PnModal').appendTo("body").modal('show');
             };
             //#endregion
@@ -184,8 +243,8 @@
             //#region Delete
             $scope.Delete = function (Id) {
                 swal({
-                    title: "Xác nhận xóa?",
-                    text: "Một khi đã xóa, bạn không thể khôi phục lại",
+                    title: "@Html.Raw(CMS.StaticResources.Resources.MSG_CONFIRM_DELETE)",
+                    text: "@Html.Raw(CMS.StaticResources.Resources.MSG_TEXT_DELETE)",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -213,12 +272,15 @@
             $scope.Save = function () {
                 if (!$scope.UpdateMode) {
                     $rootScope.MasterPage.IsLoading = true;
+                    var x = $scope.Data;
                     let strApiEndPoint = CommonHelper.CategoryUrl;
-                    ApiHelper.PostMethod(strApiEndPoint, $scope.Cate)
+                    $scope.Data.ParentId = $scope.ddlParent.Value;
+                    $scope.Data.ModuleId = $scope.ddlModule.Value;
+                    ApiHelper.PostMethod(strApiEndPoint, $scope.Data)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
                             $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Thêm thành công');
+                            sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_CREATE_SUCCESS');
                         })
                         .catch(function (response) {
                             sys.Alert(false, response.Message);
@@ -230,11 +292,13 @@
                 else {
                     $rootScope.MasterPage.IsLoading = true;
                     let strApiEndPoint = CommonHelper.CategoryUrl;
-                    ApiHelper.PutMethod(strApiEndPoint, $scope.Cate)
+                    $scope.Data.ParentId = $scope.ddlParent.Value;
+                    $scope.Data.ModuleId = $scope.ddlModule.Value;
+                    ApiHelper.PutMethod(strApiEndPoint, $scope.Data)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
                             $('#tblData').DataTable().ajax.reload(null, false);
-                            sys.Alert(true, 'Cập nhật thành công');
+                            sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
                         })
                         .catch(function (response) {
                             sys.Alert(false, response.Message);
@@ -253,8 +317,11 @@
                 ]).then(() => {
                     $q.all({
                         Categories: DataFactory.Categories_Get(),
+                        Languages: DataFactory.Languages_Get(),
                     }).then((MultipleRes) => {
-                        $scope.Data = MultipleRes.Categories.Data;
+                        $scope.ddlParent.Lst = MultipleRes.Categories.Data;
+                        $scope.Languages.Lst = MultipleRes.Languages.Data;
+                        Init();
                     });
                 }).catch((response) => {
                     throw response;

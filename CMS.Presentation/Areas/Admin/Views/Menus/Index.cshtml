@@ -33,11 +33,11 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label>
-                                @CMS.StaticResources.Resources.TEXT_PARENT_MENU
+                                <strong>
+                                    {{ddlParent.Core.label}}
+                                </strong>
                             </label>
-                            <select class="select2 form-control" ng-options="c.Id as c.Name for c in Data" ng-model="Menu.ParentId">
-                                <option value="" selected="selected">Select</option>
-                            </select>
+                            <custom-select2 myroot="ddlParent" label="@CMS.StaticResources.Resources.TEXT_PARENT_MENU"></custom-select2>
                         </div>
                         <div class="form-group">
                             <label>
@@ -95,7 +95,12 @@
             //#region declare variable
             $scope.UpdateMode = false;
             $scope.Menu = { IsActive: true };
-            $scope.Data = [];
+            //#endregion
+
+                    //#region Parent
+            $scope.ddlParent = { Core: {}, CallBack: {} };
+            $scope.ddlParent.Core.Text = 'Name';
+            $scope.ddlParent.Core.IDValue = 'ID';
             //#endregion
 
             //#region Datatable
@@ -170,6 +175,7 @@
                     .then(function (response) {
                         $rootScope.MasterPage.IsLoading = false;
                         $scope.Menu = response.Data;
+                        $scope.ddlParent.API.SetValue($scope.Menu.ParentId);
                         defer.resolve(response);
                     })
                     .catch(function (response) {
@@ -200,8 +206,8 @@
             //#region Delete
             $scope.Delete = function (Id) {
                 swal({
-                    title: "Xác nhận xóa?",
-                    text: "Một khi đã xóa, bạn không thể khôi phục lại",
+                    title: "@Html.Raw(CMS.StaticResources.Resources.MSG_CONFIRM_DELETE)",
+                    text: "@Html.Raw(CMS.StaticResources.Resources.MSG_TEXT_DELETE)",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -230,6 +236,7 @@
                 if (!$scope.UpdateMode) {
                     $rootScope.MasterPage.IsLoading = true;
                     let strApiEndPoint = CommonHelper.MenuUrl;
+                    $scope.Menu.ParentId = $scope.ddlParent.Value;
                     ApiHelper.PostMethod(strApiEndPoint, $scope.Menu)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
@@ -246,6 +253,7 @@
                 else {
                     $rootScope.MasterPage.IsLoading = true;
                     let strApiEndPoint = CommonHelper.MenuUrl;
+                    $scope.Menu.ParentId = $scope.ddlParent.Value;
                     ApiHelper.PutMethod(strApiEndPoint, $scope.Menu)
                         .then(function (response) {
                             $rootScope.MasterPage.IsLoading = false;
@@ -270,7 +278,7 @@
                     $q.all({
                         Menus: DataFactory.Menus_Get(),
                     }).then((MultipleRes) => {
-                        $scope.Data = MultipleRes.Menus.Data;
+                        $scope.ddlParent.Lst = MultipleRes.Menus.Data;
                     });
                 }).catch((response) => {
                     throw response;

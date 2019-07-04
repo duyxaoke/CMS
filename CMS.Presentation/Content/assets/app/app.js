@@ -47,6 +47,7 @@ var addDirective = function (name, directive) {
         console.log(JSON.stringify(e));
     }
 }
+addDirective("customSelect2", customSelect2);
 addDirective("compile", compile);
 addDirective("formatMoney", formatMoney);
 addDirective("getWidth", getWidth);

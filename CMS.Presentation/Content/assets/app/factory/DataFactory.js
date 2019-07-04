@@ -121,6 +121,13 @@
     };
     //#endregion
 
+    //#region Languages
+    service.Languages_Get = function () {
+        let strApiEndPoint = CommonHelper.LanguageUrl;
+        return ApiHelper.GetMethod(strApiEndPoint);
+    };
+    //#endregion
+
     return service;
 };
 DataFactory.$inject = ["$rootScope", "$localstorage", "$timeout", "UtilFactory", "$q", "$http", "ApiHelper", "CommonHelper"];

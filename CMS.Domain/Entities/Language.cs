@@ -8,6 +8,8 @@ namespace CMS.Domain.Entities
     [Table("Language", Schema = "CMS")]
     public class Language : BaseEntity
     {
+        [Column(TypeName = "nvarchar")]
+        [StringLength(100)]
         public string Name { get; set; }
         public string LanguageCulture { get; set; }
         public string UniqueSeoCode { get; set; }

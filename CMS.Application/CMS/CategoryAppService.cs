@@ -19,9 +19,9 @@ namespace CMS.Application.CMS
             _repository = repository;
         }
         
-        public async Task<CategoryViewModel> GetByIdAsync(object id)
+        public async Task<CategoryModel> GetByIdAsync(object id)
         {
-            return Mapper.Map<Category, CategoryViewModel>(await _repository.GetByIdAsync(id));
+            return Mapper.Map<Category, CategoryModel>(await _repository.GetByIdAsync(id));
         }
 
         public IQueryable<Category> GetAllPaging()
@@ -29,20 +29,20 @@ namespace CMS.Application.CMS
             return _repository.GetAllPaging();
         }
 
-        public async Task<IEnumerable<CategoryViewModel>> GetAllAsync()
+        public async Task<IEnumerable<CategoryModel>> GetAllAsync()
         {
-            return Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryViewModel>>(await _repository.GetAllAsync());
+            return Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryModel>>(await _repository.GetAllAsync());
         }
 
-        public void Add(CategoryViewModel entity)
+        public void Add(CategoryModel entity)
         {
-            var entityAdd = Mapper.Map<CategoryViewModel, Category>(entity);
+            var entityAdd = Mapper.Map<CategoryModel, Category>(entity);
             _repository.Add(entityAdd);
         }
 
-        public void Update(CategoryViewModel entity)
+        public void Update(CategoryModel entity)
         {
-            var entityUpdt = Mapper.Map<CategoryViewModel, Category>(entity);
+            var entityUpdt = Mapper.Map<CategoryModel, Category>(entity);
             _repository.Update(entityUpdt);
         }
 

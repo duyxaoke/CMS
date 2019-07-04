@@ -337,8 +337,8 @@
             //#region Delete
             $scope.Delete = function (Id) {
                 swal({
-                    title: "@CMS.StaticResources.Resources.MSG_CONFIRM_DELETE",
-                    text: "@CMS.StaticResources.Resources.MSG_TEXT_DELETE",
+                    title: "@Html.Raw(CMS.StaticResources.Resources.MSG_CONFIRM_DELETE)",
+                    text: "@Html.Raw(CMS.StaticResources.Resources.MSG_TEXT_DELETE)",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,

@@ -5,8 +5,8 @@ namespace CMS.Application.ViewModels.CMS
 {
     public class CategoryViewModel : BaseViewModel
     {
-        public int ModuleID { get; set; }
-        public int ParentID { get; set; }
+        public int ModuleId { get; set; }
+        public int ParentId { get; set; }
         public string ParentName { get; set; }
         public string CategoryName { get; set; }
         public string Description { get; set; }
