@@ -129,7 +129,7 @@ namespace CMS.Presentation.Areas.Admin.Controllers
             foreach (var language in languageService.GetAll())
             {
                 var locale = Activator.CreateInstance<TLocalizedModelLocal>();
-                locale.LanguageId = language.Id;
+                locale.LanguageId = language.LanguageId;
                 if (configure != null)
                 {
                     configure.Invoke(locale, locale.LanguageId);

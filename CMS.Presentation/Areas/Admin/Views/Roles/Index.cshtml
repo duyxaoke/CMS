@@ -84,14 +84,14 @@
                         <ul>
                             <li ng-repeat="item in MenuInRole" ng-if="item.Childrens.length > 0">
                                 <label class="custom-control custom-control-primary custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="{{item.Id}}" ng-checked="item.Checked" value="{{item.Id}}" ng-model="item.Checked">
+                                    <input class="custom-control-input" type="checkbox" id="{{item.MenuId}}" ng-checked="item.Checked" value="{{item.MenuId}}" ng-model="item.Checked">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-label">{{item.Name}}</span>
                                 </label>
                                 <ul>
                                     <li ng-repeat="itemChild in item.Childrens">
                                         <label class="custom-control custom-control-primary custom-checkbox">
-                                            <input class="custom-control-input" type="checkbox" id="{{itemChild.Id}}" ng-checked="itemChild.Checked" value="{{itemChild.Id}}" ng-model="itemChild.Checked">
+                                            <input class="custom-control-input" type="checkbox" id="{{itemChild.MenuId}}" ng-checked="itemChild.Checked" value="{{itemChild.MenuId}}" ng-model="itemChild.Checked">
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-label">{{itemChild.Name}}</span>
                                         </label>
@@ -101,7 +101,7 @@
                             </li>
                             <li ng-repeat="item in MenuInRole" ng-if="item.Childrens.length == 0">
                                 <label class="custom-control custom-control-primary custom-checkbox">
-                                    <input class="custom-control-input" type="checkbox" id="{{item.Id}}" ng-checked="item.Checked" value="{{item.Id}}" ng-model="item.Checked">
+                                    <input class="custom-control-input" type="checkbox" id="{{item.MenuId}}" ng-checked="item.Checked" value="{{item.MenuId}}" ng-model="item.Checked">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-label">{{item.Name}}</span>
                                 </label>
@@ -245,10 +245,10 @@
             //#endregion
 
             //#region ReadById
-            var ReadById = (Id) => {
+            var ReadById = (RoleId) => {
                 let defer = $q.defer();
                 $rootScope.MasterPage.IsLoading = true;
-                let strApiEndPoint = CommonHelper.RoleUrl + Id;
+                let strApiEndPoint = CommonHelper.RoleUrl + RoleId;
                 ApiHelper.GetMethod(strApiEndPoint)
                     .then(function (response) {
                         $rootScope.MasterPage.IsLoading = false;
@@ -313,16 +313,16 @@
             //#endregion
 
             //#region Update
-            $scope.Update = function (Id) {
+            $scope.Update = function (RoleId) {
                 $scope.UpdateMode = true;
-                ReadById(Id);
+                ReadById(RoleId);
                 $('#PnModal').appendTo("body").modal('show');
             }
             //#endregion
 
             //#region MenuInRole
-            $scope.ReadMenuInRole = function (Id) {
-                ReadMenuInRoleById(Id);
+            $scope.ReadMenuInRole = function (RoleId) {
+                ReadMenuInRoleById(RoleId);
                 $('#MenuInRoleModal').appendTo("body").modal('show');
             }
             //#endregion
@@ -335,7 +335,7 @@
             //#endregion
 
             //#region Delete
-            $scope.Delete = function (Id) {
+            $scope.Delete = function (RoleId) {
                 swal({
                     title: "@Html.Raw(CMS.StaticResources.Resources.MSG_CONFIRM_DELETE)",
                     text: "@Html.Raw(CMS.StaticResources.Resources.MSG_TEXT_DELETE)",
@@ -346,7 +346,7 @@
                     .then((willDelete) => {
                         if (willDelete) {
                             $rootScope.MasterPage.IsLoading = true;
-                            let strApiEndPoint = CommonHelper.RoleUrl + "delete?id=" + Id;
+                            let strApiEndPoint = CommonHelper.RoleUrl + "delete?id=" + RoleId;
                             ApiHelper.DeleteMethod(strApiEndPoint)
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;
@@ -414,10 +414,10 @@
 
                 $scope.MenuInRole.forEach((x) => {
                     obj.roleId = x.RoleId;
-                    if (x.Checked) obj.menuIds.push(x.Id);
+                    if (x.Checked) obj.menuIds.push(x.MenuId);
                     if (x.Childrens.length > 0) {
                         x.Childrens.forEach((xx) => {
-                            if (xx.Checked) obj.menuIds.push(xx.Id);
+                            if (xx.Checked) obj.menuIds.push(xx.MenuId);
                         });
                     }
                 });

@@ -5,8 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMS.Domain.Entities
 {
     [Table("Category", Schema = "CMS")]
-    public class Category : BaseEntity
+    public class Category
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int CategoryId { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string CategoryName { get; set; }

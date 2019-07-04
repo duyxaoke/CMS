@@ -6,8 +6,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMS.Domain.Entities
 {
     [Table("Language", Schema = "CMS")]
-    public class Language : BaseEntity
+    public class Language
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int LanguageId { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(100)]
         public string Name { get; set; }

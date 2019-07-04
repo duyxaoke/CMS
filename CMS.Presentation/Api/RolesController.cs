@@ -272,7 +272,7 @@ namespace CMS.Presentation.Controllers.Api
                 foreach (var item in menus)
                 {
                     MenuViewModel model = new MenuViewModel();
-                    model.Id = item.Id;
+                    model.MenuId = item.MenuId;
                     model.Name = item.Name;
                     model.Url = item.Url;
                     model.Icon = item.Icon;
@@ -280,10 +280,10 @@ namespace CMS.Presentation.Controllers.Api
                     model.IsActive = item.IsActive;
                     model.ParentId = item.ParentId;
                     model.RoleId = roleId;
-                    model.Childrens = GetChildrens(item.Id, roleId);
+                    model.Childrens = GetChildrens(item.MenuId, roleId);
                     if (roleId.HasValue)
                     {
-                        var menu = _menuInRolesService.GetMenuByRoleId(roleId.Value).Any(c => c.MenuId == item.Id);
+                        var menu = _menuInRolesService.GetMenuByRoleId(roleId.Value).Any(c => c.MenuId == item.MenuId);
                         if (menu)
                             model.Checked = true;
                         else
@@ -323,7 +323,7 @@ namespace CMS.Presentation.Controllers.Api
             foreach (var item in menus)
             {
                 MenuViewModel model = new MenuViewModel();
-                model.Id = item.Id;
+                model.MenuId = item.MenuId;
                 model.Name = item.Name;
                 model.Url = item.Url;
                 model.Icon = item.Icon;
@@ -332,7 +332,7 @@ namespace CMS.Presentation.Controllers.Api
                 model.ParentId = item.ParentId;
                 if (roleId.HasValue)
                 {
-                    var menu = _menuInRolesService.GetMenuByRoleId(roleId.Value).Any(c => c.MenuId == item.Id);
+                    var menu = _menuInRolesService.GetMenuByRoleId(roleId.Value).Any(c => c.MenuId == item.MenuId);
                     if (menu)
                         model.Checked = true;
                     else

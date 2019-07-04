@@ -7,13 +7,13 @@ namespace CMS.Infra.Data.Context
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class updatecategory23s : IMigrationMetadata
+    public sealed partial class init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updatecategory23s));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init));
         
         string IMigrationMetadata.Id
         {
-            get { return "201907040904336_update-category23s"; }
+            get { return "201907041326345_init"; }
         }
         
         string IMigrationMetadata.Source

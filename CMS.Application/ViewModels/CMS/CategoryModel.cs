@@ -14,7 +14,7 @@ namespace CMS.Application.ViewModels.CMS
             Languages = new List<Language>();
         }
 
-        public int Id { get; set; }
+        public int CategoryId { get; set; }
         public string CategoryName { get; set; }
         public int? ParentId { get; set; }
         public int ModuleId { get; set; }
@@ -25,7 +25,7 @@ namespace CMS.Application.ViewModels.CMS
 
     public class CategoryMappingModel : ILocalizedModelLocal
     {
-        public int Id { get; set; }
+        public int CategoryMappingId { get; set; }
         public int CategoryId { get; set; }
         public int LanguageId { get; set; }
         [Column(TypeName = "nvarchar")]

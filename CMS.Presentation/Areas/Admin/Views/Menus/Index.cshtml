@@ -150,7 +150,7 @@
                                          </button>
                                     </div>`;
                             },
-                            "sName": "Id",
+                            "sName": "MenuId",
                             "bSortable": false,
                             "aTargets": [3],
                             "sWidth": "80px"
@@ -167,10 +167,10 @@
             //#endregion
 
             //#region ReadById
-            var ReadById = (Id) => {
+            var ReadById = (MenuId) => {
                 let defer = $q.defer();
                 $rootScope.MasterPage.IsLoading = true;
-                let strApiEndPoint = CommonHelper.MenuUrl + Id;
+                let strApiEndPoint = CommonHelper.MenuUrl + MenuId;
                 ApiHelper.GetMethod(strApiEndPoint)
                     .then(function (response) {
                         $rootScope.MasterPage.IsLoading = false;
@@ -196,15 +196,15 @@
             //#endregion
 
             //#region Update
-            $scope.Update = function (Id) {
+            $scope.Update = function (MenuId) {
                 $scope.UpdateMode = true;
-                ReadById(Id);
+                ReadById(MenuId);
                 $('#PnModal').appendTo("body").modal('show');
             }
             //#endregion
 
             //#region Delete
-            $scope.Delete = function (Id) {
+            $scope.Delete = function (MenuId) {
                 swal({
                     title: "@Html.Raw(CMS.StaticResources.Resources.MSG_CONFIRM_DELETE)",
                     text: "@Html.Raw(CMS.StaticResources.Resources.MSG_TEXT_DELETE)",
@@ -215,7 +215,7 @@
                     .then((willDelete) => {
                         if (willDelete) {
                             $rootScope.MasterPage.IsLoading = true;
-                            let strApiEndPoint = CommonHelper.MenuUrl + Id;
+                            let strApiEndPoint = CommonHelper.MenuUrl + MenuId;
                             ApiHelper.DeleteMethod(strApiEndPoint)
                                 .then(function (response) {
                                     $rootScope.MasterPage.IsLoading = false;

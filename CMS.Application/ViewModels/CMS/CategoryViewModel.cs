@@ -3,8 +3,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Application.ViewModels.CMS
 {
-    public class CategoryViewModel : BaseViewModel
+    public class CategoryViewModel
     {
+        public int CategoryId { get; set; }
         public int ModuleId { get; set; }
         public int ParentId { get; set; }
         public string ParentName { get; set; }

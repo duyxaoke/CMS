@@ -70,9 +70,8 @@ namespace CMS.Infra.Data.Repositories
 
         public virtual void Update(TEntity obj)
         {
-            var entry = Db.Entry(obj);
             DbSet.Attach(obj);
-            entry.State = EntityState.Modified;
+            Db.Entry(obj).State = EntityState.Modified;
             Db.SaveChanges();
         }
 

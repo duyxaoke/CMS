@@ -4,8 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMS.Domain.Entities
 {
     [Table("Partner", Schema = "CMS")]
-    public class Partner : BaseEntity
+    public class Partner
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int PartnerId { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string Name { get; set; }

@@ -78,6 +78,18 @@ namespace CMS.Presentation.Controllers.Api
                 {
                     return NotFound();
                 }
+                var mappingModel = new List<CategoryMappingModel>();
+                AddLocales(_languageRepository, mappingModel, (locale, languageId) =>
+                {
+                    foreach (var item in result.Locales.Where(l => l.LanguageId == languageId))
+                    {
+                        locale.Title = item.Title;
+                        locale.Description = item.Description;
+                    }
+                });
+                result.Languages = _languageServices.GetAllPaging().ToList();
+
+
                 return Ok(result);
             }
             catch (Exception ex)
@@ -106,11 +118,11 @@ namespace CMS.Presentation.Controllers.Api
             try
             {
                 _service.Add(model);
-                return Content(HttpStatusCode.Created, model.Id);
+                return Content(HttpStatusCode.Created, model.CategoryId);
             }
             catch (DbUpdateException ex)
             {
-                if (Exists(model.Id))
+                if (Exists(model.CategoryId))
                 {
                     return Conflict();
                 }
@@ -145,7 +157,7 @@ namespace CMS.Presentation.Controllers.Api
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                if (!Exists(model.Id))
+                if (!Exists(model.CategoryId))
                 {
                     return NotFound();
                 }

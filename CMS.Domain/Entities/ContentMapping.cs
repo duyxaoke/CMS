@@ -5,8 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMS.Domain.Entities
 {
     [Table("ContentMapping", Schema = "CMS")]
-    public class ContentMapping : BaseEntity
+    public class ContentMapping
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int ContentMappingId { get; set; }
         public int ContentId { get; set; }
         public virtual Content Content { get; set; }
 

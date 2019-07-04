@@ -24,37 +24,33 @@ namespace CMS.Infra.Data.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-
-            modelBuilder.Properties()
-                .Where(p => p.Name == p.ReflectedType.Name + "Id")
-                .Configure(p => p.IsKey());
+            //modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 
             modelBuilder.Properties<string>()
-                .Configure(p => p.HasColumnType("varchar"));
+                .Configure(p => p.HasColumnType("nvarchar"));
 
             modelBuilder.Properties<string>()
-                .Configure(p => p.HasMaxLength(100));
-
+                .Configure(p => p.HasMaxLength(200));
+            base.OnModelCreating(modelBuilder);
         }
 
-        public override int SaveChanges()
-        {
-            foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
-            {
-                if (entry.State == EntityState.Added)
-                {
-                    entry.Property("DataCadastro").CurrentValue = DateTime.Now;
-                }
+        //public override int SaveChanges()
+        //{
+        //    foreach (var entry in ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null))
+        //    {
+        //        if (entry.State == EntityState.Added)
+        //        {
+        //            entry.Property("DataCadastro").CurrentValue = DateTime.Now;
+        //        }
 
-                if (entry.State == EntityState.Modified)
-                {
-                    entry.Property("DataCadastro").IsModified = false;
-                }
-            }
-            return base.SaveChanges();
-        }
+        //        if (entry.State == EntityState.Modified)
+        //        {
+        //            entry.Property("DataCadastro").IsModified = false;
+        //        }
+        //    }
+        //    return base.SaveChanges();
+        //}
     }
 }

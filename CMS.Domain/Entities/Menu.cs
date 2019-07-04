@@ -6,7 +6,7 @@ namespace CMS.Domain.Entities
 {
     public class Menu
     {
-        public int Id { get; set; }
+        public int MenuId { get; set; }
         public int? ParentId { get; set; }
         [Column(TypeName = "nvarchar")]
         public string Name { get; set; }

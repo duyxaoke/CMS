@@ -6,8 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Application.ViewModels.CMS
 {
-    public class LanguageViewModel : BaseViewModel
+    public class LanguageViewModel
     {
+        public int LanguageId { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(100)]
         public string Name { get; set; }

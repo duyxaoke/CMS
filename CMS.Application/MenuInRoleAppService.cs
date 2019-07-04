@@ -60,7 +60,7 @@ namespace CMS.Application
                     //xóa hết dữ liệu trong MenuInRoles theo RoleId
                     foreach (var item in existRole)
                     {
-                        _repository.Remove(item.Id, false);
+                        _repository.Remove(item.MenuId, false);
                     }
                     _repository.SaveChanges();
                     if (menuIds.Count > 0)

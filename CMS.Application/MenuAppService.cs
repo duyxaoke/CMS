@@ -27,7 +27,7 @@ namespace CMS.Application
                 .Select(c => new SelectListViewModel
                 {
                     Text = c.Name,
-                    Value = c.Id.ToString()
+                    Value = c.MenuId.ToString()
                 });
             return result;
         }
@@ -59,7 +59,7 @@ namespace CMS.Application
         public void Update(MenuViewModel model)
         {
             var obj = Mapper.Map<MenuViewModel, Menu>(model);
-            obj.Id = model.Id;
+            obj.MenuId = model.MenuId;
             _repository.Update(obj);
         }
         public void Remove(int id)

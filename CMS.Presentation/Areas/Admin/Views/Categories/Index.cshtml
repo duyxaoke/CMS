@@ -57,7 +57,7 @@
                             </div>
                             <ul class="nav nav-tabs">
                                 <li ng-repeat="item in Data.Languages">
-                                    <a href="#{{item.Id}}" data-toggle="tab">{{item.Name}}</a>
+                                    <a href="#{{item.LanguageId}}" data-toggle="tab">{{item.Name}}</a>
                                 </li>
                              </ul>
                             <div class="tab-content">
@@ -118,11 +118,12 @@
             //#region Parent
             $scope.ddlParent = { Core: {}, CallBack: {} };
             $scope.ddlParent.Core.Text = 'CategoryName';
-            $scope.ddlParent.Core.IDValue = 'ID';
+            $scope.ddlParent.Core.IDValue = 'CategoryId';
 
             $scope.ddlModule = { Core: {}, CallBack: {} };
             $scope.ddlModule.Core.Text = 'Name';
             $scope.ddlModule.Core.IDValue = 'ID';
+            $scope.ddlModule.Core.IsHideValueDefault = true;
             $scope.ddlModule.Value = '0';
             $scope.ddlModule.Lst = [
                 {ID: 0, Name: "@Html.Raw(CMS.StaticResources.Resources.TEXT_DISPLAY_TYPE_ARTICLE)"},
@@ -163,7 +164,7 @@
                                          </button>
                                     </div>`;
                             },
-                            "sName": "Id",
+                            "sName": "CategoryId",
                             "bSortable": false,
                             "aTargets": [1],
                             "sWidth": "80px"
@@ -213,6 +214,9 @@
                         $scope.Data = response.Data;
                         $scope.ddlParent.API.SetValue($scope.Data.ParentId);
                         $scope.ddlModule.API.SetValue($scope.Data.ModuleId);
+                        $timeout(function () {
+                            $('.nav-tabs a[href="#1"]').tab('show');
+                        }, 200);
                         defer.resolve(response);
                     })
                     .catch(function (response) {
@@ -321,7 +325,6 @@
                     }).then((MultipleRes) => {
                         $scope.ddlParent.Lst = MultipleRes.Categories.Data;
                         $scope.Languages.Lst = MultipleRes.Languages.Data;
-                        Init();
                     });
                 }).catch((response) => {
                     throw response;
