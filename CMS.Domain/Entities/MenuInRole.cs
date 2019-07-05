@@ -3,9 +3,8 @@ using System;
 
 namespace CMS.Domain.Entities
 {
-    public class MenuInRole
+    public class MenuInRole : BaseEntity
     {
-        public int MenuInRoleId { get; set; }
         public Guid RoleId { get; set; }
         public int MenuId { get; set; }
     }

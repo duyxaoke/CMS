@@ -8,7 +8,7 @@ namespace CMS.Application.ViewModels.CMS
 {
     public class LanguageModel
     {
-        public int LanguageId { get; set; }
+        public int Id { get; set; }
         [Column(TypeName = "nvarchar")]
         [StringLength(100)]
         public string Name { get; set; }

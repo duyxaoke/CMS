@@ -57,7 +57,7 @@
                             </div>
                             <ul class="nav nav-tabs">
                                 <li ng-repeat="item in Data.Languages">
-                                    <a href="#{{item.LanguageId}}" data-toggle="tab">{{item.Name}}</a>
+                                    <a href="#{{item.Id}}" data-toggle="tab">{{item.Name}}</a>
                                 </li>
                              </ul>
                             <div class="tab-content">
@@ -118,7 +118,7 @@
             //#region Parent
             $scope.ddlParent = { Core: {}, CallBack: {} };
             $scope.ddlParent.Core.Text = 'CategoryName';
-            $scope.ddlParent.Core.IDValue = 'CategoryId';
+            $scope.ddlParent.Core.IDValue = 'Id';
 
             $scope.ddlModule = { Core: {}, CallBack: {} };
             $scope.ddlModule.Core.Text = 'Name';
@@ -164,7 +164,7 @@
                                          </button>
                                     </div>`;
                             },
-                            "sName": "CategoryId",
+                            "sName": "Id",
                             "bSortable": false,
                             "aTargets": [1],
                             "sWidth": "80px"
@@ -190,8 +190,8 @@
                         $rootScope.MasterPage.IsLoading = false;
                         $scope.Data = response.Data;
                         $timeout(function () {
-                            $('.nav-tabs a[href="#1"]').tab('show');
-                        }, 200);
+                           $('.nav-tabs a:first').tab('show') ;
+                        }, 100);
                         defer.resolve(response);
                     })
                     .catch(function (response) {
@@ -215,8 +215,8 @@
                         $scope.ddlParent.API.SetValue($scope.Data.ParentId);
                         $scope.ddlModule.API.SetValue($scope.Data.ModuleId);
                         $timeout(function () {
-                            $('.nav-tabs a[href="#1"]').tab('show');
-                        }, 200);
+                           $('.nav-tabs a:first').tab('show') ;
+                        }, 100);
                         defer.resolve(response);
                     })
                     .catch(function (response) {

@@ -21,7 +21,7 @@ namespace CMS.Presentation.Controllers.Api
             foreach (var language in languageService.GetAll())
             {
                 var locale = Activator.CreateInstance<TLocalizedModelLocal>();
-                locale.LanguageId = language.LanguageId;
+                locale.LanguageId = language.Id;
                 if (configure != null)
                 {
                     configure.Invoke(locale, locale.LanguageId);

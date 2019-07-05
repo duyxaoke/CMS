@@ -58,18 +58,18 @@ namespace CMS.Presentation.Controllers
             var lsCurrentMenu = _menuInRolesAppService.GetAll().Where(c => lsCurrentRole.Contains(c.RoleId.ToString())).Select(c => c.MenuId);
 
             var model = _menuAppService.GetParent()
-                .Where(c => lsCurrentMenu.Contains(c.MenuId))
+                .Where(c => lsCurrentMenu.Contains(c.Id))
                 .OrderBy(c => c.Order)
                 .Select(l => new MenuViewModel
                 {
-                    MenuId = l.MenuId,
+                    Id = l.Id,
                     Name = l.Name,
                     Url = l.Url,
                     Icon = l.Icon,
                     Order = l.Order,
                     IsActive = l.IsActive,
                     ParentId = l.ParentId,
-                    Childrens = GetChildren(l.MenuId)
+                    Childrens = GetChildren(l.Id)
                 });
             return PartialView(model);
         }
@@ -100,18 +100,18 @@ namespace CMS.Presentation.Controllers
             var lsCurrentMenu = _menuInRolesAppService.GetAll().Where(c => lsCurrentRole.Contains(c.RoleId.ToString())).Select(c => c.MenuId);
 
             return _menuAppService.GetChildren(parentId)
-                 .Where(c => lsCurrentMenu.Contains(c.MenuId))
+                 .Where(c => lsCurrentMenu.Contains(c.Id))
                  .OrderBy(l => l.Order)
                 .Select(l => new MenuViewModel
                 {
-                    MenuId = l.MenuId,
+                    Id = l.Id,
                     Name = l.Name,
                     Url = l.Url,
                     Icon = l.Icon,
                     Order = l.Order,
                     IsActive = l.IsActive,
                     ParentId = l.ParentId,
-                    Childrens = GetChildren(l.MenuId)
+                    Childrens = GetChildren(l.Id)
                 }).ToList();
         }
         private List<string> CurrentRole()

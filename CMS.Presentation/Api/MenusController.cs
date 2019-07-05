@@ -81,11 +81,11 @@ namespace CMS.Presentation.Controllers.Api
             try
             {
                 _service.Add(model);
-                return Content(HttpStatusCode.Created, model.MenuId);
+                return Content(HttpStatusCode.Created, model.Id);
             }
             catch (DbUpdateException ex)
             {
-                if (Exists(model.MenuId))
+                if (Exists(model.Id))
                 {
                     return Conflict();
                 }
@@ -120,7 +120,7 @@ namespace CMS.Presentation.Controllers.Api
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                if (!Exists(model.MenuId))
+                if (!Exists(model.Id))
                 {
                     return NotFound();
                 }

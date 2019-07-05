@@ -14,7 +14,7 @@ namespace CMS.Application.ViewModels.CMS
             Languages = new List<Language>();
         }
 
-        public int CategoryId { get; set; }
+        public int Id { get; set; }
         public string CategoryName { get; set; }
         public int? ParentId { get; set; }
         public int ModuleId { get; set; }

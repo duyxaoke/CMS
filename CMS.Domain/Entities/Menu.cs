@@ -4,9 +4,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CMS.Domain.Entities
 {
-    public class Menu
+    public class Menu: BaseEntity
     {
-        public int MenuId { get; set; }
         public int? ParentId { get; set; }
         [Column(TypeName = "nvarchar")]
         public string Name { get; set; }

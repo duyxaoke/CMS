@@ -6,11 +6,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMS.Domain.Entities
 {
     [Table("Content", Schema = "CMS")]
-    public class Content
+    public class Content : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ContentId { get; set; }
         public string ContentName { get; set; }
         public bool IsActive { get; set; }
         public string CreatedBy { get; set; }

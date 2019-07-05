@@ -7,7 +7,10 @@ namespace CMS.Domain.Entities
     [Table("CategoryMapping", Schema = "CMS")]
     public class CategoryMapping
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryMappingId { get; set; }
+
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
 

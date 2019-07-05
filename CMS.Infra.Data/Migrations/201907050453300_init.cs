@@ -11,13 +11,13 @@ namespace CMS.Infra.Data.Context
                 "CMS.Category",
                 c => new
                     {
-                        CategoryId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         CategoryName = c.String(maxLength: 250),
                         ParentId = c.Int(),
                         ModuleId = c.Int(nullable: false),
                         IsActive = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.CategoryId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "CMS.CategoryMapping",
@@ -30,8 +30,8 @@ namespace CMS.Infra.Data.Context
                         Description = c.String(maxLength: 4000),
                     })
                 .PrimaryKey(t => t.CategoryMappingId)
-                .ForeignKey("CMS.Category", t => t.CategoryId)
-                .ForeignKey("CMS.Language", t => t.LanguageId)
+                .ForeignKey("CMS.Category", t => t.CategoryId, cascadeDelete: true)
+                .ForeignKey("CMS.Language", t => t.LanguageId, cascadeDelete: true)
                 .Index(t => t.CategoryId)
                 .Index(t => t.LanguageId);
             
@@ -39,31 +39,31 @@ namespace CMS.Infra.Data.Context
                 "CMS.Language",
                 c => new
                     {
-                        LanguageId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 100),
-                        LanguageCulture = c.String(maxLength: 100, unicode: false),
-                        UniqueSeoCode = c.String(maxLength: 100, unicode: false),
+                        LanguageCulture = c.String(maxLength: 200),
+                        UniqueSeoCode = c.String(maxLength: 200),
                         IsActive = c.Boolean(nullable: false),
                         DisplayOrder = c.Int(nullable: false),
-                        CreatedBy = c.String(maxLength: 100, unicode: false),
+                        CreatedBy = c.String(maxLength: 200),
                         CreatedTime = c.DateTime(),
                     })
-                .PrimaryKey(t => t.LanguageId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "CMS.ContentMapping",
                 c => new
                     {
-                        ContentMappingId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         ContentId = c.Int(nullable: false),
                         LanguageId = c.Int(nullable: false),
-                        Title = c.String(maxLength: 100, unicode: false),
-                        SubTitle = c.String(maxLength: 100, unicode: false),
-                        Description = c.String(maxLength: 100, unicode: false),
+                        Title = c.String(maxLength: 200),
+                        SubTitle = c.String(maxLength: 200),
+                        Description = c.String(maxLength: 200),
                     })
-                .PrimaryKey(t => t.ContentMappingId)
-                .ForeignKey("CMS.Content", t => t.ContentId)
-                .ForeignKey("CMS.Language", t => t.LanguageId)
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("CMS.Content", t => t.ContentId, cascadeDelete: true)
+                .ForeignKey("CMS.Language", t => t.LanguageId, cascadeDelete: true)
                 .Index(t => t.ContentId)
                 .Index(t => t.LanguageId);
             
@@ -71,49 +71,49 @@ namespace CMS.Infra.Data.Context
                 "CMS.Content",
                 c => new
                     {
-                        ContentId = c.Int(nullable: false, identity: true),
-                        ContentName = c.String(maxLength: 100, unicode: false),
+                        Id = c.Int(nullable: false, identity: true),
+                        ContentName = c.String(maxLength: 200),
                         IsActive = c.Boolean(nullable: false),
-                        CreatedBy = c.String(maxLength: 100, unicode: false),
+                        CreatedBy = c.String(maxLength: 200),
                         CreatedTime = c.DateTime(),
                     })
-                .PrimaryKey(t => t.ContentId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "CMS.Config",
                 c => new
                     {
-                        ConfigId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         Title = c.String(maxLength: 250),
                         Keyword = c.String(maxLength: 4000),
                         Description = c.String(maxLength: 4000),
-                        Logo = c.String(maxLength: 100, unicode: false),
+                        Logo = c.String(maxLength: 200),
                     })
-                .PrimaryKey(t => t.ConfigId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Menu",
+                "dbo.Menus",
                 c => new
                     {
-                        MenuId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         ParentId = c.Int(),
-                        Name = c.String(maxLength: 100),
-                        Url = c.String(maxLength: 100),
-                        Icon = c.String(maxLength: 100, unicode: false),
+                        Name = c.String(maxLength: 200),
+                        Url = c.String(maxLength: 200),
+                        Icon = c.String(maxLength: 200),
                         IsActive = c.Boolean(nullable: false),
                         Order = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.MenuId);
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.MenuInRole",
+                "dbo.MenuInRoles",
                 c => new
                     {
-                        MenuInRoleId = c.Int(nullable: false, identity: true),
+                        Id = c.Int(nullable: false, identity: true),
                         RoleId = c.Guid(nullable: false),
                         MenuId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.MenuInRoleId);
+                .PrimaryKey(t => t.Id);
             
         }
         
@@ -127,8 +127,8 @@ namespace CMS.Infra.Data.Context
             DropIndex("CMS.ContentMapping", new[] { "ContentId" });
             DropIndex("CMS.CategoryMapping", new[] { "LanguageId" });
             DropIndex("CMS.CategoryMapping", new[] { "CategoryId" });
-            DropTable("dbo.MenuInRole");
-            DropTable("dbo.Menu");
+            DropTable("dbo.MenuInRoles");
+            DropTable("dbo.Menus");
             DropTable("CMS.Config");
             DropTable("CMS.Content");
             DropTable("CMS.ContentMapping");

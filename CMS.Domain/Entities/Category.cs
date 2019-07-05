@@ -5,18 +5,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace CMS.Domain.Entities
 {
     [Table("Category", Schema = "CMS")]
-    public class Category
+    public class Category : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int CategoryId { get; set; }
+        public Category()
+        {
+            this.Locales = new HashSet<CategoryMapping>();
+        }
         [Column(TypeName = "nvarchar")]
         [StringLength(250)]
         public string CategoryName { get; set; }
         public int? ParentId { get; set; }
         public int ModuleId { get; set; }
         public bool IsActive { get; set; }
-        public virtual IList<CategoryMapping> Locales { get; set; }
+        public virtual ICollection<CategoryMapping> Locales { get; set; }
 
     }
 }

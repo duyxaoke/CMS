@@ -1,5 +1,7 @@
-﻿using CMS.Application.Application.ICMS;
+﻿using AutoMapper;
+using CMS.Application.Application.ICMS;
 using CMS.Application.ViewModels.CMS;
+using CMS.Domain.Entities;
 using CMS.Domain.Interfaces.Repositories;
 using CMS.Presentation.Filters;
 using System;
@@ -8,6 +10,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApiThrottle;
@@ -21,13 +24,15 @@ namespace CMS.Presentation.Controllers.Api
         private readonly ICategoryAppService _service;
         private readonly ILanguageAppService _languageServices;
         private readonly ILanguageRepository _languageRepository;
+        private readonly ICategoryRepository _categoryRepository;
 
         public CategoriesController(ICategoryAppService service, ILanguageAppService languageServices
-            , ILanguageRepository languageRepository)
+            , ILanguageRepository languageRepository, ICategoryRepository categoryRepository)
         {
             _service = service;
             _languageServices = languageServices;
             _languageRepository = languageRepository;
+            _categoryRepository = categoryRepository;
         }
 
         [HttpGet]
@@ -118,11 +123,11 @@ namespace CMS.Presentation.Controllers.Api
             try
             {
                 _service.Add(model);
-                return Content(HttpStatusCode.Created, model.CategoryId);
+                return Content(HttpStatusCode.Created, model.Id);
             }
             catch (DbUpdateException ex)
             {
-                if (Exists(model.CategoryId))
+                if (Exists(model.Id))
                 {
                     return Conflict();
                 }
@@ -152,12 +157,16 @@ namespace CMS.Presentation.Controllers.Api
             }
             try
             {
-                _service.Update(model);
+                var content = _categoryRepository.GetById(model.Id);
+                if (content == null)
+                    return NotFound();
+                content = Mapper.Map<CategoryModel, Category>(model);
+                _categoryRepository.Update(content);
                 return Ok();
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                if (!Exists(model.CategoryId))
+                if (!Exists(model.Id))
                 {
                     return NotFound();
                 }

@@ -17,7 +17,7 @@ namespace CMS.Infra.Data.Context
             if (!context.Menu.Any(r => r.Name == "Manage"))
             {
                 var model = new Menu();
-                model.MenuId = 1;
+                model.Id = 1;
                 model.Name = "Manage";
                 model.Url = "#";
                 model.Icon = "fa fa-cubes";
@@ -28,7 +28,7 @@ namespace CMS.Infra.Data.Context
             if (!context.Menu.Any(r => r.Name == "Role"))
             {
                 var model = new Menu();
-                model.MenuId = 2;
+                model.Id = 2;
                 model.ParentId = 1;
                 model.Name = "Role";
                 model.Url = "/Admin/Roles";
@@ -40,7 +40,7 @@ namespace CMS.Infra.Data.Context
             if (!context.Menu.Any(r => r.Name == "User"))
             {
                 var model = new Menu();
-                model.MenuId = 3;
+                model.Id = 3;
                 model.ParentId = 1;
                 model.Name = "User";
                 model.Url = "/Admin/Users";
@@ -52,7 +52,7 @@ namespace CMS.Infra.Data.Context
             if (!context.Menu.Any(r => r.Name == "Menu"))
             {
                 var model = new Menu();
-                model.MenuId = 4;
+                model.Id = 4;
                 model.ParentId = 1;
                 model.Name = "Menu";
                 model.Url = "/Admin/Menus";

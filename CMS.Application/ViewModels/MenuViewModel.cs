@@ -10,7 +10,7 @@ namespace CMS.Application.ViewModels
     [Validator(typeof(MenuViewModelValidator))]
     public class MenuViewModel
     {
-        public int MenuId { get; set; }
+        public int Id { get; set; }
         public int? ParentId { get; set; }
         public Guid? RoleId { get; set; }
         public string ParentName { get; set; }
