@@ -46,7 +46,9 @@ namespace CMS.Infra.Data.Repositories
 
         public virtual TEntity GetById(object id)
         {
-            return  DbSet.Find(id);
+            var entity = DbSet.Find(id);
+            Db.Entry(entity).State = EntityState.Detached;
+            return entity;
         }
         public virtual async Task<TEntity> GetByIdAsync(object id)
         {
@@ -70,32 +72,9 @@ namespace CMS.Infra.Data.Repositories
 
         public virtual void Update(TEntity obj)
         {
-            try
-            {
-                var entry = Db.Entry(obj);
-                if (entry.State == EntityState.Detached || entry.State == EntityState.Modified)
-                {
-                    entry.State = EntityState.Unchanged; //do it here
-
-                    DbSet.Attach(obj); //attach
-
-                    Db.SaveChanges(); //save it
-                }
-            }
-            catch (DbEntityValidationException e)
-            {
-                foreach (var eve in e.EntityValidationErrors)
-                {
-                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-                    }
-                }
-                throw;
-            }
+            DbSet.Attach(obj);
+            Db.Entry(obj).State = EntityState.Modified;
+            Db.SaveChanges();
         }
 
         public virtual void Remove(object id, bool IsAutoSaveChange = true)
@@ -111,6 +90,7 @@ namespace CMS.Infra.Data.Repositories
         {
             return DbSet.Where(predicate);
         }
+
 
         public virtual void SaveChanges()
         {

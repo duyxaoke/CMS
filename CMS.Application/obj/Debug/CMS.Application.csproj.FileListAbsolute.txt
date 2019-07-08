@@ -50,3 +50,11 @@ D:\PROJECT\CMS\CMS.Application\obj\Debug\CMS.Application.csproj.CoreCompileInput
 D:\PROJECT\CMS\CMS.Application\obj\Debug\CMS.Application.csproj.CopyComplete
 D:\PROJECT\CMS\CMS.Application\obj\Debug\CMS.Application.dll
 D:\PROJECT\CMS\CMS.Application\obj\Debug\CMS.Application.pdb
+D:\Data\CMS\CMS.Application\bin\Debug\CoC.Core.DataAccess.dll
+D:\Data\CMS\CMS.Application\bin\Debug\Dapper.dll
+D:\Data\CMS\CMS.Application\bin\Debug\CoC.Core.Entities.dll
+D:\Data\CMS\CMS.Application\bin\Debug\Dapper.xml
+D:\Data\CMS\CMS.Application\bin\Debug\CMS.Application.dll.config
+D:\Data\CMS\CMS.Application\bin\Debug\Core.DTO.dll
+D:\Data\CMS\CMS.Application\bin\Debug\EPPlus.dll
+D:\Data\CMS\CMS.Application\bin\Debug\EPPlus.xml

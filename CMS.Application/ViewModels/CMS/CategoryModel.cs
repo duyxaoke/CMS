@@ -28,11 +28,7 @@ namespace CMS.Application.ViewModels.CMS
         public int CategoryMappingId { get; set; }
         public int CategoryId { get; set; }
         public int LanguageId { get; set; }
-        [Column(TypeName = "nvarchar")]
-        [StringLength(250)]
         public string Title { get; set; }
-        [Column(TypeName = "nvarchar")]
-        [StringLength(4000)]
         public string Description { get; set; }
     }
 }

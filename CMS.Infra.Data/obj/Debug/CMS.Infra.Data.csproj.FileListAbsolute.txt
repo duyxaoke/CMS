@@ -32,3 +32,5 @@ D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.inits.resources
 D:\PROJECT\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.initsfg.resources
 D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.Context.init.resources
 D:\Data\CMS\CMS.Infra.Data\obj\Debug\CMS.Infra.Data.csproj.GenerateResource.cache
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\Dapper.dll
+D:\Data\CMS\CMS.Infra.Data\bin\Debug\Dapper.xml

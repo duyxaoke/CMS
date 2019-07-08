@@ -25,6 +25,8 @@ using CMS.Application.CMS;
 using CMS.Application.Application.ICMS;
 using CMS.Application.Application;
 using AutoMapper;
+using CoC.Core.DataAccess.Interface;
+using CoC.Core.DataAccess.Implement;
 
 namespace CMS.Presentation
 {
@@ -55,6 +57,7 @@ namespace CMS.Presentation
             });
             builder.Register(c => new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             .As<IDbConnection>().InstancePerLifetimeScope();
+            builder.RegisterType<DapperReadOnlyRepository>().As<IReadOnlyRepository>().InstancePerLifetimeScope();
 
             builder.RegisterType<MenuRepository>().As<IMenuRepository>().InstancePerLifetimeScope();
             builder.RegisterType<MenuAppService>().As<IMenuAppService>().InstancePerDependency();
@@ -66,7 +69,7 @@ namespace CMS.Presentation
             builder.RegisterType<LanguageAppService>().As<ILanguageAppService>().InstancePerDependency();
             builder.RegisterType<ContentRepository>().As<IContentRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ContentAppService>().As<IContentAppService>().InstancePerDependency();
-
+            
             #region CMS
             builder.RegisterType<CategoryRepository>().As<ICategoryRepository>().InstancePerLifetimeScope();
             builder.RegisterType<ConfigAppService>().As<IConfigAppService>().InstancePerDependency();

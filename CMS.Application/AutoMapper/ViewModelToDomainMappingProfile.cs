@@ -2,6 +2,7 @@
 using CMS.Application.ViewModels;
 using CMS.Application.ViewModels.CMS;
 using CMS.Domain.Entities;
+using System.Collections.Generic;
 
 namespace CMS.Application.AutoMapper
 {
@@ -22,7 +23,6 @@ namespace CMS.Application.AutoMapper
 
             CreateMap<CategoryModel, Category>();
             CreateMap<CategoryMappingModel, CategoryMapping>();
-
         }
     }
 }

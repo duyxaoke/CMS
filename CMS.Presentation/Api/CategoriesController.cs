@@ -157,11 +157,9 @@ namespace CMS.Presentation.Controllers.Api
             }
             try
             {
-                var content = _categoryRepository.GetById(model.Id);
-                if (content == null)
-                    return NotFound();
-                content = Mapper.Map<CategoryModel, Category>(model);
-                _categoryRepository.Update(content);
+                _service.Update(model);
+                //update mapping
+                _service.UpdateMapping(model);
                 return Ok();
             }
             catch (DbUpdateConcurrencyException ex)

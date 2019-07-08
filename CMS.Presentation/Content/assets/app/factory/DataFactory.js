@@ -80,7 +80,7 @@
             .then(function (response) {
                 response.Data.forEach((x) => {
                     if (x.ParentId || x.ParentId > 0) {
-                        x.ParentName = response.Data.filter(c => c.MenuId == x.ParentId)[0].Name;
+                        x.ParentName = response.Data.filter(c => c.Id == x.ParentId)[0].Name;
                     };
                 });
                 defer.resolve(response);

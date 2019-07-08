@@ -272,3 +272,11 @@ D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.Models.init.resources
 D:\PROJECT\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.csproj.GenerateResource.cache
 D:\Data\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.Models.init.resources
 D:\Data\CMS\CMS.Presentation\obj\Debug\CMS.Presentation.csproj.GenerateResource.cache
+D:\Data\CMS\CMS.Presentation\bin\CoC.Core.DataAccess.dll
+D:\Data\CMS\CMS.Presentation\bin\Dapper.dll
+D:\Data\CMS\CMS.Presentation\bin\CoC.Core.Entities.dll
+D:\Data\CMS\CMS.Presentation\bin\Dapper.xml
+D:\Data\CMS\CMS.Presentation\bin\Core.DTO.dll
+D:\Data\CMS\CMS.Presentation\bin\EPPlus.dll
+D:\Data\CMS\CMS.Presentation\bin\CMS.Application.dll.config
+D:\Data\CMS\CMS.Presentation\bin\EPPlus.xml
