@@ -14,6 +14,7 @@ namespace CMS.Domain.Entities
         public string LanguageCulture { get; set; }
         public string UniqueSeoCode { get; set; }
         public bool IsActive { get; set; }
+        public bool IsDefault { get; set; }
         public int DisplayOrder { get; set; }
         public string CreatedBy { get; set; }
         public DateTime? CreatedTime { get; set; }

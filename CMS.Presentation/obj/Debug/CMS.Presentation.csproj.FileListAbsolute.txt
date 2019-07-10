@@ -280,3 +280,11 @@ D:\Data\CMS\CMS.Presentation\bin\Core.DTO.dll
 D:\Data\CMS\CMS.Presentation\bin\EPPlus.dll
 D:\Data\CMS\CMS.Presentation\bin\CMS.Application.dll.config
 D:\Data\CMS\CMS.Presentation\bin\EPPlus.xml
+D:\PROJECT\CMS\CMS.Presentation\bin\CoC.Core.DataAccess.dll
+D:\PROJECT\CMS\CMS.Presentation\bin\Core.DTO.dll
+D:\PROJECT\CMS\CMS.Presentation\bin\EPPlus.dll
+D:\PROJECT\CMS\CMS.Presentation\bin\Dapper.dll
+D:\PROJECT\CMS\CMS.Presentation\bin\CoC.Core.Entities.dll
+D:\PROJECT\CMS\CMS.Presentation\bin\CMS.Application.dll.config
+D:\PROJECT\CMS\CMS.Presentation\bin\EPPlus.xml
+D:\PROJECT\CMS\CMS.Presentation\bin\Dapper.xml

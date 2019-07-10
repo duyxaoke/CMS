@@ -58,3 +58,11 @@ D:\Data\CMS\CMS.Application\bin\Debug\CMS.Application.dll.config
 D:\Data\CMS\CMS.Application\bin\Debug\Core.DTO.dll
 D:\Data\CMS\CMS.Application\bin\Debug\EPPlus.dll
 D:\Data\CMS\CMS.Application\bin\Debug\EPPlus.xml
+D:\PROJECT\CMS\CMS.Application\bin\Debug\CMS.Application.dll.config
+D:\PROJECT\CMS\CMS.Application\bin\Debug\CoC.Core.DataAccess.dll
+D:\PROJECT\CMS\CMS.Application\bin\Debug\Core.DTO.dll
+D:\PROJECT\CMS\CMS.Application\bin\Debug\Dapper.dll
+D:\PROJECT\CMS\CMS.Application\bin\Debug\EPPlus.dll
+D:\PROJECT\CMS\CMS.Application\bin\Debug\CoC.Core.Entities.dll
+D:\PROJECT\CMS\CMS.Application\bin\Debug\Dapper.xml
+D:\PROJECT\CMS\CMS.Application\bin\Debug\EPPlus.xml
