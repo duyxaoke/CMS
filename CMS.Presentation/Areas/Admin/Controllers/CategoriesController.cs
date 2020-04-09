@@ -6,6 +6,7 @@ using CMS.Presentation.Filters;
 using DataTablesDotNet;
 using DataTablesDotNet.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -17,14 +18,11 @@ namespace CMS.Presentation.Areas.Admin.Controllers
     {
         private readonly ICategoryAppService _services;
         private readonly ILanguageAppService _languageServices;
-        private readonly ILanguageRepository _languageRepository;
 
-        public CategoriesController(ICategoryAppService services, ILanguageAppService languageServices
-            , ILanguageRepository languageRepository)
+        public CategoriesController(ICategoryAppService services, ILanguageAppService languageServices)
         {
             _services = services;
             _languageServices = languageServices;
-            _languageRepository = languageRepository;
 
         }
 
@@ -35,7 +33,19 @@ namespace CMS.Presentation.Areas.Admin.Controllers
             model.Languages = _languageServices.GetAllPaging().ToList();
 
             //get mapping proporties
-            AddLocales(_languageRepository, model.Locales);
+            AddLocales(_languageServices, model.Locales);
+
+            //var mappingModel = new List<CategoryMappingModel>();
+            //var contentModel = _services.GetAll();
+            //AddLocales(_languageServices, mappingModel, (locale, languageId) =>
+            //{
+            //    foreach (var item in contentModel.FirstOrDefault().Locales.Where(l => l.LanguageId == languageId))
+            //    {
+            //        locale.Title = item.Title;
+            //        locale.Description = item.Description;
+            //    }
+            //});
+
 
             return View(model);
         }
@@ -58,6 +68,7 @@ namespace CMS.Presentation.Areas.Admin.Controllers
             }
             return View(model);
         }
+
 
         public JsonResult Data(DataTablesRequest model)
         {

@@ -13,11 +13,11 @@ using CMS.Application.Application.ICMS;
 namespace CMS.Presentation.Areas.Admin.Controllers
 {
     [MvcAuthorizeAttribute]
-    public class PartnersController : BaseController
+    public class EarnsController : BaseController
     {
         private readonly IPartnerAppService _PartnerServices;
 
-        public PartnersController(IPartnerAppService PartnerServices)
+        public EarnsController(IPartnerAppService PartnerServices)
         {
             _PartnerServices = PartnerServices;
         }
@@ -26,5 +26,13 @@ namespace CMS.Presentation.Areas.Admin.Controllers
         {
             return View();
         }
+        public JsonResult Data(DataTablesRequest model)
+        {
+            var data = _PartnerServices.GetAllPaging();
+            var dataTableParser = new DataTablesParser<Partner>(model, data);
+            var formattedList = dataTableParser.Process();
+            return Json(formattedList, JsonRequestBehavior.AllowGet);
+        }
+
     }
 }

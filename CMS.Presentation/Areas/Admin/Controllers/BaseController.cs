@@ -119,14 +119,14 @@ namespace CMS.Presentation.Areas.Admin.Controllers
             return Redirect(returnUrl);
         }
 
-        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageRepository languageService, IList<TLocalizedModelLocal> locales) where TLocalizedModelLocal : ILocalizedModelLocal
+        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageAppService languageService, IList<TLocalizedModelLocal> locales) where TLocalizedModelLocal : ILocalizedModelLocal
         {
             AddLocales(languageService, locales, null);
         }
 
-        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageRepository languageService, IList<TLocalizedModelLocal> locales, Action<TLocalizedModelLocal, int> configure) where TLocalizedModelLocal : ILocalizedModelLocal
+        protected virtual void AddLocales<TLocalizedModelLocal>(ILanguageAppService languageService, IList<TLocalizedModelLocal> locales, Action<TLocalizedModelLocal, int> configure) where TLocalizedModelLocal : ILocalizedModelLocal
         {
-            foreach (var language in languageService.GetAll())
+            foreach (var language in languageService.GetAllAsync().Result)
             {
                 var locale = Activator.CreateInstance<TLocalizedModelLocal>();
                 locale.LanguageId = language.Id;

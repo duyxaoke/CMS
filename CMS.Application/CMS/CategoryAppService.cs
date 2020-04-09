@@ -44,6 +44,12 @@ namespace CMS.Application.CMS
                 "[CategoryMappingUpdate]", param, commandType: CommandType.StoredProcedure, commandTimeout: 300);
         }
 
+        public IEnumerable<CategoryModel> GetAll()
+        {
+            return Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryModel>>(_repository.GetAll());
+        }
+
+
         public async Task<IEnumerable<CategoryModel>> GetAllAsync()
         {
             return Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryModel>>(await _repository.GetAllAsync());

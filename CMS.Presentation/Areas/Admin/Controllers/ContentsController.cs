@@ -33,7 +33,7 @@ namespace CMS.Presentation.Areas.Admin.Controllers
             model.Languages = _languageServices.GetAllPaging().ToList();
 
             //get mapping proporties
-            AddLocales(_languageRepository, model.Locales);
+            AddLocales(_languageServices, model.Locales);
 
             return View(model);
         }

@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewData["Title"] = "Quản lý đối tác";
+}
+
+<div class="col-xs-12" ng-controller="IndexController" ng-cloak>
+    <div class="card">
+        <div class="card-header">
+            <div class="card-actions">
+                <button type="button" class="card-action card-toggler" title="Collapse"></button>
+            </div>
+            <strong>@CMS.StaticResources.Resources.TEXT_PARTNER</strong>
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary btn-sm pull-right" style="margin-bottom:15px" ng-click="Create()"><i class="icon icon-plus-circle"></i> @CMS.StaticResources.Resources.TEXT_CREATE</button>
+            <div class="clearfix"></div>
+        </div>
+
+    </div>
+    <!-- Large modal -->
+    <div class="modal fade" id="PnModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</h4>
+                </div>
+                <!-- form .needs-validation -->
+                <form id="frmModal" name="frmModal" class="needs-validation" novalidate="">
+                    <!-- /form .needs-validation -->
+                    <div class="modal-body">
+
+
+                        <div class="form-group">
+                            <img id="imgPreview" style="height: 150px; width: 150px" />
+                        </div>
+                        <div class="form-group">
+                            <div class="file-drop-area input input-file">
+                                <span class="btn btn-outline-primary">Browse</span>
+                                <span class="file-msg js-set-number">or drag it here</span>
+                                <input class="file-input files" type="file" name="file" id="file" accept="image/*" ng-model="Partner.Logo" onchange="loadFile(event)">
+                            </div>
+                        </div>
+                        <div class="panel m-b-lg">
+                            <ul class="nav nav-tabs nav-justified">
+                                <li class="active"><a href="#home-11" data-toggle="tab">Tiếng Việt</a></li>
+                                <li><a href="#profile-11" data-toggle="tab">English</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade active in" id="home-11">
+                                    <div class="form-group">
+                                        <label>
+                                            @CMS.StaticResources.Resources.TEXT_PARTNER_NAME
+                                        </label>
+                                        <input type="text" class="form-control" ng-model="Partner.Name" required="">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>
+                                            @CMS.StaticResources.Resources.TEXT_DESCRIPTION
+                                        </label>
+                                        <input type="text" class="form-control" ng-model="Partner.Description">
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="profile-11">
+                                    <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit.</p>
+                                    <p>Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.modal-body -->
+                    <!-- .modal-footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light" data-dismiss="modal">@CMS.StaticResources.Resources.TEXT_CLOSE</button>
+                        <button type="submit" class="btn btn-primary" ng-disabled="frmModal.$invalid" ng-click="Save()">{{ UpdateMode ? "@CMS.StaticResources.Resources.TEXT_UPDATE" : "@CMS.StaticResources.Resources.TEXT_CREATE" }}</button>
+                    </div>
+                </form>
+                <!-- /.modal-footer -->
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</div>
+@*<textarea id="des"></textarea>*@
+
+@section scripts{
+    <script>
+
+        //CKEDITOR.replace("des");
+
+        // highlight drag area
+        var fileinput = document.querySelector('.file-input');
+        var filedroparea = document.querySelector('.file-drop-area');
+        var jssetnumber = document.querySelector('.js-set-number');
+        fileinput.addEventListener('dragenter', isactive);
+        fileinput.addEventListener('focus', isactive);
+        fileinput.addEventListener('click', isactive);
+
+        // back to normal state
+        fileinput.addEventListener('dragleave', isactive);
+        fileinput.addEventListener('blur', isactive);
+        fileinput.addEventListener('drop', isactive);
+
+        // add Class
+        function isactive() {
+            filedroparea.classList.add('is-active');
+        }
+
+        // change inner text
+        fileinput.addEventListener('change', function () {
+            var count = fileinput.files.length;
+            if (count === 1) {
+                // if single file then show file name
+                jssetnumber.innerText = fileinput.value.split('\\').pop();
+            } else {
+                // otherwise show number of files
+                jssetnumber.innerText = count + ' files selected';
+            }
+        });
+        var imgPreview = document.getElementById('imgPreview');
+        var loadFile = function(event) {
+            imgPreview.src = URL.createObjectURL(event.target.files[0]);
+         };
+
+    </script>
+    <script>
+        var IndexController = ($scope, $rootScope, $timeout, $filter, $compile, ApiHelper, CommonHelper, UtilFactory, DataFactory, $q, $http) => {
+            //#region declare variable
+            $scope.UpdateMode = false;
+            $scope.Partner = { IsActive: true };
+            $scope.Data = [];
+            $scope.DEFAULT_IMG = CommonHelper.DEFAULT_IMG;
+
+            //#endregion
+
+            
+            //#region ReadById
+            var ReadById = (Id) => {
+                let defer = $q.defer();
+                $rootScope.MasterPage.IsLoading = true;
+                let strApiEndPoint = CommonHelper.PartnerUrl + Id;
+                ApiHelper.GetMethod(strApiEndPoint)
+                    .then(function (response) {
+                        $rootScope.MasterPage.IsLoading = false;
+                        $scope.Partner = response.Data;
+                        imgPreview.src = $scope.Partner.Logo == null ? $scope.DEFAULT_IMG : $scope.Partner.Logo;
+                        defer.resolve(response);
+                    })
+                    .catch(function (response) {
+                        sys.Alert(false, response.Message);
+                        defer.reject(response);
+                        $rootScope.MasterPage.IsLoading = false;
+                    });
+                return defer.promise;
+            };
+            //#endregion
+
+            //#region Create
+            $scope.Create = function () {
+                $scope.UpdateMode = false;
+                $scope.Partner = {};
+                $("#file").val('');
+                $(".file-msg").html('or drag it here');
+                imgPreview.src = $scope.DEFAULT_IMG;
+                $('#PnModal').appendTo("body").modal('show');
+            };
+            //#endregion
+
+            //#region Update
+            $scope.Update = function (Id) {
+                $scope.UpdateMode = true;
+                ReadById(Id);
+                $("#file").val('');
+                $(".file-msg").html('or drag it here');
+                imgPreview.src = $scope.DEFAULT_IMG;
+                $('#PnModal').appendTo("body").modal('show');
+            }
+            //#endregion
+
+            //#region Delete
+            $scope.Delete = function (Id) {
+                swal({
+                    title: "@Html.Raw(CMS.StaticResources.Resources.MSG_CONFIRM_DELETE)",
+                    text: "@Html.Raw(CMS.StaticResources.Resources.MSG_TEXT_DELETE)",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $rootScope.MasterPage.IsLoading = true;
+                            let strApiEndPoint = CommonHelper.PartnerUrl + Id;
+                            ApiHelper.DeleteMethod(strApiEndPoint)
+                                .then(function (response) {
+                                    $rootScope.MasterPage.IsLoading = false;
+                                    $('#tblData').DataTable().ajax.reload(null, false);
+                                    sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_DELETE_SUCCESS');
+                                })
+                                .catch(function (response) {
+                                    sys.Alert(false, response.Message);
+                                    $rootScope.MasterPage.IsLoading = false;
+                                });
+                        }
+                    });
+            };
+            //#endregion
+
+            //#region Save
+            $scope.Save = function () {
+                if (document.getElementById("file").files.length > 0) {
+                    var formData = new FormData();
+                    formData.append(file, document.getElementById("file").files[0]);
+                    ApiHelper.PostMethod("/api/FileAPI/UploadFiles", formData, { 'Content-Type': undefined })
+                        .then(function (response) {
+                            $rootScope.MasterPage.IsLoading = false;
+                            $scope.Partner.Logo = response.Data;
+                        })
+                        .catch(function (response) {
+                            sys.Alert(false, response.Message);
+                            $rootScope.MasterPage.IsLoading = false;
+                        });
+                }
+                $timeout(function () {
+                    if (!$scope.UpdateMode) {
+                        $rootScope.MasterPage.IsLoading = true;
+                        let strApiEndPoint = CommonHelper.PartnerUrl;
+                        ApiHelper.PostMethod(strApiEndPoint, $scope.Partner)
+                            .then(function (response) {
+                                $rootScope.MasterPage.IsLoading = false;
+                                $('#tblData').DataTable().ajax.reload(null, false);
+                                sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_CREATE_SUCCESS');
+                            })
+                            .catch(function (response) {
+                                sys.Alert(false, response.Message);
+                                defer.reject(response);
+                                $rootScope.MasterPage.IsLoading = false;
+                            });
+                        $('#PnModal').appendTo("body").modal('hide');
+                    }
+                    else {
+                        $rootScope.MasterPage.IsLoading = true;
+                        let strApiEndPoint = CommonHelper.PartnerUrl;
+                        ApiHelper.PutMethod(strApiEndPoint, $scope.Partner)
+                            .then(function (response) {
+                                $rootScope.MasterPage.IsLoading = false;
+                                $('#tblData').DataTable().ajax.reload(null, false);
+                                sys.Alert(true, '@CMS.StaticResources.Resources.MSG_TEXT_UPDATE_SUCCESS');
+                            })
+                            .catch(function (response) {
+                                sys.Alert(false, response.Message);
+                                defer.reject(response);
+                                $rootScope.MasterPage.IsLoading = false;
+                            });
+                        $('#PnModal').appendTo("body").modal('hide');
+                    }
+                }, 500);
+            };
+            //#endregion
+
+            //#region GetAll
+            $rootScope.MasterPage.IsLoading = true;
+            UtilFactory.WaitingLoadDirective(
+                [
+                ]).then(() => {
+                    $q.all({
+                    }).then((MultipleRes) => {
+                    });
+                }).catch((response) => {
+                    throw response;
+                });
+            $rootScope.MasterPage.IsLoading = false;
+            //#endregion
+        }
+        IndexController.$inject = ["$scope", "$rootScope", "$timeout", "$filter", "$compile", "ApiHelper", "CommonHelper", "UtilFactory", "DataFactory", "$q", "$http"];
+        addController("IndexController", IndexController);
+    </script>
+}e
